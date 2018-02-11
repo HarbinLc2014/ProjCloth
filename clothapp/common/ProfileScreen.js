@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Platform, ImageBackground, TouchableOpacity,Dimensions } from 'react-native';
+import { Text, View, Platform, ImageBackground, TouchableOpacity,Dimensions, Image } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 import { Ionicons, Foundation, Entypo, FontAwesome } from '@expo/vector-icons';
 import CardSection from './components/CardSection';
@@ -26,30 +26,35 @@ class ProfileScreen extends Component {
     return (
       <View style={{ flex: 1 }}>
       <ImageBackground source={require('../assets/spring/welcome/welcome3.jpg')} style={{ flex: 1, width: null, height: null, backgroundColor: 'rgba(0,0,0,0)'}}>
-      <View style={{ marginTop: 50 }}>
+      <View style={{ marginTop: 0 }}>
+      <View style={{ width: SCREEN_WIDTH, justifyContent: 'center', alignItems: 'center', height: SCREEN_WIDTH*0.55, backgroundColor: 'rgba(0,0,0,0.5)', flexDirection: 'column' }}>
+      <Image source={require('../assets/source2.png')} resizeMode='stretch'  style={{ width: SCREEN_WIDTH*0.35, height: SCREEN_WIDTH*0.38, marginTop: 15, marginBottom: 10 }} />
+      <Text style={{ color: '#FFFFFF', fontSize: 20 }} > 靓衣汇 </Text>
+      </View>
+
       <CardSection style={{ backgroundColor: 'rgba(16,16,16,0.75)' }}>
       <TouchableOpacity style={{ width: SCREEN_WIDTH }}>
-      <Text style={{ paddingTop: 10, paddingBottom: 10, paddingLeft: 15, fontSize: 18, color: '#FFF', fontWeight: 'bold' }}>订单历史</Text>
+      <Text style={{ paddingTop: 10, paddingBottom: 10, paddingLeft: 15, fontSize: 18, color: '#FFF', fontWeight: '900' }}>订单历史</Text>
       </TouchableOpacity>
       </CardSection>
       <CardSection style={{ backgroundColor: 'rgba(16,16,16,0.75)' }}>
       <TouchableOpacity style={{ width: SCREEN_WIDTH }}>
-      <Text style={{ paddingTop: 10, paddingBottom: 10, paddingLeft: 15, fontSize: 18, color: '#FFF', fontWeight: 'bold' }}>浏览记录</Text>
+      <Text style={{ paddingTop: 10, paddingBottom: 10, paddingLeft: 15, fontSize: 18, color: '#FFF', fontWeight: '900' }}>浏览记录</Text>
       </TouchableOpacity>
       </CardSection>
       <CardSection style={{ backgroundColor: 'rgba(16,16,16,0.75)' }}>
       <TouchableOpacity style={{ width: SCREEN_WIDTH }}>
-      <Text style={{ paddingTop: 10, paddingBottom: 10, paddingLeft: 15, fontSize: 18, color: '#FFF', fontWeight: 'bold' }}>个人设置</Text>
+      <Text style={{ paddingTop: 10, paddingBottom: 10, paddingLeft: 15, fontSize: 18, color: '#FFF', fontWeight: '900' }}>个人设置</Text>
       </TouchableOpacity>
       </CardSection>
       <CardSection style={{ backgroundColor: 'rgba(16,16,16,0.75)' }}>
       <TouchableOpacity style={{ width: SCREEN_WIDTH }}>
-      <Text style={{ paddingTop: 10, paddingBottom: 10, paddingLeft: 15, fontSize: 18, color: '#FFF', fontWeight: 'bold' }}>更多信息</Text>
+      <Text style={{ paddingTop: 10, paddingBottom: 10, paddingLeft: 15, fontSize: 18, color: '#FFF', fontWeight: '900' }}>更多信息</Text>
       </TouchableOpacity>
       </CardSection>
       <CardSection style={{ backgroundColor: 'rgba(16,16,16,0.75)' }}>
       <TouchableOpacity style={{ width: SCREEN_WIDTH }}>
-      <Text style={{ paddingTop: 10, paddingBottom: 10, paddingLeft: 15, fontSize: 18, color: '#FFF', fontWeight: '400' }}>商家加盟</Text>
+      <Text style={{ paddingTop: 10, paddingBottom: 10, paddingLeft: 15, fontSize: 18, color: '#FFF', fontWeight: '900' }}>商家加盟</Text>
       </TouchableOpacity>
       </CardSection>
       </View>

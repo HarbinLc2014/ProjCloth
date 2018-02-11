@@ -6,6 +6,7 @@ import { Text, View, Platform, AppRegistry,
   Dimensions,
   Image, ImageBackground,
     AlertIOS } from 'react-native';
+import { Button, Icon } from 'react-native-elements';
 import { Ionicons, Foundation, Entypo } from '@expo/vector-icons';
 import { TimerMixin } from 'react-timer-mixin';
 import Comp1 from './components/Comp1';
@@ -30,10 +31,14 @@ class HomeScreen extends Component {
       tabBarIcon: ({ tintColor }) => {
           return <Foundation name="social-myspace" size={30} color={tintColor} />;
         },
-      headerTitle: 'Matching',
+      headerTitle: 'Cloth Gallery',
       headerStyle: {
         marginTop: Platform.OS === 'android' ? 24 : 0
-      }
+      },
+      headerRight:
+        <Entypo name="notification" size={25} style={{ marginRight: 10, color: '#007aff' }} onPress={() => { console.log('aaaaa'); }} />,
+     headerLeft:
+          <Entypo name="log-out" size={25} style={{ marginLeft: 10, color: '#007aff' }} onPress={() => { console.log('aaaaa'); }} />
 
     };
   }
@@ -63,19 +68,19 @@ class HomeScreen extends Component {
         btTextStyles2[1] = styles.btText_with_font2;
         btTextStyles3[1] = styles.btText_with_font3;
     }
-    console.log(this.state.fontLoaded);
+  //  console.log(this.state.fontLoaded);
     return (
     <ScrollView>
 
-    <View style={{ flexDirection: 'row', marginTop: 30 }}>
+    <View style={{ flexDirection: 'row', marginTop: 0 }}>
 
-      <View style={{ width: SCREEN_WIDTH-10, height: SCREEN_WIDTH / 4, marginLeft: 5, marginRight: 5, paddingBottom: 30 }}>
+      <View style={{ width: SCREEN_WIDTH, height: (SCREEN_WIDTH * 2) / 3 }}>
                 <Comp2 />
       </View>
 
    </View>
    <ImageBackground source={require('../assets/nbg.jpg')} style={{ flex: 1, width: null, height: null, alignItems: 'center' }}>
-   <View style={{ flexDirection: 'column', backgroundColor: 'rgba(0,0,0,0)', marginBottom: 30 }}>
+   <View style={{ flexDirection: 'column', backgroundColor: 'rgba(0,0,0,0)', marginBottom: 30, paddingTop: 10 }}>
 
  <View style={styles.sectionStyle2}>
          <View style={{ alignItems: 'center', width: SCREEN_WIDTH-20, backgroundColor: '#ffffff', borderRadius: 10, borderWidth: 1.5, borderColor: '#d1d1d1', marginBottom: 10 }}>
@@ -134,9 +139,14 @@ class HomeScreen extends Component {
 
           </View>
       </ImageBackground>
-          <View style={{ flexDirection: 'column', backgroundColor: 'rgba(0,0,0,0.5)', width: SCREEN_WIDTH, paddingBottom: 0, marginTop: 30 }}>
-          <View style={{ marginTop: 5 }}>
-        <Text style={[btTextStyles, { fontSize: 20 }]}>时尚服装</Text>
+          <View style={{ flexDirection: 'column', backgroundColor: 'rgba(0,0,0,0.5)', width: SCREEN_WIDTH, paddingBottom: 0, marginTop: 10 }}>
+          <View style={{ marginTop: 5, flexDirection: 'row' }}>
+          <View>
+        <Text style={[btTextStyles, { fontSize: 25, marginLeft: 20 }]}>时尚服装</Text>
+        </View>
+        <View style={{ flex: 1, alignItems: 'flex-end', justifyContent: 'flex-end' }}>
+         <Ionicons name="ios-more" size={25} color="#ffffff" style={{ marginRight: 20, marginTop: 3 }}/>
+         </View>
         </View>
           <ImageBackground source={require('../assets/bg2.jpg')} style={{ flex: 1, width: null, height: null, alignItems: 'center', backgroundColor: 'rgba(0,0,0,0)', marginTop: 7}}>
           <View style={{marginBottom: 7, marginTop: 7}}>
@@ -183,7 +193,8 @@ const styles = StyleSheet.create({
          backgroundColor: 'rgba(0,0,0,0.5)',
          borderWidth: 3,
          borderRadius: 3,
-         borderColor: 'rgba(0,0,0,0)'
+         borderColor: 'rgba(0,0,0,0)',
+         paddingBottom: 15
     },
     sectionStyle2: {
       width: SCREEN_WIDTH - 20,

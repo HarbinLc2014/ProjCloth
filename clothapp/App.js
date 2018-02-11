@@ -33,13 +33,21 @@ export default class App extends Component {
         welcome: { screen: WelcomeScreen },
         login: { screen: LoginScreen },
         main: { screen: TabNavigator({
-          home: { screen: HomeScreen },
+          home: {
+             screen: StackNavigator({
+               hscreen: { screen: HomeScreen }
+             })
+           },
           list: {
              screen: StackNavigator({
                favor: { screen: ClothScreen }
              })
            },
-          match: { screen: MatchScreen },
+          match: {
+             screen: StackNavigator({
+               mscreen: { screen: MatchScreen }
+             })
+           },
           profile: {
              screen: StackNavigator({
                pfile: { screen: ProfileScreen }

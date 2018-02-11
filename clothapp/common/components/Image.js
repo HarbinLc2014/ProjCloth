@@ -88,6 +88,16 @@ ntl: [
    require('../../assets/spring/ntl/47.jpg'),
    require('../../assets/spring/ntl/48.jpg')
 ],
+title: [
+  require('../../assets/spring/title/title1.jpg'),
+  require('../../assets/spring/title/title2.jpg'),
+  require('../../assets/spring/title/title3.jpg'),
+  require('../../assets/spring/title/title4.jpg'),
+  require('../../assets/spring/title/title5.jpg'),
+  require('../../assets/spring/title/title6.jpg'),
+  require('../../assets/spring/title/title7.jpg'),
+  require('../../assets/spring/title/title8.jpg'),
+]
 };
 
 export default images;

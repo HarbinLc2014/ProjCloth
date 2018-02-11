@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, ScrollView, View, Platform, ImageBackground, Dimensions, ListView, DeviceEventEmitter } from 'react-native';
 import { connect } from 'react-redux';
 import { Card, Button, Icon } from 'react-native-elements';
+import { Ionicons, Foundation, Entypo, MaterialIcons } from '@expo/vector-icons';
 import * as actions from './actions';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -12,14 +13,16 @@ class ClothScreen extends Component {
     const { navigation } = props;
     const { navigate } = navigation;
     return {
-      title: '主页',
+      title: '我的收藏',
       tabBarIcon: ({tintColor}) => {
           return <Icon name="favorite-border" size={30} color={tintColor} />;
         },
       headerTitle: 'Matching',
       headerStyle: {
         marginTop: Platform.OS === 'android' ? 24 : 0
-      }
+      },
+      headerRight:
+        <MaterialIcons name="filter-list" size={25} style={{ marginRight: 10, color: '#007aff' }} onPress={() => { console.log('aaaaa'); }} />,
 
     };
   }

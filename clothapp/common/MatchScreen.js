@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Font } from 'expo';
 import { View, Text, Image, Platform, ImageBackground, Dimensions, DeviceEventEmitter, TouchableOpacity } from 'react-native';
 import { Card, Button } from 'react-native-elements';
-import { Ionicons, Foundation, Entypo } from '@expo/vector-icons';
+import { Ionicons, Foundation, Entypo, Feather, EvilIcons } from '@expo/vector-icons';
 import { connect } from 'react-redux';
 import * as actions from './actions';
 import { likeCloth } from './actions/ClothAction';
@@ -18,15 +18,18 @@ class MatchScreen extends Component {
       const { navigation } = props;
       const { navigate } = navigation;
       return {
-        title: '主页',
+        title: '推荐',
         tabBarIcon: ({ tintColor }) => {
             return <Entypo name="documents" size={30} color={tintColor} />;
           },
         headerTitle: 'Matching',
         headerStyle: {
           marginTop: Platform.OS === 'android' ? 24 : 0
-        }
-
+        },
+        headerLeft:
+         <Feather name="refresh-cw" size={25} style={{ marginLeft: 10, color: '#007aff' }} onPress={() => { console.log('aaaaa'); }} />,
+        headerRight:
+          <Feather name="filter" size={25} style={{ marginRight: 10, color: '#007aff' }} onPress={() => { console.log('aaaaa'); }} />,
       };
     }
     state = {
@@ -64,7 +67,7 @@ class MatchScreen extends Component {
         btTextStyles2[1] = styles.btText_with_font2;
         btTextStyles3[1] = styles.btText_with_font3;
     }
-    console.log(btTextStyles);
+//    console.log(btTextStyles);
     return (
       <View style={{ marginLeft: 35, marginRight: 35, width: SCREEN_WIDTH-70, height: SCREEN_HEIGHT-150, alignItems: 'center', justifyContent: 'center' }}>
       <ImageBackground source={this.state.src[id % (this.state.src.length)]} style={{ flex: 1, width: SCREEN_WIDTH-70, height: null, backgroundColor: 'rgba(0,0,0,0.3)', alignItems: 'center', justifyContent: 'center', borderRadius: 5 }} resizeMode='stretch'>
@@ -91,7 +94,7 @@ class MatchScreen extends Component {
     return (
       <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.3)' }}>
       <ImageBackground source={require('../assets/bg2.jpg')} style={{ flex: 1, width: null, height: null, backgroundColor: 'rgba(0,0,0,0.3)' }}>
-      <View style={{ flex: 1, marginTop: 60 }}>
+      <View style={{ flex: 1, marginTop: 10 }}>
       <Swipe
       data={this.props.clothes}
       renderCard={this.renderCard}
