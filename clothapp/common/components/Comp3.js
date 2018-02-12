@@ -4,7 +4,8 @@ import { Text, View, Platform, AppRegistry,
   ScrollView,
   Dimensions,
   Image,
-    AlertIOS } from 'react-native';
+    AlertIOS,
+  TouchableOpacity } from 'react-native';
 import { Ionicons, Foundation, Entypo } from '@expo/vector-icons';
 import { TimerMixin } from 'react-timer-mixin';
 import Images from './Image';
@@ -31,8 +32,11 @@ class Comp3 extends Component {
         var i = 0;
         var allImage = [];
         for (i = 0; i < Images.big.length; i++) {
+          var desc = ImageData.data[0].title;
           allImage.push(
+            <TouchableOpacity key={i} onPress={() => { this.props.press({ msg: desc, thumbnail: Images.big[i] }); }}>
             <Image key={i} source={Images.big[i]} resizeMode='stretch' style={{ flex: 1, width: SCREEN_WIDTH/4, height: SCREEN_WIDTH/2.5, marginRight: 15, marginLeft: 15, borderWidth: 10, borderRadius: 10, borderColor: 'rgba(0,0,0,0)', marginTop: 7.5, marginBottom: 7.5 }} />
+            </TouchableOpacity>
           );
         }
         return allImage;

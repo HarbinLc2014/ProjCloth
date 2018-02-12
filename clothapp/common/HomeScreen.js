@@ -11,6 +11,7 @@ import { Ionicons, Foundation, Entypo } from '@expo/vector-icons';
 import { TimerMixin } from 'react-timer-mixin';
 import Comp1 from './components/Comp1';
 import Comp2 from './components/Comp2';
+import Profile from './components/Profile';
 import Comp3 from './components/Comp3';
 import Comp4 from './components/Comp4';
 
@@ -31,19 +32,21 @@ class HomeScreen extends Component {
       tabBarIcon: ({ tintColor }) => {
           return <Foundation name="social-myspace" size={30} color={tintColor} />;
         },
-      headerTitle: 'Cloth Gallery',
+      headerTitle: '靓衣汇',
       headerStyle: {
         marginTop: Platform.OS === 'android' ? 24 : 0
       },
       headerRight:
         <Entypo name="notification" size={25} style={{ marginRight: 10, color: '#007aff' }} onPress={() => { console.log('aaaaa'); }} />,
      headerLeft:
-          <Entypo name="log-out" size={25} style={{ marginLeft: 10, color: '#007aff' }} onPress={() => { console.log('aaaaa'); }} />
+<Image source={require('../assets/source2.png')} resizeMode='stretch'  style={{ width: 30, height: 33, marginTop: 2, marginBottom: 5, marginLeft: 10 }} />
 
     };
   }
   state = {
       fontLoaded: false,
+      showModal: false,
+      thumbnail: ''
   };
 
   async componentDidMount() {
@@ -55,6 +58,14 @@ class HomeScreen extends Component {
       });
 
       this.setState({ fontLoaded: true });
+  }
+  onAccept() {
+      this.setState({ showModal: false });
+  }
+  press(event) {
+    console.log(event.msg);
+        this.setState({ thumbnail: event.thumbnail });
+    this.setState({ showModal: !this.state.showModal });
   }
   render() {
     let btTextStyles = [];
@@ -150,10 +161,21 @@ class HomeScreen extends Component {
         </View>
           <ImageBackground source={require('../assets/bg2.jpg')} style={{ flex: 1, width: null, height: null, alignItems: 'center', backgroundColor: 'rgba(0,0,0,0)', marginTop: 7}}>
           <View style={{marginBottom: 7, marginTop: 7}}>
-          <Comp3 />
+          <Comp3 press={this.press.bind(this)}/>
           </View>
                   </ImageBackground>
           </View>
+          <Profile
+          visible={this.state.showModal}
+          Accept={this.onAccept.bind(this)}
+          library={{
+              id: 1,
+              title: '王杰智',
+              description: '详细资料',
+              thumbnail: this.state.thumbnail
+            }}>
+              防尬聊话题
+          </Profile>
     </ScrollView>
 
    );
