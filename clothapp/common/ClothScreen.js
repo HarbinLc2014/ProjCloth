@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, ScrollView, View, Platform, ImageBackground, Dimensions, ListView, DeviceEventEmitter } from 'react-native';
+import { Text, ScrollView, View, Platform, ImageBackground, Dimensions, Image, ListView } from 'react-native';
 import { connect } from 'react-redux';
 import { Card, Button, Icon } from 'react-native-elements';
 import { Ionicons, Foundation, Entypo, MaterialIcons } from '@expo/vector-icons';
@@ -26,11 +26,20 @@ class ClothScreen extends Component {
 
     };
   }
+  state = {
+      fontLoaded: false,
+      src: [
+        require('../assets/bg6.jpg'),
+        require('../assets/tbg1.jpg'),
+    require('../assets/bg5.jpg'),
+  require('../assets/bg4.jpg')
+]}
   componentWillMount() {
     this.setState({ likedClothes: this.props.likedClothes });
   //  DeviceEventEmitter.addListener(
   //    'taobaoBind', (events) => { this.setState({ ss: '' }); console.log('ttt:'); });
     this.createDataSource(this.props);
+    console.log(this.props.sourceClothes);
   }
   componentWillReceiveProps(nextProps) {
     this.createDataSource(nextProps);
@@ -47,11 +56,17 @@ class ClothScreen extends Component {
     this.createDataSource(this.props);
     return (
       <View style={{ width: SCREEN_WIDTH*3/4, marginLeft:SCREEN_WIDTH/8, marginRight: SCREEN_WIDTH/8, marginTop: 30 }}>
-      <Card title={cloth.title}>
-      <View style={{ height: 300 }}>
-      <View style={styles.detailWrapper}>
-      <Text style={styles.italics} >{cloth.description}</Text>
+      <Card title={cloth.type} containerStyle={{ backgroundColor: 'rgba(0,0,0,0.7)', height: SCREEN_HEIGHT*2/3 }} titleStyle={{ color: '#ffffff' }}>
+      <View>
+      <ImageBackground source={this.state.src[cloth.id % (this.state.src.length)]} style={{ flex: 1, width: null, height: 300, borderRadius: 5 }} resizeMode='stretch'>
+      <View style={{ height: 300, justifyContent: 'center', alignItems: 'center' }}>
+      <Image source={cloth.src} style={{ height: 250, width: 150, marginTop: 0, marginLeft: 2, marginBottom: 20 }} />
       </View>
+      </ImageBackground>
+      </View>
+      <View style={styles.detailWrapper}>
+      <Text style={styles.italics} >款号: {cloth.code}</Text>
+      <Text style={styles.italics} >价格: {cloth.price} RMB </Text>
       </View>
       </Card>
       </View>
@@ -76,17 +91,21 @@ class ClothScreen extends Component {
 
 const styles = {
   detailWrapper: {
-    marginBottom: 10,
-    flexDirection: 'row',
-    justifyContent: 'space-around'
+    marginBottom: 5,
+    marginTop: 315,
+    flexDirection: 'column',
+    justifyContent: 'center'
   },
   italics: {
-    fontStyle: 'italic'
+    fontStyle: 'italic',
+    fontWeight: 'bold',
+    fontSize: 20,
+    color: '#FFFFFF'
   }
 };
 
 const mapStateToProps = (state) => {
-  return { likedClothes: state.likedClothes };
+  return { likedClothes: state.likedClothes, sourceClothes: state.source };
 };
 
 export default connect(mapStateToProps, actions)(ClothScreen);

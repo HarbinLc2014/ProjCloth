@@ -7,7 +7,7 @@ export default function (state = [], action) {
       console.log('liked');
       return _.uniqBy([
         action.payload, ...state
-      ], 'title');
+      ], 'code');
     default:
       return state;
   }

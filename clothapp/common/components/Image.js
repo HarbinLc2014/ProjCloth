@@ -8,7 +8,6 @@ welcome: {
 ad: [
    require('../../assets/spring/ad/ad1.jpg'),
    require('../../assets/spring/ad/ad2.jpg'),
-   require('../../assets/spring/ad/adj1.jpg'),
    require('../../assets/spring/ad/ad4.jpg'),
    require('../../assets/spring/ad/ad5.jpg'),
    require('../../assets/spring/ad/ad6.jpg'),
@@ -23,10 +22,49 @@ ad: [
    require('../../assets/spring/ad/ad16.jpg'),
    require('../../assets/spring/ad/ad17.jpg'),
    require('../../assets/spring/ad/ad19.jpg'),
-   require('../../assets/spring/ad/ad20.jpg'),
-   require('../../assets/spring/ad/ad21.jpg'),
-   require('../../assets/spring/ad/ad22.jpg'),
-   require('../../assets/spring/ad/ad24.jpg'),
+   require('../../assets/spring/ad/ad3.jpg'),
+],
+adjson: [
+  {
+    id: 0,
+    src: require('../../assets/spring/ad/ad1.jpg'),
+  },
+  {
+    id: 1,
+    src: require('../../assets/spring/ad/ad2.jpg'),
+  },
+  {
+    id: 2,
+    src: require('../../assets/spring/ad/ad3.jpg'),
+  },
+  {
+    id: 3,
+    src: require('../../assets/spring/ad/ad4.jpg'),
+  },
+  {
+    id: 4,
+    src: require('../../assets/spring/ad/ad5.jpg'),
+  },
+  {
+    id: 5,
+    src: require('../../assets/spring/ad/ad6.jpg'),
+  },
+  {
+    id: 6,
+    src: require('../../assets/spring/ad/ad7.jpg'),
+  },
+  {
+    id: 7,
+    src: require('../../assets/spring/ad/ad8.jpg'),
+  },
+  {
+    id: 8,
+    src: require('../../assets/spring/ad/ad9.jpg'),
+  },
+  {
+    id: 9,
+    src: require('../../assets/spring/ad/ad10.jpg'),
+  }
 ],
 big: [
     require('../../assets/spring/big/big1.jpg'),
@@ -39,6 +77,48 @@ big: [
      require('../../assets/spring/big/big8.jpg'),
      require('../../assets/spring/big/big9.jpg'),
      require('../../assets/spring/big/big10.jpg'),
+],
+bigjson: [
+    {
+      id: 0,
+      src: require('../../assets/spring/big/big1.jpg')
+    },
+    {
+      id: 1,
+      src: require('../../assets/spring/big/big2.jpg')
+    },
+    {
+      id: 2,
+      src: require('../../assets/spring/big/big3.jpg')
+    },
+    {
+      id: 3,
+      src: require('../../assets/spring/big/big4.jpg')
+    },
+    {
+      id: 4,
+      src: require('../../assets/spring/big/big5.jpg')
+    },
+    {
+      id: 5,
+      src: require('../../assets/spring/big/big6.jpg')
+    },
+    {
+      id: 6,
+      src: require('../../assets/spring/big/big7.jpg')
+    },
+    {
+      id: 7,
+      src: require('../../assets/spring/big/big8.jpg')
+    },
+    {
+      id: 8,
+      src: require('../../assets/spring/big/big9.jpg')
+    },
+    {
+      id: 9,
+      src: require('../../assets/spring/big/big10.jpg')
+    }
 ],
 ntl: [
    require('../../assets/spring/ntl/1.jpg'),
@@ -97,7 +177,41 @@ title: [
   require('../../assets/spring/title/title6.jpg'),
   require('../../assets/spring/title/title7.jpg'),
   require('../../assets/spring/title/title8.jpg'),
-]
+],
+titlejson: [
+  {
+    id: 0,
+    src: require('../../assets/spring/title/title1.jpg')
+  },
+  {
+    id: 1,
+    src: require('../../assets/spring/title/title2.jpg')
+  },
+  {
+    id: 2,
+    src: require('../../assets/spring/title/title3.jpg')
+  },
+  {
+    id: 3,
+    src: require('../../assets/spring/title/title4.jpg')
+  },
+  {
+    id: 4,
+    src: require('../../assets/spring/title/title5.jpg')
+  },
+  {
+    id: 5,
+    src: require('../../assets/spring/title/title6.jpg')
+  },
+  {
+    id: 6,
+    src: require('../../assets/spring/title/title7.jpg')
+  },
+  {
+    id: 7,
+    src: require('../../assets/spring/title/title8.jpg')
+  }
+],
 };
 
 export default images;

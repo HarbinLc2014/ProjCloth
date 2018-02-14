@@ -1,16 +1,30 @@
 import React from 'react';
-import {Text, View, Modal, Image, TouchableOpacity, TouchableWithoutFeedback} from 'react-native';
+import {Text, View, Modal, Image, TouchableOpacity, TouchableWithoutFeedback, Dimensions} from 'react-native';
 import CardSection from './CardSection2';
 import Button from './Button';
 import Card from './Card';
+import Images from './Image';
 
+const SCREEN_WIDTH = Dimensions.get('window').width;
+const SCREEN_HEIGHT = Dimensions.get('window').height;
 const Profile = (props) => {
-    this.state = {friendShow: false};
+    this.state = {friendShow: false, src: null};
     const {
         containerStyle, textStyle, cardSectionStyle, textStyle3, cardSectionStyle3, textStyle4,
         imageStyle, cardSectionStyle2, textStyle2, imageStyle2, imageStyle3, imageStyle4
     } = styles;
 
+    if (props.library.type === 'title') {
+      const a = props.library.thumbnail;
+      this.state.src = Images.title[a];
+    }
+    else if (props.library.type === 'big') {
+      const a = props.library.thumbnail;
+      this.state.src = Images.big[a];
+    }
+    else {
+      this.state.src = Images.big[0];
+    }
 
     /* eslint-disable global-require */
     return (
@@ -26,7 +40,7 @@ const Profile = (props) => {
                     <TouchableWithoutFeedback>
                         <View>
                             <CardSection style={cardSectionStyle2}>
-                                <Image source={{uri: props.library.thumbnail}} style={imageStyle}/>
+                                <Image source={this.state.src} style={imageStyle} resizeMode='contain' />
                                 <Text style={textStyle2}>{props.library.title}</Text>
                                 <View style={{flexDirection: 'row'}}>
                                     <Image source={require('../../assets/images/timg.jpeg')} style={imageStyle2}/>
@@ -117,8 +131,10 @@ const styles = {
         justifyContent: 'center'
     },
     imageStyle: {
-        height: 80,
-        width: 80,
+        height: (SCREEN_WIDTH*2)/3,
+        width: (SCREEN_WIDTH*2)/3,
+        borderWidth: 0,
+        borderRadius: 5
     },
     imageStyle2: {
         height: 20,

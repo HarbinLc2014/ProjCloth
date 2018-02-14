@@ -46,7 +46,8 @@ class HomeScreen extends Component {
   state = {
       fontLoaded: false,
       showModal: false,
-      thumbnail: ''
+      thumbnail: 0,
+      type: ''
   };
 
   async componentDidMount() {
@@ -63,9 +64,20 @@ class HomeScreen extends Component {
       this.setState({ showModal: false });
   }
   press(event) {
-    console.log(event.msg);
+  //  console.log(event.msg);
+  //  console.log(event.thumbnail);
+    this.setState({ thumbnail: event.thumbnail });
+    this.setState({ showModal: !this.state.showModal });
+    this.setState({ type: 'big' });
+    console.log(this.state.thumbnail);
+  }
+  pressTitle(event) {
+  //  console.log(event.msg);
+  //  console.log(event.thumbnail);
         this.setState({ thumbnail: event.thumbnail });
     this.setState({ showModal: !this.state.showModal });
+    console.log(this.state.thumbnail);
+    this.setState({ type: 'title' });
   }
   render() {
     let btTextStyles = [];
@@ -86,7 +98,7 @@ class HomeScreen extends Component {
     <View style={{ flexDirection: 'row', marginTop: 0 }}>
 
       <View style={{ width: SCREEN_WIDTH, height: (SCREEN_WIDTH * 2) / 3 }}>
-                <Comp2 />
+                <Comp2 pressTitle={this.pressTitle.bind(this)} />
       </View>
 
    </View>
@@ -98,7 +110,7 @@ class HomeScreen extends Component {
                <Text style={btTextStyles3}>最佳搭配</Text>
          </View>
               {/* <Comp1 count={32}/> */}
-              <Comp4 />
+              <Comp4 press={this.press.bind(this)}/>
      </View>
 
  <View style={styles.sectionStyle2}>
@@ -108,7 +120,7 @@ class HomeScreen extends Component {
          </View>
 
             {/*   <Comp1 count={40}/>  */}
-            <Comp4 />
+            <Comp4 press={this.press.bind(this)}/>
      </View>
   </View>
 
@@ -172,7 +184,8 @@ class HomeScreen extends Component {
               id: 1,
               title: '王杰智',
               description: '详细资料',
-              thumbnail: this.state.thumbnail
+              thumbnail: this.state.thumbnail,
+              type: this.state.type
             }}>
               防尬聊话题
           </Profile>

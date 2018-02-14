@@ -39,7 +39,8 @@ class MatchScreen extends Component {
           require('../assets/tbg1.jpg'),
       require('../assets/bg5.jpg'),
     require('../assets/bg4.jpg')
-    ]
+  ],
+  length: this.props.clothes.length
     };
   componentWillMount() {
   //  console.log(this.props.clothes);
@@ -55,7 +56,7 @@ class MatchScreen extends Component {
   }
         /* eslint-disable global-require */
   renderCard = (cloth) => {
-    const { id } = cloth;
+    const { id, src } = cloth;
     let btTextStyles = [];
     let btTextStyles2 = [];
     let btTextStyles3 = [];
@@ -72,7 +73,7 @@ class MatchScreen extends Component {
       <View style={{ marginLeft: 35, marginRight: 35, width: SCREEN_WIDTH-70, height: SCREEN_HEIGHT-150, alignItems: 'center', justifyContent: 'center' }}>
       <ImageBackground source={this.state.src[id % (this.state.src.length)]} style={{ flex: 1, width: SCREEN_WIDTH-70, height: null, backgroundColor: 'rgba(0,0,0,0.3)', alignItems: 'center', justifyContent: 'center', borderRadius: 5 }} resizeMode='stretch'>
       <View style={{ flex: 1, width: (SCREEN_WIDTH-70)*0.7, height: (SCREEN_HEIGHT-150)*0.82, marginTop: (SCREEN_HEIGHT-150)*0.055 }}>
-      <Image style={{ width: null, height: (SCREEN_HEIGHT-150)*0.82, borderRadius: 10 }} source={Images.ad[id]} ></Image>
+      <Image style={{ width: null, height: (SCREEN_HEIGHT-150)*0.82, borderRadius: 10 }} source={src} ></Image>
       <View style={styles.detailWrapper}>
       <TouchableOpacity style={{ alignItems: 'center', flex: 1, width: null, backgroundColor: 'rgba(0,0,0,0.15)' }}>
       <Text style={btTextStyles}>更多介绍</Text>
@@ -107,7 +108,7 @@ class MatchScreen extends Component {
   //      var likedClothes = cloth;
   //      DeviceEventEmitter.emit('taobaoBind', { likedClothes });
        }}
-      keyProp="title"
+      keyProp="id"
       />
       </View>
       </ImageBackground>

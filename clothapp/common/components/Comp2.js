@@ -4,6 +4,7 @@ import { Text, View, Platform, AppRegistry,
   ScrollView,
   Dimensions,
   Image,
+  TouchableOpacity,
     AlertIOS } from 'react-native';
 import { Ionicons, Foundation, Entypo } from '@expo/vector-icons';
 import { TimerMixin } from 'react-timer-mixin';
@@ -32,13 +33,15 @@ class Comp2 extends Component {
         var allImage = [];
         var imgsArr = ImageData.data;
         for (i = 0; i < Images.title.length; i++) {
-          var item = imgsArr[i];
-          //创建组件加入数组
-          allImage.push(
-            <Image key={i} source={Images.title[i]} style={{ flex: 1, width: SCREEN_WIDTH, height: (SCREEN_WIDTH*2)/3 }} />
-          );
+
+          return Images.titlejson.map(title => {
+            return(
+              <TouchableOpacity key={title.id} onPress={() => { this.props.pressTitle({ msg: title.src, thumbnail: title.id }); }}>
+              <Image key={i} source={title.src} resizeMode='stretch' style={{ flex: 1, width: SCREEN_WIDTH, height: (SCREEN_WIDTH*2)/3 }} />
+              </TouchableOpacity>
+            );
+          });
         }
-        return allImage;
       }
       renderPageCircle() {
             var indicatorArr = [];

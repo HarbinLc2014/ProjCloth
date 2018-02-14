@@ -31,16 +31,15 @@ class Comp3 extends Component {
   renderAllImage() {
         var i = 0;
         var allImage = [];
-        for (i = 0; i < Images.big.length; i++) {
-          var desc = ImageData.data[0].title;
-          allImage.push(
-            <TouchableOpacity key={i} onPress={() => { this.props.press({ msg: desc, thumbnail: Images.big[i] }); }}>
-            <Image key={i} source={Images.big[i]} resizeMode='stretch' style={{ flex: 1, width: SCREEN_WIDTH/4, height: SCREEN_WIDTH/2.5, marginRight: 15, marginLeft: 15, borderWidth: 10, borderRadius: 10, borderColor: 'rgba(0,0,0,0)', marginTop: 7.5, marginBottom: 7.5 }} />
+        return Images.bigjson.map(big => {
+          return(
+            <TouchableOpacity key={big.id} onPress={() => { this.props.press({ msg: big.src, thumbnail: big.id }); }}>
+            <Image key={i} source={Images.big[big.id]} resizeMode='stretch' style={{ flex: 1, width: SCREEN_WIDTH/4, height: SCREEN_WIDTH/2.5, marginRight: 15, marginLeft: 15, borderWidth: 10, borderRadius: 10, borderColor: 'rgba(0,0,0,0)', marginTop: 7.5, marginBottom: 7.5 }} />
             </TouchableOpacity>
           );
-        }
-        return allImage;
+        });
       }
+
       renderPageCircle() {
             var indicatorArr = [];
             var imgsArr = ImageData.data;
