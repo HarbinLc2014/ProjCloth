@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, ScrollView, View, Platform, ImageBackground, Dimensions, Image, ListView } from 'react-native';
 import { connect } from 'react-redux';
 import { Card, Button, Icon } from 'react-native-elements';
-import { Ionicons, Foundation, Entypo, MaterialIcons } from '@expo/vector-icons';
+import { Ionicons, Foundation, Entypo, MaterialIcons, Feather } from '@expo/vector-icons';
 import * as actions from './actions';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -56,7 +56,7 @@ class ClothScreen extends Component {
     this.createDataSource(this.props);
     return (
       <View style={{ width: SCREEN_WIDTH*3/4, marginLeft:SCREEN_WIDTH/8, marginRight: SCREEN_WIDTH/8, marginTop: 30 }}>
-      <Card title={cloth.type} containerStyle={{ backgroundColor: 'rgba(0,0,0,0.7)', height: SCREEN_HEIGHT*2/3 }} titleStyle={{ color: '#ffffff' }}>
+      <Card title={cloth.type} containerStyle={{ backgroundColor: 'rgba(0,0,0,0.7)', height: SCREEN_HEIGHT*3/4 }} titleStyle={{ color: '#ffffff' }}>
       <View>
       <ImageBackground source={this.state.src[cloth.id % (this.state.src.length)]} style={{ flex: 1, width: null, height: 300, borderRadius: 5 }} resizeMode='stretch'>
       <View style={{ height: 300, justifyContent: 'center', alignItems: 'center' }}>
@@ -67,6 +67,10 @@ class ClothScreen extends Component {
       <View style={styles.detailWrapper}>
       <Text style={styles.italics} >款号: {cloth.code}</Text>
       <Text style={styles.italics} >价格: {cloth.price} RMB </Text>
+      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20 }}>
+      <Feather name="shopping-cart" size={28} style={{ marginRight: 30, color: '#FFFFFF' }} onPress={() => { console.log('aaaaa'); }} />
+      <MaterialIcons name="delete" size={30} style={{ marginLeft: 30, color: '#FFFFFF' }} onPress={() => { console.log('aaaaa'); }} />
+      </View>
       </View>
       </Card>
       </View>

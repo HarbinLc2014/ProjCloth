@@ -116,7 +116,7 @@ class HomeScreen extends Component {
  <View style={styles.sectionStyle2}>
 
          <View style={{ alignItems: 'center', width: SCREEN_WIDTH-20, backgroundColor: '#FFFFFF', borderRadius: 10, borderWidth: 1.5, borderColor: '#d1d1d1', marginBottom: 10 }}>
-               <Text style={btTextStyles3}>经典服饰</Text>
+               <Text style={btTextStyles3}>单裙 & 连衣裙</Text>
          </View>
 
             {/*   <Comp1 count={40}/>  */}
@@ -128,13 +128,13 @@ class HomeScreen extends Component {
 
         <View style={styles.sectionStyle}>
             <View style={{ alignItems: 'center', width: (SCREEN_WIDTH/2)-8, marginBottom: 5 }}>
-                  <Text style={btTextStyles2}> 今 日 首 推 </Text>
+                  <Text style={btTextStyles2}>(针织 & 雪纺 & 普通)上衣</Text>
             </View>
                   <Comp1 count={0}/>
         </View>
 <View style={styles.sectionStyle}>
             <View style={{ alignItems: 'center', width: (SCREEN_WIDTH/2)-8, marginBottom: 5 }}>
-                  <Text style={btTextStyles2}> 潮 流 女 装 </Text>
+                  <Text style={btTextStyles2}>风衣 & 外衣</Text>
             </View>
 
                   <Comp1 count={8}/>
@@ -146,7 +146,7 @@ class HomeScreen extends Component {
 
 <View style={styles.sectionStyle}>
                  <View style={{ alignItems: 'center', width: (SCREEN_WIDTH/2)-10, backgroundColor: '#FFFFFF', borderRadius: 10, borderWidth: 1.5, borderColor: '#d1d1d1', marginBottom: 5 }}>
-                       <Text style={btTextStyles}>人气商品</Text>
+                       <Text style={btTextStyles}>套装</Text>
                  </View>
                        <Comp1 count={16}/>
              </View>
@@ -154,7 +154,7 @@ class HomeScreen extends Component {
 <View style={styles.sectionStyle}>
 
                  <View style={{ alignItems: 'center', width: (SCREEN_WIDTH/2)-10, backgroundColor: '#FFFFFF', borderRadius: 10, borderWidth: 1.5, borderColor: '#d1d1d1', marginBottom: 5 }}>
-                       <Text style={btTextStyles}>促销商品</Text>
+                       <Text style={btTextStyles}>裤子</Text>
                  </View>
 
                        <Comp1 count={24}/>
@@ -165,7 +165,7 @@ class HomeScreen extends Component {
           <View style={{ flexDirection: 'column', backgroundColor: 'rgba(0,0,0,0.5)', width: SCREEN_WIDTH, paddingBottom: 0, marginTop: 10 }}>
           <View style={{ marginTop: 5, flexDirection: 'row' }}>
           <View>
-        <Text style={[btTextStyles, { fontSize: 25, marginLeft: 20 }]}>时尚服装</Text>
+        <Text style={[btTextStyles, { fontSize: 25, marginLeft: 20 }]}>其它商品</Text>
         </View>
         <View style={{ flex: 1, alignItems: 'flex-end', justifyContent: 'flex-end' }}>
          <Ionicons name="ios-more" size={25} color="#ffffff" style={{ marginRight: 20, marginTop: 3 }}/>

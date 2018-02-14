@@ -56,7 +56,7 @@ class MatchScreen extends Component {
   }
         /* eslint-disable global-require */
   renderCard = (cloth) => {
-    const { id, src } = cloth;
+    const { id, src, show } = cloth;
     let btTextStyles = [];
     let btTextStyles2 = [];
     let btTextStyles3 = [];
@@ -83,6 +83,7 @@ class MatchScreen extends Component {
     </ImageBackground>
       </View>
     );
+
     }
   renderNoMoreCards = () => {
       return (
@@ -97,7 +98,9 @@ class MatchScreen extends Component {
       <ImageBackground source={require('../assets/bg2.jpg')} style={{ flex: 1, width: null, height: null, backgroundColor: 'rgba(0,0,0,0.3)' }}>
       <View style={{ flex: 1, marginTop: 10 }}>
       <Swipe
-      data={this.props.clothes}
+      data={this.props.clothes.filter((t) => {
+               return t.show;
+           })}
       renderCard={this.renderCard}
       renderNoMoreCards={this.renderNoMoreCards}
   //    cloth={this.renderCard.cloth}
