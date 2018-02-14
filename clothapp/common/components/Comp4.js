@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
-import { Text, View, Platform, AppRegistry,
+import _ from 'lodash';
+import { Text, View, Platform, AppRegistry, TouchableOpacity,
   StyleSheet,
   ScrollView,
   Dimensions,
   Image,
     AlertIOS } from 'react-native';
+import { connect } from 'react-redux';
 import { Ionicons, Foundation, Entypo } from '@expo/vector-icons';
 import { TimerMixin } from 'react-timer-mixin';
+import * as actions from '../actions';
+import { viewCloth } from '../actions/ClothAction';
 import Images from './Image';
 
 const ImageData = require('../ImageData.json');
@@ -28,15 +32,16 @@ class Comp4 extends Component {
   //AlertIOS.alert(" currentPage=  " +this.state.currentPage);
 }
   renderAllImage() {
-        var i = 0;
-        var allImage = [];
-        for (i = 0; i < Images.big.length; i++) {
-          allImage.push(
-            <Image key={i} source={Images.big[i]} resizeMode='stretch' style={{ flex: 1, width: SCREEN_WIDTH/2.5, height: (SCREEN_WIDTH/1.5)-20, borderWidth: 10, borderRadius: 10, marginRight: 8, marginLeft: 8, marginTop: 10, marginBottom: 10 }} />
-          );
-        }
-        return allImage;
-      }
+    return _.uniqBy(this.props.clothes.filter((t) => {
+             return t.show && t.type.includes(this.props.count);
+         }), 'src').map(cloth => {
+           return(
+          <TouchableOpacity key={cloth.id} onPress={() => { this.props.viewCloth(cloth); this.props.pressComp4(cloth); }}>
+            <Image key={cloth.id} source={cloth.src} resizeMode='stretch' style={{ flex: 1, width: SCREEN_WIDTH/2.5, height: (SCREEN_WIDTH/1.5)-20, borderWidth: 10, borderRadius: 10, marginRight: 8, marginLeft: 8, marginTop: 10, marginBottom: 10 }} />
+          </TouchableOpacity>
+        );
+      });
+    }
       renderPageCircle() {
             var indicatorArr = [];
             var imgsArr = ImageData.data;
@@ -84,5 +89,7 @@ class Comp4 extends Component {
     alignItems: 'center'
   }
 
-  });
-export default Comp4;
+  });const mapStateToProps = (state) => {
+    return { clothes: state.clothes };
+  };
+export default connect(mapStateToProps, actions)(Comp4);

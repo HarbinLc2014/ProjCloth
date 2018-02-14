@@ -10,6 +10,7 @@ import HomeScreen from './common/HomeScreen';
 import MatchScreen from './common/MatchScreen';
 import ProfileScreen from './common/ProfileScreen';
 import ClothScreen from './common/ClothScreen';
+import HistoryScreen from './common/HistoryScreen';
 import reducers from './common/reducers';
 import registerForNotifications from './services/push_notifications';
 
@@ -50,7 +51,8 @@ export default class App extends Component {
            },
           profile: {
              screen: StackNavigator({
-               pfile: { screen: ProfileScreen }
+               pfile: { screen: ProfileScreen },
+               history: { screen: HistoryScreen }
              })
            },
         }) }

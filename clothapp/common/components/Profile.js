@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, Modal, Image, TouchableOpacity, TouchableWithoutFeedback, Dimensions} from 'react-native';
+import {Text, View, Modal, Image, TouchableOpacity, TouchableWithoutFeedback, Dimensions, ImageBackground} from 'react-native';
 import CardSection from './CardSection2';
 import Button from './Button';
 import Card from './Card';
@@ -14,17 +14,8 @@ const Profile = (props) => {
         imageStyle, cardSectionStyle2, textStyle2, imageStyle2, imageStyle3, imageStyle4
     } = styles;
 
-    if (props.library.type === 'title') {
-      const a = props.library.thumbnail;
-      this.state.src = Images.title[a];
-    }
-    else if (props.library.type === 'big') {
-      const a = props.library.thumbnail;
-      this.state.src = Images.big[a];
-    }
-    else {
-      this.state.src = Images.big[0];
-    }
+
+      this.state.src = props.library.src;
 
     /* eslint-disable global-require */
     return (
@@ -34,28 +25,27 @@ const Profile = (props) => {
             animationType="slide"
             onRequestClose={() => {
             }}
+
         >
             <TouchableWithoutFeedback onPress={props.Accept}>
                 <View style={containerStyle}>
                     <TouchableWithoutFeedback>
                         <View>
                             <CardSection style={cardSectionStyle2}>
-                                <Image source={this.state.src} style={imageStyle} resizeMode='contain' />
-                                <Text style={textStyle2}>{props.library.title}</Text>
-                                <View style={{flexDirection: 'row'}}>
-                                    <Image source={require('../../assets/images/timg.jpeg')} style={imageStyle2}/>
-                                    <Text style={textStyle}>22</Text>
+                                <View style={{ width: null, flex: 1, marginBottom: 30 }}>
+                                <Text style={textStyle4}>{props.library.type}</Text>
                                 </View>
-
-                                <View style={{flexDirection: 'row', paddingTop: 7, paddingBottom: 10}}>
-                                    <Image source={require('../..//assets/images/red.png')} style={imageStyle4}/>
-                                    <Image source={require('../../assets/images/blue.png')} style={imageStyle3}/>
+                                <View style={{ marginTop: 15 }}>
+                                <Image source={this.state.src} style={imageStyle} resizeMode='contain' />
+                                </View>
+                                <View style={{flexDirection: 'column'}}>
+                                <Text style={textStyle2}>款式: {props.library.code}</Text>
+                                <Text style={textStyle2}>价格: {props.library.price}RMB</Text>
                                 </View>
                             </CardSection>
-                            <CardSection>
+                        {/*    <CardSection>
                                 <Button
                                     status={this.state.friendShow}
-
                                     style={{height: 20}}
                                     style2={{textDecorationLine: 'none', fontSize: 13, paddingTop: 4}}
                                 >资料</Button>
@@ -66,16 +56,10 @@ const Profile = (props) => {
                                     style2={{textDecorationLine: 'none', fontSize: 13, paddingTop: 4}}
                                     style={{height: 20}}
                                     status={!this.state.friendShow}
-
                                 >
                                     状态
                                 </Button>
-                            </CardSection>
-
-                            <CardSection style={cardSectionStyle3}>
-                                <Text style={textStyle3}>{props.children}</Text>
-                                <Text style={textStyle4}>你喜欢教父的哪一部?</Text>
-                            </CardSection>
+                            </CardSection>*/}
                         </View>
                     </TouchableWithoutFeedback>
                 </View>
@@ -95,14 +79,14 @@ const styles = {
         alignItems: 'center',
         flexDirection: 'column',
         borderWidth: 0,
-        backgroundColor: '#ffffff'
+        backgroundColor: 'rgba(0,0,0,0.3)'
     },
     cardSectionStyle3: {
         justifyContent: 'center',
         alignItems: 'flex-start',
         flexDirection: 'column',
         borderWidth: 0,
-        backgroundColor: '#ffffff'
+        backgroundColor: 'rgba(0,0,0,0.7)'
     },
     textStyle: {
         fontSize: 18,
@@ -112,6 +96,7 @@ const styles = {
         lineHeight: 40,
         fontSize: 18,
         textAlign: 'center',
+        color: '#ffffff'
 
     },
     textStyle3: {
@@ -120,9 +105,11 @@ const styles = {
         marginLeft: 10
     },
     textStyle4: {
-        lineHeight: 40,
-        fontSize: 13,
-        marginLeft: 10
+      lineHeight: 40,
+      fontSize: 25,
+      textAlign: 'center',
+      color: '#ffffff',
+      fontWeight: 'bold'
     },
     containerStyle: {
         backgroundColor: 'rgba(0,0,0,0.65)',
@@ -131,8 +118,8 @@ const styles = {
         justifyContent: 'center'
     },
     imageStyle: {
-        height: (SCREEN_WIDTH*2)/3,
-        width: (SCREEN_WIDTH*2)/3,
+        height: SCREEN_WIDTH-20,
+        width: SCREEN_WIDTH-20,
         borderWidth: 0,
         borderRadius: 5
     },

@@ -9,6 +9,7 @@ import { Text, View, Platform, AppRegistry,
 import { Ionicons, Foundation, Entypo } from '@expo/vector-icons';
 import { TimerMixin } from 'react-timer-mixin';
 import Images from './Image';
+import { viewCloth } from '../actions/ClothAction';
 
 const ImageData = require('../ImageData.json');
 const SCREEN_WIDTH = Dimensions.get('window').width;

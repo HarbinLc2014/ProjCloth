@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, Platform, ImageBackground, TouchableOpacity,Dimensions, Image } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
+import { connect } from 'react-redux';
 import { Ionicons, Foundation, Entypo, FontAwesome } from '@expo/vector-icons';
 import CardSection from './components/CardSection';
 
@@ -38,7 +39,7 @@ class ProfileScreen extends Component {
       </TouchableOpacity>
       </CardSection>
       <CardSection style={{ backgroundColor: 'rgba(16,16,16,0.75)' }}>
-      <TouchableOpacity style={{ width: SCREEN_WIDTH }}>
+      <TouchableOpacity style={{ width: SCREEN_WIDTH }} onPress={() => { console.log(this.props.clothes); this.props.navigation.navigate('history'); }}>
       <Text style={{ paddingTop: 10, paddingBottom: 10, paddingLeft: 15, fontSize: 18, color: '#FFF', fontWeight: '900' }}>浏览记录</Text>
       </TouchableOpacity>
       </CardSection>
@@ -63,5 +64,9 @@ class ProfileScreen extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+//    console.log(state.libraries);
+    return { clothes: state.viewedClothes };
+};
 
-export default ProfileScreen;
+export default connect(mapStateToProps, null)(ProfileScreen);

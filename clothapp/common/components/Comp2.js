@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 import { Text, View, Platform, AppRegistry,
   StyleSheet,
   ScrollView,
@@ -6,6 +7,10 @@ import { Text, View, Platform, AppRegistry,
   Image,
   TouchableOpacity,
     AlertIOS } from 'react-native';
+import { connect } from 'react-redux';
+import { viewCloth } from '../actions/ClothAction';
+import * as actions from '../actions';
+
 import { Ionicons, Foundation, Entypo } from '@expo/vector-icons';
 import { TimerMixin } from 'react-timer-mixin';
 import Images from './Image';
@@ -29,19 +34,15 @@ class Comp2 extends Component {
   //AlertIOS.alert(" currentPage=  " +this.state.currentPage);
 }
   renderAllImage() {
-        var i = 0;
-        var allImage = [];
-        var imgsArr = ImageData.data;
-        for (i = 0; i < Images.title.length; i++) {
-
-          return Images.titlejson.map(title => {
-            return(
-              <TouchableOpacity key={title.id} onPress={() => { this.props.pressTitle({ msg: title.src, thumbnail: title.id }); }}>
-              <Image key={i} source={title.src} resizeMode='stretch' style={{ flex: 1, width: SCREEN_WIDTH, height: (SCREEN_WIDTH*2)/3 }} />
-              </TouchableOpacity>
-            );
-          });
-        }
+          return _.uniqBy(this.props.clothes.filter((t) => {
+                   return !t.show;
+               }), 'src').map(cloth => {
+                 return (
+                   <TouchableOpacity key={cloth.id} onPress={() => { this.props.viewCloth(cloth); this.props.pressComp2(cloth); }}>
+                   <Image key={cloth.id} source={cloth.src} resizeMode='stretch' style={{ flex: 1, width: SCREEN_WIDTH, height: (SCREEN_WIDTH*2)/3 }} />
+                   </TouchableOpacity>
+                 );
+               });
       }
       renderPageCircle() {
             var indicatorArr = [];
@@ -95,4 +96,7 @@ class Comp2 extends Component {
   }
 
   });
-export default Comp2;
+  const mapStateToProps = (state) => {
+    return { clothes: state.clothes };
+  };
+export default connect(mapStateToProps, actions)(Comp2);

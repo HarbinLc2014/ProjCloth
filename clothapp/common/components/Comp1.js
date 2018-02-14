@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
-import { Text, View, Platform, AppRegistry,
+import _ from 'lodash';
+import { Text, View, Platform, AppRegistry, TouchableOpacity,
   StyleSheet,
   ScrollView,
   Dimensions,
   Image,
     AlertIOS } from 'react-native';
+import { connect } from 'react-redux';
 import { Ionicons, Foundation, Entypo } from '@expo/vector-icons';
 import { TimerMixin } from 'react-timer-mixin';
+import * as actions from '../actions';
+import { viewCloth } from '../actions/ClothAction';
 import Images from './Image';
 
 const ImageData = require('../ImageData.json');
@@ -15,14 +19,15 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 class Comp1 extends Component {
   state = { currentPage: 0 };
   renderAllImage() {
-        var i = 0;
-        var allImage = [];
-        for (i = 0; i < Images.ntl.length; i++) {
-          allImage.push(
-            <Image key={i} source={Images.ntl[i + this.props.count]} style={{ flex: 1, width: (SCREEN_WIDTH/2)-16, height: 290, borderRadius: 4, borderWidth: 4, marginLeft: 4, marginRight: 4, borderColor: 'rgba(0,0,0,0)' }} />
-          );
-        }
-        return allImage;
+    return _.uniqBy(this.props.clothes.filter((t) => {
+             return t.show && t.type.includes(this.props.count);
+         }), 'src').map(cloth => {
+           return(
+             <TouchableOpacity key={cloth.id} onPress={() => { this.props.viewCloth(cloth); this.props.pressComp1(cloth); }}>
+             <Image key={cloth.id} source={cloth.src} resizeMode='stretch' style={{ flex: 1, width: SCREEN_WIDTH/2-8, height: 290 }} />
+             </TouchableOpacity>
+           );
+         });
       }
       onAnimationEnd(e){
       // 计算水平方向的偏移量
@@ -94,4 +99,7 @@ class Comp1 extends Component {
   }
 
   });
-export default Comp1;
+  const mapStateToProps = (state) => {
+    return { clothes: state.clothes };
+  };
+export default connect(mapStateToProps, actions)(Comp1);

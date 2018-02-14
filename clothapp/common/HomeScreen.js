@@ -9,11 +9,13 @@ import { Text, View, Platform, AppRegistry,
 import { Button, Icon } from 'react-native-elements';
 import { Ionicons, Foundation, Entypo } from '@expo/vector-icons';
 import { TimerMixin } from 'react-timer-mixin';
+import { connect } from 'react-redux';
 import Comp1 from './components/Comp1';
 import Comp2 from './components/Comp2';
 import Profile from './components/Profile';
 import Comp3 from './components/Comp3';
 import Comp4 from './components/Comp4';
+import { likeCloth } from './actions/ClothAction';
 
 const ImageData = require('./ImageData.json');
 const sample = require('../assets/sample.otf');
@@ -47,7 +49,8 @@ class HomeScreen extends Component {
       fontLoaded: false,
       showModal: false,
       thumbnail: 0,
-      type: ''
+      type: '',
+      eventCloth: { type: '', src: require('../assets/bg2.jpg') }
   };
 
   async componentDidMount() {
@@ -66,12 +69,13 @@ class HomeScreen extends Component {
   press(event) {
   //  console.log(event.msg);
   //  console.log(event.thumbnail);
-    this.setState({ thumbnail: event.thumbnail });
+    this.setState({ src: event.src });
     this.setState({ showModal: !this.state.showModal });
-    this.setState({ type: 'big' });
-    console.log(this.state.thumbnail);
+    this.setState({ type: event.type });
+    this.setState({ eventCloth: event });
+  //  console.log(this.state.thumbnail);
   }
-  pressTitle(event) {
+  pressComp1(event) {
   //  console.log(event.msg);
   //  console.log(event.thumbnail);
         this.setState({ thumbnail: event.thumbnail });
@@ -98,7 +102,7 @@ class HomeScreen extends Component {
     <View style={{ flexDirection: 'row', marginTop: 0 }}>
 
       <View style={{ width: SCREEN_WIDTH, height: (SCREEN_WIDTH * 2) / 3 }}>
-                <Comp2 pressTitle={this.pressTitle.bind(this)} />
+                <Comp2 pressComp2={this.press.bind(this)} />
       </View>
 
    </View>
@@ -107,20 +111,20 @@ class HomeScreen extends Component {
 
  <View style={styles.sectionStyle2}>
          <View style={{ alignItems: 'center', width: SCREEN_WIDTH-20, backgroundColor: '#ffffff', borderRadius: 10, borderWidth: 1.5, borderColor: '#d1d1d1', marginBottom: 10 }}>
-               <Text style={btTextStyles3}>最佳搭配</Text>
+               <Text style={btTextStyles}>最佳搭配</Text>
          </View>
               {/* <Comp1 count={32}/> */}
-              <Comp4 press={this.press.bind(this)}/>
+              <Comp4 pressComp4={this.press.bind(this)} count="两件套" />
      </View>
 
  <View style={styles.sectionStyle2}>
 
          <View style={{ alignItems: 'center', width: SCREEN_WIDTH-20, backgroundColor: '#FFFFFF', borderRadius: 10, borderWidth: 1.5, borderColor: '#d1d1d1', marginBottom: 10 }}>
-               <Text style={btTextStyles3}>单裙 & 连衣裙</Text>
+               <Text style={btTextStyles}>单裙 & 连衣裙</Text>
          </View>
 
             {/*   <Comp1 count={40}/>  */}
-            <Comp4 press={this.press.bind(this)}/>
+            <Comp4 pressComp4={this.press.bind(this)} count="裙" />
      </View>
   </View>
 
@@ -128,16 +132,16 @@ class HomeScreen extends Component {
 
         <View style={styles.sectionStyle}>
             <View style={{ alignItems: 'center', width: (SCREEN_WIDTH/2)-8, marginBottom: 5 }}>
-                  <Text style={btTextStyles2}>(针织 & 雪纺 & 普通)上衣</Text>
+                  <Text style={btTextStyles}>上衣系列</Text>
             </View>
-                  <Comp1 count={0}/>
+                  <Comp1 count="上衣" pressComp1={this.press.bind(this)}/>
         </View>
 <View style={styles.sectionStyle}>
             <View style={{ alignItems: 'center', width: (SCREEN_WIDTH/2)-8, marginBottom: 5 }}>
-                  <Text style={btTextStyles2}>风衣 & 外衣</Text>
+                  <Text style={btTextStyles}>风衣 & 外衣</Text>
             </View>
 
-                  <Comp1 count={8}/>
+                  <Comp1 count="风衣" pressComp1={this.press.bind(this)} />
         </View>
 
      </View>
@@ -148,7 +152,7 @@ class HomeScreen extends Component {
                  <View style={{ alignItems: 'center', width: (SCREEN_WIDTH/2)-10, backgroundColor: '#FFFFFF', borderRadius: 10, borderWidth: 1.5, borderColor: '#d1d1d1', marginBottom: 5 }}>
                        <Text style={btTextStyles}>套装</Text>
                  </View>
-                       <Comp1 count={16}/>
+                       <Comp1 count="套装" pressComp1={this.press.bind(this)}/>
              </View>
 
 <View style={styles.sectionStyle}>
@@ -157,7 +161,7 @@ class HomeScreen extends Component {
                        <Text style={btTextStyles}>裤子</Text>
                  </View>
 
-                       <Comp1 count={24}/>
+                       <Comp1 count="裤" pressComp1={this.press.bind(this)}/>
              </View>
 
           </View>
@@ -180,13 +184,8 @@ class HomeScreen extends Component {
           <Profile
           visible={this.state.showModal}
           Accept={this.onAccept.bind(this)}
-          library={{
-              id: 1,
-              title: '王杰智',
-              description: '详细资料',
-              thumbnail: this.state.thumbnail,
-              type: this.state.type
-            }}>
+          library={this.state.eventCloth}
+          >
               防尬聊话题
           </Profile>
     </ScrollView>
@@ -225,7 +224,7 @@ const styles = StyleSheet.create({
        marginTop: 5,
         marginLeft: 1,
          marginRight: 1,
-         backgroundColor: 'rgba(0,0,0,0.5)',
+         backgroundColor: 'rgba(0,0,0,0.25)',
          borderWidth: 3,
          borderRadius: 3,
          borderColor: 'rgba(0,0,0,0)',
@@ -241,4 +240,9 @@ const styles = StyleSheet.create({
 });
 
 
-export default HomeScreen;
+const mapStateToProps = state => {
+//    console.log(state.libraries);
+    return { clothes: state.clothes };
+};
+
+export default connect(mapStateToProps, { likeCloth })(HomeScreen);
