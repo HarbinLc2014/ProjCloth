@@ -80,7 +80,7 @@ class HomeScreen extends Component {
   //  console.log(event.thumbnail);
         this.setState({ thumbnail: event.thumbnail });
     this.setState({ showModal: !this.state.showModal });
-    console.log(this.state.thumbnail);
+    //console.log(this.state.thumbnail);
     this.setState({ type: 'title' });
   }
   render() {

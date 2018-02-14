@@ -99,15 +99,13 @@ class MatchScreen extends Component {
       <View style={{ flex: 1, marginTop: 10 }}>
       <Swipe
       data={this.props.clothes.filter((t) => {
-               return t.show;
+               return t.show && t.type.includes('裙');
            })}
       renderCard={this.renderCard}
       renderNoMoreCards={this.renderNoMoreCards}
   //    cloth={this.renderCard.cloth}
       onSwipeRight={cloth => {
         this.props.likeCloth(cloth);
-        console.log('test:');
-        console.log({ cloth });
   //      var likedClothes = cloth;
   //      DeviceEventEmitter.emit('taobaoBind', { likedClothes });
        }}

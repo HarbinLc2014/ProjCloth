@@ -39,7 +39,8 @@ class ProfileScreen extends Component {
       </TouchableOpacity>
       </CardSection>
       <CardSection style={{ backgroundColor: 'rgba(16,16,16,0.75)' }}>
-      <TouchableOpacity style={{ width: SCREEN_WIDTH }} onPress={() => { console.log(this.props.clothes); this.props.navigation.navigate('history'); }}>
+      <TouchableOpacity style={{ width: SCREEN_WIDTH }} onPress={() => {// console.log(this.props.clothes);
+         this.props.navigation.navigate('history'); }}>
       <Text style={{ paddingTop: 10, paddingBottom: 10, paddingLeft: 15, fontSize: 18, color: '#FFF', fontWeight: '900' }}>浏览记录</Text>
       </TouchableOpacity>
       </CardSection>

@@ -39,7 +39,7 @@ class ClothScreen extends Component {
   //  DeviceEventEmitter.addListener(
   //    'taobaoBind', (events) => { this.setState({ ss: '' }); console.log('ttt:'); });
     this.createDataSource(this.props);
-    console.log(this.props.sourceClothes);
+  //  console.log(this.props.sourceClothes);
   }
   componentWillReceiveProps(nextProps) {
     this.createDataSource(nextProps);
@@ -66,7 +66,7 @@ class ClothScreen extends Component {
       </View>
       <View style={styles.detailWrapper}>
       <Text style={styles.italics} >款号: {cloth.code}</Text>
-      <Text style={styles.italics} >价格: {cloth.price} RMB </Text>
+      <Text style={styles.italics} >价格: ¥{cloth.price}</Text>
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20 }}>
       <Feather name="shopping-cart" size={28} style={{ marginRight: 30, color: '#FFFFFF' }} onPress={() => { console.log('aaaaa'); }} />
       <MaterialIcons name="delete" size={30} style={{ marginLeft: 30, color: '#FFFFFF' }} onPress={() => { console.log('aaaaa'); }} />

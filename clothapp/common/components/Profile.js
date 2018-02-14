@@ -40,7 +40,7 @@ const Profile = (props) => {
                                 </View>
                                 <View style={{flexDirection: 'column'}}>
                                 <Text style={textStyle2}>款式: {props.library.code}</Text>
-                                <Text style={textStyle2}>价格: {props.library.price}RMB</Text>
+                                <Text style={textStyle2}>价格: ¥{props.library.price}</Text>
                                 </View>
                             </CardSection>
                         {/*    <CardSection>
