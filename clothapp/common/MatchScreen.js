@@ -8,6 +8,7 @@ import * as actions from './actions';
 import { likeCloth } from './actions/ClothAction';
 import Swipe from './components/Swipe';
 import Images from './components/Image';
+import Filter from './components/Testcomp';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
@@ -29,7 +30,7 @@ class MatchScreen extends Component {
         headerLeft:
          <Feather name="refresh-cw" size={25} style={{ marginLeft: 10, color: '#007aff' }} onPress={() => { console.log('aaaaa'); }} />,
         headerRight:
-          <Feather name="filter" size={25} style={{ marginRight: 10, color: '#007aff' }} onPress={() => { console.log('aaaaa'); }} />,
+          <Feather name="filter" size={25} style={{ marginRight: 10, color: '#007aff' }} onPress={() => { navigation.state.params.navigatePress(); }} />,
       };
     }
     state = {
@@ -40,10 +41,15 @@ class MatchScreen extends Component {
       require('../assets/bg5.jpg'),
     require('../assets/bg4.jpg')
   ],
-  length: this.props.clothes.length
+  length: this.props.clothes.length,
+  showModal: false,
+  normalStyle: true,
+  index: 0
     };
   componentWillMount() {
-  //  console.log(this.props.clothes);
+    this.props.navigation.setParams({
+            navigatePress: this.showFilter
+        });
   }
   async componentDidMount() {
     await Font.loadAsync({
@@ -53,6 +59,14 @@ class MatchScreen extends Component {
     });
 
     this.setState({ fontLoaded: true });
+  }
+  showFilter = () => {
+    console.log('pressed!!!!');
+    this.setState({ showModal: true });
+  }
+
+  onAccept = () => {
+    this.setState({ showModal: false });
   }
         /* eslint-disable global-require */
   renderCard = (cloth) => {
@@ -68,15 +82,22 @@ class MatchScreen extends Component {
         btTextStyles2[1] = styles.btText_with_font2;
         btTextStyles3[1] = styles.btText_with_font3;
     }
+    var imgheight = this.state.normalStyle ? (SCREEN_HEIGHT-150)*0.82 : (SCREEN_HEIGHT-150)*0.41;
+    var titleText = this.state.normalStyle ? '更多介绍' : '查看大图';
 //    console.log(btTextStyles);
     return (
       <View style={{ marginLeft: 35, marginRight: 35, width: SCREEN_WIDTH-70, height: SCREEN_HEIGHT-150, alignItems: 'center', justifyContent: 'center' }}>
       <ImageBackground source={this.state.src[id % (this.state.src.length)]} style={{ flex: 1, width: SCREEN_WIDTH-70, height: null, backgroundColor: 'rgba(0,0,0,0.3)', alignItems: 'center', justifyContent: 'center', borderRadius: 5 }} resizeMode='stretch'>
-      <View style={{ flex: 1, width: (SCREEN_WIDTH-70)*0.7, height: (SCREEN_HEIGHT-150)*0.82, marginTop: (SCREEN_HEIGHT-150)*0.055 }}>
-      <Image style={{ width: null, height: (SCREEN_HEIGHT-150)*0.82, borderRadius: 10 }} source={src} ></Image>
+      <View style={{ flex: 1, width: (SCREEN_WIDTH-70)*0.7, height: imgheight, marginTop: (SCREEN_HEIGHT-150)*0.055, flexDirection: 'column' }}>
+      {this.renderDescription(cloth)}
+      <Image style={{ width: null, height: imgheight, borderRadius: 10 }} source={src} resizeMode={this.state.normalStyle ? null : 'contain'}></Image>
       <View style={styles.detailWrapper}>
-      <TouchableOpacity style={{ alignItems: 'center', flex: 1, width: null, backgroundColor: 'rgba(0,0,0,0.15)' }}>
-      <Text style={btTextStyles}>更多介绍</Text>
+      <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: 10, marginBottom: 10 }}>
+      {this.renderCode(cloth)}
+      {this.renderPrice(cloth)}
+      </View>
+      <TouchableOpacity style={{ alignItems: 'center', flex: 1, width: null, backgroundColor: 'rgba(0,0,0,0.15)' }} onPress={() => { this.setState({ normalStyle: !this.state.normalStyle }); }}>
+      <Text style={btTextStyles}>{titleText}</Text>
       </TouchableOpacity>
       </View>
       </View>
@@ -91,13 +112,42 @@ class MatchScreen extends Component {
         </Card>
       );
   }
-
+  renderDescription = (cloth) => {
+    if (!this.state.normalStyle) {
+      return (
+        <View style={{ marginTop: 15, marginBottom: 15 }}>
+        <Text style={styles.textStyle1}>{cloth.type}</Text>
+        </View>
+      );
+    }
+  }
+  renderPrice = (cloth) => {
+    if (!this.state.normalStyle) {
+      return (
+                <View style={{ marginTop: 15, marginBottom: 15 }}>
+        <Text style={styles.textStyle2}>价格: ¥{cloth.price}</Text>
+        </View>
+      );
+    }
+  }
+  renderCode = (cloth) => {
+    if (!this.state.normalStyle) {
+      return (
+                <View style={{ marginTop: 5, marginBottom: 10 }}>
+        <Text style={styles.textStyle2}>款号: {cloth.code}</Text>
+        </View>
+      );
+    }
+  }
   render() {
     return (
       <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.3)' }}>
       <ImageBackground source={require('../assets/bg2.jpg')} style={{ flex: 1, width: null, height: null, backgroundColor: 'rgba(0,0,0,0.3)' }}>
-      <View style={{ flex: 1, marginTop: 10 }}>
+      <View style={{ flex: 1, marginTop: 0 }}>
+      <View style={{ alignItems: 'flex-end' }}>
+      </View>
       <Swipe
+      index={this.state.index}
       data={this.props.clothes.filter((t) => {
                return t.show && t.type.includes('裙');
            })}
@@ -106,6 +156,8 @@ class MatchScreen extends Component {
   //    cloth={this.renderCard.cloth}
       onSwipeRight={cloth => {
         this.props.likeCloth(cloth);
+                this.setState({ index: this.state.index + 1 });
+                console.log(this.state.index);
   //      var likedClothes = cloth;
   //      DeviceEventEmitter.emit('taobaoBind', { likedClothes });
        }}
@@ -113,6 +165,11 @@ class MatchScreen extends Component {
       />
       </View>
       </ImageBackground>
+      <Filter
+      visible={this.state.showModal}
+      Accept={this.onAccept.bind(this)}
+      />
+
       </View>
     );
   }
@@ -145,10 +202,24 @@ const styles = {
       color: '#FFF'
   },
   detailWrapper: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'space-around',
     marginBottom: 3,
-    marginTop: 20
+    marginTop: 0
+  },
+  normalStyle1: {
+
+  },
+  textStyle1: {
+    fontFamily: 'lcfont1',
+    textAlign: 'center',
+    fontSize: 30,
+    fontWeight: 'bold'
+  },
+  textStyle2: {
+    textAlign: 'center',
+    fontSize: 15,
+    fontWeight: 'bold'
   }
 };
 

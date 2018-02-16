@@ -1,0 +1,69 @@
+import {
+        Text, View, Modal, Image, TouchableOpacity, Picker,
+        TouchableWithoutFeedback, Dimensions, ImageBackground
+      } from 'react-native';
+import { Card } from 'react-native-elements';
+import Button from './Button';
+import Images from './Image';
+import CardSection from './CardSection2';
+
+var pickervalue = '上衣';
+return (
+    <Modal
+        visible={props.visible}
+        transparent
+        animationType="slide"
+        onRequestClose={() => {
+        }}
+    >
+        <TouchableWithoutFeedback onPress={props.Accept}>
+            <View style={styles.containerStyle}>
+                <TouchableWithoutFeedback>
+                  <Card title=" My Filter">
+                  <CardSection style={{ flexDirection: 'column' }}>
+                      <Text style={styles.pickerLabelStyle}>Shift</Text>
+                      <Picker
+                        value={this.pickervalue}
+                        selectedValue={'上衣'}
+                        onValueChange={value => { this.pickervalue = value; }}
+                      >
+                        <Picker.Item label="上衣" value="上衣" />
+                        <Picker.Item label="裤子" value="裤子" />
+                        <Picker.Item label="裙子" value="裙子" />
+                        <Picker.Item label="两件套" value="两件套" />
+                        <Picker.Item label="雪纺 / 针织" value="雪纺 / 针织" />
+                        <Picker.Item label="背心" value="背心" />
+                        <Picker.Item label="外衣 / 风衣" value="外衣 / 风衣" />
+                      </Picker>
+                    </CardSection>
+                  </Card>
+                </TouchableWithoutFeedback>
+            </View>
+        </TouchableWithoutFeedback>
+    </Modal>
+);
+
+
+const styles = {
+  pickerLabelStyle: {
+    fontSize: 18,
+    paddingLeft: 20,
+    paddingTop: 10,
+    textAlign: 'center'
+  },
+  containerStyle: {
+      backgroundColor: 'rgba(0,0,0,0.65)',
+      position: 'relative',
+      flex: 1,
+      justifyContent: 'center'
+  },
+    cardSectionStyle2: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        borderWidth: 0,
+        backgroundColor: 'rgba(0,0,0,0.3)'
+    }
+};
+
+export default Filter;

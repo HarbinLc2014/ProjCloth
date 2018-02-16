@@ -61,7 +61,7 @@ class HistoryScreen extends Component {
     var wid = cloth.show ? SCREEN_WIDTH*3/4 : SCREEN_WIDTH;
     var marg = cloth.show? SCREEN_WIDTH/8 : 0;
     var imgwidth = cloth.show? null: SCREEN_WIDTH;
-    var style2 = cloth.show? { backgroundColor: 'rgba(0,0,0,0.7)', height: SCREEN_HEIGHT*3/4 }:{ backgroundColor: 'rgba(0,0,0,0.7)', height: SCREEN_HEIGHT*2/3 };
+    var style2 = cloth.show? { backgroundColor: 'rgba(0,0,0,0.7)', height: SCREEN_HEIGHT*3/4 }:{ backgroundColor: 'rgba(0,0,0,0.7)', height: SCREEN_HEIGHT*3/4 };
     this.createDataSource(this.props);
     return (
       <View style={{ width: wid, marginLeft: marg, marginRight: marg, marginTop: 30 }}>
@@ -77,7 +77,7 @@ class HistoryScreen extends Component {
       <Text style={styles.italics} >款号: {cloth.code}</Text>
       <Text style={styles.italics} >价格: {cloth.price} RMB </Text>
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20 }}>
-      <Feather name="shopping-cart" size={28} style={{ marginRight: 30, color: '#FFFFFF' }} onPress={() => { console.log('aaaaa'); }} />
+      <Feather name="shopping-cart" size={28} style={{ marginRight: 30, color: '#FFFFFF' }} onPress={() => { this.props.navigation.navigate('order'); }} />
       <MaterialIcons name="delete" size={30} style={{ marginLeft: 30, color: '#FFFFFF' }} onPress={() => { console.log('aaaaa'); }} />
       </View>
       </View>
@@ -107,7 +107,8 @@ const styles = {
     marginBottom: 5,
     marginTop: 315,
     flexDirection: 'column',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   italics: {
     fontStyle: 'italic',

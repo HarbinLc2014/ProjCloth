@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Card, Button, Icon } from 'react-native-elements';
 import { Ionicons, Foundation, Entypo, MaterialIcons, Feather } from '@expo/vector-icons';
 import * as actions from './actions';
+import Filter from './components/Order';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
@@ -22,7 +23,7 @@ class ClothScreen extends Component {
         marginTop: Platform.OS === 'android' ? 24 : 0
       },
       headerRight:
-        <MaterialIcons name="filter-list" size={25} style={{ marginRight: 10, color: '#007aff' }} onPress={() => { console.log('aaaaa'); }} />,
+        <MaterialIcons name="filter-list" size={25} style={{ marginRight: 10, color: '#007aff' }} onPress={() => { navigation.state.params.navigatePress(); }} />,
 
     };
   }
@@ -33,9 +34,14 @@ class ClothScreen extends Component {
         require('../assets/tbg1.jpg'),
     require('../assets/bg5.jpg'),
   require('../assets/bg4.jpg')
-]}
+],
+  showModal: false
+}
   componentWillMount() {
     this.setState({ likedClothes: this.props.likedClothes });
+    this.props.navigation.setParams({
+            navigatePress: this.showOrder
+        });
   //  DeviceEventEmitter.addListener(
   //    'taobaoBind', (events) => { this.setState({ ss: '' }); console.log('ttt:'); });
     this.createDataSource(this.props);
@@ -50,8 +56,12 @@ class ClothScreen extends Component {
     });
     this.dataSource = ds.cloneWithRows(likedClothes);
   }
-
-
+  onAccept = () => {
+    this.setState({ showModal: false });
+  }
+  showOrder = () => {
+    this.setState({ showModal: true });
+  }
   renderRow(cloth) {
     this.createDataSource(this.props);
     return (
@@ -68,7 +78,7 @@ class ClothScreen extends Component {
       <Text style={styles.italics} >款号: {cloth.code}</Text>
       <Text style={styles.italics} >价格: ¥{cloth.price}</Text>
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20 }}>
-      <Feather name="shopping-cart" size={28} style={{ marginRight: 30, color: '#FFFFFF' }} onPress={() => { console.log('aaaaa'); }} />
+      <Feather name="shopping-cart" size={28} style={{ marginRight: 30, color: '#FFFFFF' }} onPress={() => { this.props.navigation.navigate('order'); }} />
       <MaterialIcons name="delete" size={30} style={{ marginLeft: 30, color: '#FFFFFF' }} onPress={() => { console.log('aaaaa'); }} />
       </View>
       </View>
@@ -88,6 +98,10 @@ class ClothScreen extends Component {
       renderRow={this.renderRow.bind(this)}
       />
               </ImageBackground>
+              <Filter
+              visible={this.state.showModal}
+              Accept={this.onAccept.bind(this)}
+              />
       </View>
     );
   }

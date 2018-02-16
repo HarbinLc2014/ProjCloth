@@ -16,7 +16,8 @@ class Swipe extends Component {
   static defaultProps = {
     onSwipeRight: () => { },
     onSwipeLeft: () => { },
-    keyProp: 'title'
+    keyProp: 'title',
+    swiped: { }
   }
 
   constructor(props) {
@@ -38,12 +39,12 @@ class Swipe extends Component {
       }
     });
 
-    this.state = { panResponder, position, index: 0 };
+    this.state = { panResponder, position, index: this.props.index };
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.data !== this.props.data) {
-      this.setState({ index: 0 });
+      this.setState({ index: this.props.index });
     }
   }
 
