@@ -24,7 +24,8 @@ class ClothScreen extends Component {
       },
       headerRight:
         <MaterialIcons name="filter-list" size={25} style={{ marginRight: 10, color: '#007aff' }} onPress={() => { navigation.state.params.navigatePress(); }} />,
-
+      headerLeft:
+          <Text />,
     };
   }
   state = {

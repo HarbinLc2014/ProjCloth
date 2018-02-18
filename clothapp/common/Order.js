@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Text, Platform, StyleSheet, Dimensions } from 'react-native';
+import { View, ScrollView, Text, Platform, StyleSheet, Dimensions, KeyboardAvoidingView, Alert } from 'react-native';
 import { Card, FormLabel, FormInput, Button } from 'react-native-elements';
 import { Font } from 'expo';
 import CardSection from './components/CardSection2';
@@ -61,13 +61,14 @@ class Order extends Component {
           value={this.state.name}
           onChangeText={name => this.setState({ name })}
         />
-        <FormLabel containerStyle={{ marginBottom: 8, width: null, height: 20 }}>QQ/微信/手机号</FormLabel>
+        <FormLabel containerStyle={{ marginBottom: 8, width: null, height: 20 }}>手机号(我们会在几天内给您发送短信确认订单)</FormLabel>
         <FormInput
+        keyboardType={'numeric'}
         containerStyle={{ width: null, height: 30, marginBottom: 20 }}
           value={this.state.name}
           onChangeText={name => this.setState({ name })}
         />
-        <FormLabel containerStyle={{ marginBottom: 8, width: null, height: 20 }}>备注</FormLabel>
+        <FormLabel containerStyle={{ marginBottom: 8, width: null, height: 20 }}>备注(颜色、型号，比如:颜色: 蓝色, 型号: XL)</FormLabel>
         <FormInput
         containerStyle={{ width: null, height: 30, marginBottom: 20 }}
           value={this.state.name}
@@ -75,7 +76,15 @@ class Order extends Component {
         />
         </CardSection>
           <View style={{ paddingTop: 10, paddingBottom: 0 }}>
-          <Button title='确认下单' color='#000000' fontSize={13} fontWeight='bold' backgroundColor='#d1d1d1' style={{ borderRadius: 5, borderWidth: 2, width: SCREEN_WIDTH-150, borderColor: '#000000' }}/>
+          <Button title='确认下单' color='#000000' fontSize={13} fontWeight='bold' backgroundColor='#d1d1d1' style={{ borderRadius: 5, borderWidth: 2, width: SCREEN_WIDTH-150, borderColor: '#000000' }}
+          onPress={() => Alert.alert(
+            '订单添加成功!',
+            '您可以在订单历史中查看以前的订单，一旦我们确认商品是否有库存后,会第一时间通过短信和在订单历史中通知您',
+            [
+              { text: 'OK', onPress: () => this.props.navigation.navigate('favor') },
+            ]
+          )}
+          />
           </View>
         </View>
         </Card>

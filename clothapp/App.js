@@ -12,6 +12,8 @@ import ProfileScreen from './common/ProfileScreen';
 import ClothScreen from './common/ClothScreen';
 import HistoryScreen from './common/HistoryScreen';
 import Order from './common/Order';
+import SignUpForm from './common/components/SignUpForm';
+import SignInForm from './common/components/SignInForm';
 import reducers from './common/reducers';
 import registerForNotifications from './services/push_notifications';
 
@@ -33,7 +35,10 @@ export default class App extends Component {
   render() {
     const MainNavigator = TabNavigator({
         welcome: { screen: WelcomeScreen },
-        login: { screen: LoginScreen },
+        login: { screen: StackNavigator({
+        signin: { screen: SignInForm },
+        signup: { screen: SignUpForm }
+      }) },
         main: { screen: TabNavigator({
           home: {
              screen: StackNavigator({
@@ -62,7 +67,7 @@ export default class App extends Component {
        }, {
          navigationOptions: {
       //     tabBar: { visible: false }
-          tabBarVisible: false
+    //      tabBarVisible: false
          },
          lazyLoad: true
        });
