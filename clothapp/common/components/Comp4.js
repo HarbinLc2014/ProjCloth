@@ -37,7 +37,7 @@ class Comp4 extends Component {
          }), 'src').map(cloth => {
            return(
           <TouchableOpacity key={cloth.id} onPress={() => { this.props.viewCloth(cloth); this.props.pressComp4(cloth); }}>
-            <Image key={cloth.id} source={cloth.src} resizeMode='stretch' style={{ flex: 1, width: SCREEN_WIDTH/2.5, height: (SCREEN_WIDTH/1.5)-20, borderWidth: 8, borderRadius: 10, marginRight: 8, marginLeft: 8, marginTop: 10, marginBottom: 10, borderColor: '#d1d1d1' }} />
+            <Image key={cloth.id} source={cloth.src} resizeMode='stretch' style={{ flex: 1, width: SCREEN_WIDTH/2.5, height: (SCREEN_WIDTH/1.5)-20, borderWidth: 8, borderRadius: 10, marginRight: 8, marginLeft: 8, marginTop: 10, marginBottom: 10, borderColor: 'rgba(0,0,0,0.5)' }} />
           </TouchableOpacity>
         );
       });

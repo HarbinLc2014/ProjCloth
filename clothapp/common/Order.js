@@ -61,14 +61,14 @@ class Order extends Component {
           value={this.state.name}
           onChangeText={name => this.setState({ name })}
         />
-        <FormLabel containerStyle={{ marginBottom: 8, width: null, height: 20 }}>手机号(我们会在几天内给您发送短信确认订单)</FormLabel>
+        <FormLabel containerStyle={{ marginBottom: 8, width: null, height: 20 }}>手机号(用于接受短信确认订单)</FormLabel>
         <FormInput
         keyboardType={'numeric'}
         containerStyle={{ width: null, height: 30, marginBottom: 20 }}
           value={this.state.name}
           onChangeText={name => this.setState({ name })}
         />
-        <FormLabel containerStyle={{ marginBottom: 8, width: null, height: 20 }}>备注(颜色、型号，比如:颜色: 蓝色, 型号: XL)</FormLabel>
+        <FormLabel containerStyle={{ marginBottom: 8, width: null, height: 20 }}>备注(颜色尺码，如:颜色: 蓝色, 尺码: L)</FormLabel>
         <FormInput
         containerStyle={{ width: null, height: 30, marginBottom: 20 }}
           value={this.state.name}

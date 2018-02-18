@@ -110,7 +110,7 @@ class HomeScreen extends Component {
    <View style={{ flexDirection: 'column', backgroundColor: 'rgba(0,0,0,0)', marginBottom: 30, paddingTop: 10 }}>
 
  <View style={styles.sectionStyle2}>
-         <View style={{ alignItems: 'center', width: SCREEN_WIDTH-20, backgroundColor: '#ffffff', borderRadius: 10, borderWidth: 1.5, borderColor: '#d1d1d1', marginBottom: 10 }}>
+         <View style={{ alignItems: 'center', width: SCREEN_WIDTH-20, backgroundColor: '#ffffff', borderRadius: 10, borderWidth: 1.5, borderColor: 'rgba(0,0,0,0.5)', marginBottom: 10 }}>
                <Text style={btTextStyles}>最佳搭配</Text>
          </View>
               {/* <Comp1 count={32}/> */}
@@ -119,7 +119,7 @@ class HomeScreen extends Component {
 
  <View style={styles.sectionStyle2}>
 
-         <View style={{ alignItems: 'center', width: SCREEN_WIDTH-20, backgroundColor: '#FFFFFF', borderRadius: 10, borderWidth: 1.5, borderColor: '#d1d1d1', marginBottom: 10 }}>
+         <View style={{ alignItems: 'center', width: SCREEN_WIDTH-20, backgroundColor: '#FFFFFF', borderRadius: 10, borderWidth: 1.5, borderColor: 'rgba(0,0,0,0.5)', marginBottom: 10 }}>
                <Text style={btTextStyles}>单裙 & 连衣裙</Text>
          </View>
 
