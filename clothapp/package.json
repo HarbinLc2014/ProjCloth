@@ -21,8 +21,10 @@
     "react-timer-mixin": "^0.13.3",
     "redux": "^3.7.2",
     "redux-persist": "^5.6.9",
+    "redux-thunk": "^2.2.0",
     "rn-nodeify": "^9.0.0",
-    "twilio": "^3.11.3"
+    "twilio": "^3.11.3",
+    "wilddog": "^2.5.17"
   },
   "devDependencies": {
     "babel-plugin-rewrite-require": "^1.14.5",

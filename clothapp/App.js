@@ -1,8 +1,10 @@
 import { Notifications } from 'expo';
 import React, { Component } from 'react';
+import wilddog from 'wilddog';
 import { StyleSheet, Text, View, Platform, StatusBar, Alert } from 'react-native';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import ReduxThunk from 'redux-thunk';
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import WelcomeScreen from './common/WelcomeScreen';
 import LoginScreen from './common/LoginScreen';
@@ -18,6 +20,12 @@ import reducers from './common/reducers';
 import registerForNotifications from './services/push_notifications';
 
 export default class App extends Component {
+  componentWillMount() {
+    var config = {
+  authDomain: 'wd7622364344zejjra.wilddog.com'
+};
+wilddog.initializeApp(config);
+  }
   componentDidMount() {
     registerForNotifications();
     Notifications.addListener((notification) => {
@@ -72,7 +80,7 @@ export default class App extends Component {
          lazyLoad: true
        });
           return (
-          <Provider store={createStore(reducers)}>
+          <Provider store={createStore(reducers, {}, applyMiddleware(ReduxThunk))}>
               <View style={styles.container}>
               <MainNavigator />
               </View>
