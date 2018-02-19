@@ -1567,7 +1567,7 @@
     "price": 399,
     "page": "p102",
     "src": require('../../assets/spring/source/p102.jpg'),
-"show": true
+"show": false
   },
   {
     "id": 178,

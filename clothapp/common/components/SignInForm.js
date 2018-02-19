@@ -19,9 +19,19 @@ class SignInForm extends Component {
       headerLeft: <Text />
     };
   }
-  state = { phone: '', password: '', email: '' };
+  state = { phone: '', password: '', email: '', message: '' };
   submit() {
+  //  if(this.state.email!=='' && this.state.password!=='') {
+    //  this.setState({ message: '' });
     this.props.loginUser({ email: this.state.email, password: this.state.password, navigate: this.props.navigation.navigate });
+//    }
+  //  else {
+    //  this.setState({ message: '用户名和密码不能为空!' });
+  //  this.props.auth.error='用户名和密码不能为空!';
+  //  }
+  }
+  componentWillMount() {
+        this.props.auth.signinerror = '';
   }
 render() {
   return (
@@ -54,7 +64,8 @@ render() {
       <View style={{ alignItems: 'center', width: SCREEN_WIDTH }}>
       <Button title="登录" style={{ marginBottom: 5, marginTop: 35, width: 180 }} onPress={this.submit.bind(this)} />
       <View style={{ width: SCREEN_WIDTH, alignItems: 'center', marginBottom: 50 }}>
-      <FormValidationMessage labelStyle={{ fontSize: 10 }}>wwwww</FormValidationMessage>
+  {/*    <FormValidationMessage labelStyle={{ fontSize: 13 }}>{this.state.message}</FormValidationMessage> */}
+      <FormValidationMessage labelStyle={{ fontSize: 13 }}>{this.props.auth.signinerror}</FormValidationMessage>
       </View>
       <Button title="注册新用户" textStyle={{ fontSize: 13 }} onPress={() => this.props.navigation.navigate('signup')} buttonStyle={{ width: 180, backgroundColor: 'rgba(0,0,0,0)' }} />
       </View>
@@ -67,10 +78,9 @@ render() {
 }
 
 export const mapStateToProps = state => {
-  const { error, loading } = state.auth;
   return {
-     error, loading
+     auth: state.auth
   };
 };
 
-export default connect(null, { loginUser, login })(SignInForm);
+export default connect(mapStateToProps, { loginUser, login })(SignInForm);

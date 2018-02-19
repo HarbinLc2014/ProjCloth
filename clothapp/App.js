@@ -12,6 +12,8 @@ import HomeScreen from './common/HomeScreen';
 import MatchScreen from './common/MatchScreen';
 import ProfileScreen from './common/ProfileScreen';
 import ClothScreen from './common/ClothScreen';
+import OrderScreen from './common/OrderScreen';
+import SettingScreen from './common/SettingScreen';
 import HistoryScreen from './common/HistoryScreen';
 import Order from './common/Order';
 import SignUpForm from './common/components/SignUpForm';
@@ -69,6 +71,8 @@ wilddog.initializeApp(config);
                pfile: { screen: ProfileScreen },
                history: { screen: HistoryScreen },
                order: { screen: Order },
+               oscreen: { screen: OrderScreen },
+               setting: { screen: SettingScreen }
              })
            },
         }) }

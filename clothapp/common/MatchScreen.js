@@ -44,7 +44,10 @@ class MatchScreen extends Component {
   length: this.props.clothes.length,
   showModal: false,
   normalStyle: true,
-  index: 0
+  index: 0,
+  filter1: '上衣',
+  filter2: '',
+  filter3: 'aasdasd'
     };
   componentWillMount() {
     this.props.navigation.setParams({
@@ -65,7 +68,35 @@ class MatchScreen extends Component {
     this.setState({ showModal: true });
   }
 
-  onAccept = () => {
+  onAccept = (filter) => {
+    console.log(filter);
+    this.setState({ filter1: filter.make });
+    this.setState({ filter3: 'asdasdads' });
+    if (filter.make === '裤子') {
+      this.setState({ filter1: '裤' });
+    }
+    if (filter.make === '裙子') {
+      this.setState({ filter1: '裙' });
+    }
+    if (filter.make === '风衣外衣') {
+      console.log('asdasdasd');
+      this.setState({ filter1: '外套' });
+      this.setState({ filter3: '风衣' });
+    }
+    if (filter.make === '雪纺针织') {
+      this.setState({ filter1: '雪纺' });
+      this.setState({ filter3: '针织' });
+    }
+    if (filter.make === '其他') {
+      this.setState({ filter1: '夹克' });
+      this.setState({ filter3: '开衫' });
+    }
+    if (filter.name !== '默认') {
+      this.setState({ filter2: filter.name });
+    }
+    else {
+      this.setState({ filter2: '' });
+    }
     this.setState({ showModal: false });
   }
         /* eslint-disable global-require */
@@ -149,7 +180,7 @@ class MatchScreen extends Component {
       <Swipe
       index={this.state.index}
       data={this.props.clothes.filter((t) => {
-               return t.show && t.type.includes('裙');
+               return t.show && (t.type.includes(this.state.filter1) || t.type.includes(this.state.filter3)) && t.type.includes(this.state.filter2);
            })}
       renderCard={this.renderCard}
       renderNoMoreCards={this.renderNoMoreCards}
@@ -158,9 +189,14 @@ class MatchScreen extends Component {
         this.props.likeCloth(cloth);
                 this.setState({ index: this.state.index + 1 });
                 console.log(this.state.index);
+              }
+            }
+      onSwipeLeft={() =>
+        this.setState({ index: this.state.index + 1 })
+      }
   //      var likedClothes = cloth;
   //      DeviceEventEmitter.emit('taobaoBind', { likedClothes });
-       }}
+
       keyProp="id"
       />
       </View>

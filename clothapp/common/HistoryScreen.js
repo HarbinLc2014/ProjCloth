@@ -77,7 +77,9 @@ class HistoryScreen extends Component {
       <Text style={styles.italics} >款号: {cloth.code}</Text>
       <Text style={styles.italics} >价格: {cloth.price} RMB </Text>
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20 }}>
-      <Feather name="shopping-cart" size={28} style={{ marginRight: 30, color: '#FFFFFF' }} onPress={() => { this.props.navigation.navigate('order'); }} />
+      <Feather name="shopping-cart" size={28} style={{ marginRight: 30, color: '#FFFFFF' }} onPress={() => { this.props.navigation.navigate('order',{
+                   orderCloth: { type: cloth.type, src: cloth.src, code: cloth.code, price: cloth.price }
+                   }); }} />
       <MaterialIcons name="delete" size={30} style={{ marginLeft: 30, color: '#FFFFFF' }} onPress={() => { console.log('aaaaa'); }} />
       </View>
       </View>

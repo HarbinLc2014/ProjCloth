@@ -43,22 +43,19 @@ class ClothScreen extends Component {
     this.props.navigation.setParams({
             navigatePress: this.showOrder
         });
-  //  DeviceEventEmitter.addListener(
-  //    'taobaoBind', (events) => { this.setState({ ss: '' }); console.log('ttt:'); });
     this.createDataSource(this.props);
-  //  console.log(this.props.sourceClothes);
   }
   componentWillReceiveProps(nextProps) {
     this.createDataSource(nextProps);
+  }
+  onAccept = () => {
+    this.setState({ showModal: false });
   }
   createDataSource({ likedClothes }) {
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2,
     });
     this.dataSource = ds.cloneWithRows(likedClothes);
-  }
-  onAccept = () => {
-    this.setState({ showModal: false });
   }
   showOrder = () => {
     this.setState({ showModal: true });
@@ -79,7 +76,9 @@ class ClothScreen extends Component {
       <Text style={styles.italics} >款号: {cloth.code}</Text>
       <Text style={styles.italics} >价格: ¥{cloth.price}</Text>
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20 }}>
-      <Feather name="shopping-cart" size={28} style={{ marginRight: 30, color: '#FFFFFF' }} onPress={() => { this.props.navigation.navigate('order'); }} />
+      <Feather name="shopping-cart" size={28} style={{ marginRight: 30, color: '#FFFFFF' }} onPress={() => { this.props.navigation.navigate('order', {
+                   orderCloth: { type: cloth.type, src: cloth.src, code: cloth.code, price: cloth.price }
+                   }); }} />
       <MaterialIcons name="delete" size={30} style={{ marginLeft: 30, color: '#FFFFFF' }} onPress={() => { console.log('aaaaa'); }} />
       </View>
       </View>

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { View, Text, Platform, ImageBackground, Dimensions } from 'react-native';
 import { FormLabel, FormInput, Button, FormValidationMessage } from 'react-native-elements';
+import { signupUser } from '../actions/AuthActions';
+
 const accountSid = 'AC79b658ea966756f6e9af4ed3f4486ef4';
 const authToken = '7d94caeebccfd63f8e13b27a6d64caa5';
 //const Twilio = require('react-native-twilio')(accountSid, authToken);
@@ -22,16 +25,14 @@ class SignUpForm extends Component {
       headerLeft: <Text />
     };
   }
-  state = { phone: '', code: '', password: '' };
-
+  state = { phone: '', code: '', password: '', email: '' };
+  componentWillMount() {
+        this.props.auth.signuperror = '';
+  }
   getRegisterCode = () => {
-  /*  twi.messages.create({
-  //      body: 'Your code is ' + code,
-        body: 'Your code is shit',
-        to: '+8615546147213',
-        from: '+16122604295'
-      });
-    console.log('getCode!');*/
+  }
+  submit() {
+    this.props.signupUser({ email: this.state.email, password: this.state.password, navigate: this.props.navigation.navigate });
   }
 render() {
   return (
@@ -43,8 +44,8 @@ render() {
         <FormInput
         containerStyle={{ width: 250, borderColor: '#ffffff' }}
         inputStyle={{ borderColor: '#ffffff', color: '#ffffff' }}
-          value={this.state.phone}
-          onChangeText={phone => this.setState({ phone })}
+          value={this.state.email}
+          onChangeText={email => this.setState({ email })}
         />
       </View>
       <View style={{ marginBottom: 10 }}>
@@ -57,9 +58,9 @@ render() {
         />
       </View>
 
-      <Button title="注册" style={{ marginBottom: 5, marginTop: 35, width: 180 }} />
+      <Button title="注册" style={{ marginBottom: 5, marginTop: 35, width: 180 }} onPress={this.submit.bind(this)} />
       <View style={{ width: SCREEN_WIDTH, alignItems: 'center', marginBottom: 50 }}>
-      <FormValidationMessage labelStyle={{ fontSize: 10 }}>wwwww</FormValidationMessage>
+      <FormValidationMessage labelStyle={{ fontSize: 13 }}>{this.props.auth.signuperror}</FormValidationMessage>
       </View>
       <Button title="登录已有账号" textStyle={{ fontSize: 13 }} onPress={() => this.props.navigation.navigate('signin')} buttonStyle={{ width: 180, backgroundColor: 'rgba(0,0,0,0)' }} />
       </View>
@@ -69,4 +70,10 @@ render() {
 }
 }
 
-export default SignUpForm;
+export const mapStateToProps = state => {
+  return {
+     auth: state.auth
+  };
+};
+
+export default connect(mapStateToProps, { signupUser })(SignUpForm);

@@ -13,7 +13,7 @@ const CAR_MAKES_AND_MODELS = {
   },
   裤子: {
     name: '裤子',
-    models: ['默认', '普通', '牛仔裤'],
+    models: ['默认', '牛仔裤'],
   },
   裙子: {
     name: '裙子',
@@ -28,8 +28,8 @@ const CAR_MAKES_AND_MODELS = {
     models: ['默认'],
   },
   风衣外衣: {
-    name: '外衣 & 风衣',
-    models: ['默认', '外衣', '风衣'],
+    name: '外套 & 风衣',
+    models: ['默认', '外套', '风衣'],
   },
   背心: {
     name: '背心',
@@ -37,7 +37,7 @@ const CAR_MAKES_AND_MODELS = {
   },
   雪纺针织: {
     name: '雪纺 & 针织',
-    models: ['默认', '针织品', '雪纺品'],
+    models: ['默认', '针织', '雪纺'],
   },
   其他: {
     name: '其他',
@@ -48,6 +48,7 @@ class Filter extends Component {
   state = {
      carMake: '上衣',
       modelIndex: 0,
+      modelName: '默认',
       filterValue: '裤子' };
 
   render() {
@@ -86,21 +87,24 @@ class Filter extends Component {
         </PickerIOS>
         <PickerIOS
         itemStyle={{ fontSize: 20, color: '#ffffff', textAlign: 'center', fontWeight: 'bold', width: 150, height: 100, marginRight: 20 }}
-          selectedValue={this.state.modelIndex}
+          selectedValue={this.state.modelName}
           key={this.state.carMake}
-          onValueChange={(modelIndex) => this.setState({ modelIndex })}
+          onValueChange={(modelName) => this.setState({ modelName })}
         >
           {CAR_MAKES_AND_MODELS[this.state.carMake].models.map((modelName, modelIndex) => (
             <PickerItemIOS
-              key={this.state.carMake + '_' + modelIndex}
-              value={modelIndex}
+              key={this.state.carMake + '_' + modelName}
+              value={modelName}
               label={modelName}
             />
           ))}
         </PickerIOS>
         </View>
         <View style={{ backgroundColor: 'rgba(0,0,0,0)', flexDirection: 'column', marginBottom: 20, justifyContent: 'center', marginTop: 20 }}>
-        <Button title='确认' color='#000000' fontSize={18} fontWeight='bold' backgroundColor='#d1d1d1' onPress={this.props.Accept} />
+        <Button title='确认' color='#000000' fontSize={18} fontWeight='bold' backgroundColor='#d1d1d1' onPress={() => {
+          console.log(this.state.carMake + ' ' + this.state.modelName);
+          this.props.Accept({ make: this.state.carMake, name: this.state.modelName});
+        }} />
         </View>
                       </CardSection>
                     </Card>

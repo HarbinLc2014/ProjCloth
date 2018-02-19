@@ -34,7 +34,8 @@ class ProfileScreen extends Component {
       </View>
 
       <CardSection style={{ backgroundColor: 'rgba(16,16,16,0.75)' }}>
-      <TouchableOpacity style={{ width: SCREEN_WIDTH }}>
+      <TouchableOpacity style={{ width: SCREEN_WIDTH }} onPress={() => {
+         this.props.navigation.navigate('oscreen'); }}>
       <Text style={{ paddingTop: 10, paddingBottom: 10, paddingLeft: 15, fontSize: 18, color: '#FFF', fontWeight: '900' }}>订单历史</Text>
       </TouchableOpacity>
       </CardSection>
@@ -45,7 +46,8 @@ class ProfileScreen extends Component {
       </TouchableOpacity>
       </CardSection>
       <CardSection style={{ backgroundColor: 'rgba(16,16,16,0.75)' }}>
-      <TouchableOpacity style={{ width: SCREEN_WIDTH }}>
+      <TouchableOpacity style={{ width: SCREEN_WIDTH }} onPress={() => {// console.log(this.props.clothes);
+         this.props.navigation.navigate('setting'); }}>
       <Text style={{ paddingTop: 10, paddingBottom: 10, paddingLeft: 15, fontSize: 18, color: '#FFF', fontWeight: '900' }}>个人设置</Text>
       </TouchableOpacity>
       </CardSection>

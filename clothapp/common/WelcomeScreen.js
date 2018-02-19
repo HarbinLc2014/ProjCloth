@@ -13,7 +13,7 @@ class WelcomeScreen extends Component {
   componentWillMount() {
   }
   onSlideComplete = () => {
-    this.props.navigation.navigate('signin');
+    this.props.navigation.navigate('login');
   }
   render() {
     return <Slide data={SLIDE_DATA} onComplete={this.onSlideComplete} />;
