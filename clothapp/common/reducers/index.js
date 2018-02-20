@@ -5,6 +5,7 @@ import sourceReducer from './source';
 import viewReducer from './viewReducer';
 import orderReducer from './OrderReducer';
 import authReducer from './AuthReducer';
+import fetchReducer from './FetchReducer';
 
 export default combineReducers({
   clothes: ClothReducer,
@@ -12,5 +13,6 @@ export default combineReducers({
   source: sourceReducer,
   viewedClothes: viewReducer,
   orders: orderReducer,
-  auth: authReducer
+  auth: authReducer,
+  fetch: fetchReducer
 });

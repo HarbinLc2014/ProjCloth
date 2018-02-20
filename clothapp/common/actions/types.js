@@ -6,3 +6,4 @@ export const UPDATE_ORDER = 'update_order';
 export const LOGIN_SUCCESS = 'login_success';
 export const LOGIN_FAILED = 'login_failed';
 export const LOGIN_USER = 'login_user';
+export const FETCH_ORDER = 'fetch_order';

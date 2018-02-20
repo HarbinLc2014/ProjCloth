@@ -91,7 +91,7 @@ class Order extends Component {
            var timer = date.getFullYear() + '-' + (date.getMonth() < 10 ? '0' + (date.getMonth()+1) : (date.getMonth()+1)) + "-" + (date.getDate() < 10 ? '0' + date.getDate() : date.getDate());
            console.log(timer);
            console.log(this.state);
-          this.props.addOrder({ name: this.state.name, date: timer, cloth: this.props.navigation.state.params.orderCloth, phone: this.state.phone, address: this.state.address, ps: this.state.ps, state: '审核中' });
+          this.props.addOrder({ order: { name: this.state.name, date: timer, clothcode: this.props.navigation.state.params.orderCloth.code, clothprice: this.props.navigation.state.params.orderCloth.price, clothtype: this.props.navigation.state.params.orderCloth.type, phone: this.state.phone, address: this.state.address, ps: this.state.ps, state: '审核中', src: this.props.navigation.state.params.orderCloth.src }, user: this.props.user });
             Alert.alert(
             '订单添加成功!',
             '您可以在订单历史中查看以前的订单，一旦我们确认商品是否有库存后,会第一时间通过短信和在订单历史中通知您',
@@ -102,7 +102,7 @@ class Order extends Component {
 }
 else {
       this.setState({ message: '收货人、地址和手机号不能为空' });
-    } 
+    }
 }
         }
           />
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
   });
 
   const mapStateToProps = (state) => {
-    return { orders: state.orders };
+    return { orders: state.orders, user: state.auth.user };
   };
 
   export default connect(mapStateToProps, { addOrder })(Order);
