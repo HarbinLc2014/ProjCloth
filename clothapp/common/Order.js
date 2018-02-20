@@ -87,11 +87,14 @@ class Order extends Component {
 {           if(this.state.phone!== '' && this.state.name!== '' && this.state.address!==''){
            const nowTime = new Date();
            var time = nowTime.getTime()/1000;
+           var timestamp = nowTime.getTime();
            var date = new Date(time * 1000);//.转换成毫秒
            var timer = date.getFullYear() + '-' + (date.getMonth() < 10 ? '0' + (date.getMonth()+1) : (date.getMonth()+1)) + "-" + (date.getDate() < 10 ? '0' + date.getDate() : date.getDate());
            console.log(timer);
+           console.log(date);
+           console.log(time);
            console.log(this.state);
-          this.props.addOrder({ order: { name: this.state.name, date: timer, clothcode: this.props.navigation.state.params.orderCloth.code, clothprice: this.props.navigation.state.params.orderCloth.price, clothtype: this.props.navigation.state.params.orderCloth.type, phone: this.state.phone, address: this.state.address, ps: this.state.ps, state: '审核中', src: this.props.navigation.state.params.orderCloth.src }, user: this.props.user });
+          this.props.addOrder({ order: { name: this.state.name, date: timer, clothcode: this.props.navigation.state.params.orderCloth.code, clothprice: this.props.navigation.state.params.orderCloth.price, clothtype: this.props.navigation.state.params.orderCloth.type, phone: this.state.phone, address: this.state.address, ps: this.state.ps, state: '审核中', src: this.props.navigation.state.params.orderCloth.src, uid: String(timestamp) }, user: this.props.user });
             Alert.alert(
             '订单添加成功!',
             '您可以在订单历史中查看以前的订单，一旦我们确认商品是否有库存后,会第一时间通过短信和在订单历史中通知您',

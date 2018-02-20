@@ -1,4 +1,6 @@
-import { EMAIL_CHANGED, LOGIN_USER, PASSWORD_CHANGED, LOGIN_SUCCESS, LOGIN_FAILED } from './types';
+import { EMAIL_CHANGED, LOGIN_USER, PASSWORD_CHANGED, LOGIN_SUCCESS, LOGIN_FAILED, ADD_ORDER } from './types';
+import { addOrder } from './OrderActions';
+
 const wilddog = require('wilddog');
 var config = {
   authDomain: 'wd7622364344zejjra.wilddog.com'
@@ -49,7 +51,7 @@ export const signupUser = ({ email, password, navigate }) => {
  wilddog.initializeApp(config);
 wilddog.auth().createUserWithEmailAndPassword(email, password)
    .then(user =>
-     loginUserSuccess(dispatch, user, navigate)
+     loginUserSuccess2(dispatch, user, navigate)
    )
    .catch((error) => {
      loginUserFail(dispatch, String(error), 1);
@@ -86,6 +88,23 @@ dispatch({ type: LOGIN_FAILED, payload: error, signal: sig });
 };
 
 const loginUserSuccess = (dispatch, user, navigate) => {
+  console.log('success');
+  console.log(wilddog.auth().currentUser);
+  dispatch({ type: LOGIN_SUCCESS, payload: user });
+  navigate('main');
+};
+
+const loginUserSuccess2 = (dispatch, user, navigate) => {
+  const config2 = {
+  authDomain: 'wd7622364344zejjra.wilddog.com.wilddog.com',
+  syncURL: 'https://wd7622364344zejjra.wilddogio.com'
+ };
+ wilddog.initializeApp(config2);
+ wilddog.sync().ref('/users/' + user.uid + '/orders')
+      .push({ userEmail: '' })
+      .then(() => {
+        dispatch({ type: ADD_ORDER });
+      });
   console.log('success');
   console.log(wilddog.auth().currentUser);
   dispatch({ type: LOGIN_SUCCESS, payload: user });

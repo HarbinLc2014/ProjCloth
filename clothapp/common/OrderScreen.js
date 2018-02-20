@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { View, Text, Platform, ListView, Dimensions, ScrollView, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { MaterialCommunityIcons, Ionicons, Foundation, Entypo, MaterialIcons, Feather } from '@expo/vector-icons';
-import * as actions from './actions';
 import { Card, Button } from 'react-native-elements';
 import OrderDetail from './components/OrderDetail';
+import { fetchOrder, cancelOrder } from './actions/OrderActions';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
@@ -23,8 +23,9 @@ static navigationOptions = props => {
 }
 state = { showDetail: false, ord: { name: '', phone: '', address: '' } };
 componentWillMount() {
-  this.setState({ orders: this.props.orders });
+  this.setState({ orders: this.props.fetchOrder(this.props.user) });
   this.createDataSource(this.props);
+  console.log('orders:  '+this.props.orders);
 }
 componentWillReceiveProps(nextProps) {
   this.createDataSource(nextProps);
@@ -40,6 +41,7 @@ createDataSource({ orders }) {
 }
 renderRow(order) {
   this.createDataSource(this.props);
+  if( order.userEmail !== ''){
   return (
     <View style={{ marginBottom: 10, backgroundColor: '#ffffff', paddingBottom: 5 }}>
 
@@ -48,17 +50,17 @@ renderRow(order) {
     </View>
 
     <View style={{ backgroundColor: '#eeeee0', paddingTop: 5, paddingBottom: 5, paddingLeft: 10, flexDirection: 'row' }}>
-    <Image source={order.cloth.src} style={{ width: 100, height: 100, marginRight: 5, borderRadius: 5, borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)' }} resizeMode='contain' />
+    <Image source={order.src} style={{ width: 100, height: 100, marginRight: 5, borderRadius: 5, borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)' }} resizeMode='contain' />
     <View style={{ flexDirection: 'column', paddingLeft: 10, justifyContent: 'space-around', alignItems: 'flex-start' }}>
-    <Text style={{ fontSize: 15, fontWeight: 'bold' }}>{order.cloth.type}    {order.cloth.code}</Text>
+    <Text style={{ fontSize: 15, fontWeight: 'bold' }}>{order.type}    {order.code}</Text>
     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-    <Text style={{ fontSize: 13, fontWeight: 'bold', marginRight: 20 }}>价格 ¥{order.cloth.price}</Text>
+    <Text style={{ fontSize: 13, fontWeight: 'bold', marginRight: 20 }}>价格 ¥{order.price}</Text>
     </View>
     <View style={{ flexDirection: 'row' }}>
     <Text style={{ fontSize: 13, fontWeight: 'bold', width: 100 }}>状态: {order.state}</Text>
     <View style={{ alignItems: 'flex-end', width: SCREEN_WIDTH-200, justifyContent: 'flex-start', flexDirection: 'row' }}>
-    <MaterialCommunityIcons name="file-document" size={25} style={{ marginRight: 40, color: '#969696' }} onPress={() => this.setState({ showDetail: !this.state.showDetail, ord: { date: order.date, state: order.state, name: order.name, phone: order.phone, address: order.address, type: order.cloth.type, code: order.cloth.code, price: order.cloth.price, ps: order.ps } })} />
-    <MaterialIcons name="delete" size={30} style={{ marginRight: 5, color: '#969696' }} />
+    <MaterialCommunityIcons name="file-document" size={25} style={{ marginRight: 40, color: '#969696' }} onPress={() => this.setState({ showDetail: !this.state.showDetail, ord: { date: order.date, state: order.state, name: order.name, phone: order.phone, address: order.address, type: order.type, code: order.code, price: order.price, ps: order.ps } })} />
+    <MaterialIcons name="delete" size={30} style={{ marginRight: 5, color: '#969696' }} onPress={() => this.props.cancelOrder({ order: { name: order.name, date: order.date, clothcode: order.code, clothprice: order.price, clothtype: order.type, phone: order.phone, address: order.address, ps: order.ps, state: '审核中', src: order.src, uid: order.uid }, user: this.props.user })} />
     </View>
     </View>
     </View>
@@ -66,6 +68,8 @@ renderRow(order) {
 
     </View>
   );
+}
+return null;
 }
   render() {
     return (
@@ -100,7 +104,7 @@ const styles = {
   }
 };
 const mapStateToProps = (state) => {
-  return { orders: state.orders };
+  return { orders: state.fetch, user: state.auth.user };
 };
 
-export default connect(mapStateToProps, actions)(OrderScreen);
+export default connect(mapStateToProps, { fetchOrder, cancelOrder })(OrderScreen);

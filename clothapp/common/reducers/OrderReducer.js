@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { ADD_ORDER } from '../actions/types';
+import { ADD_ORDER, CANCEL_ORDER } from '../actions/types';
 
 export default function (state = [], action) {
   switch (action.type) {
@@ -8,6 +8,8 @@ export default function (state = [], action) {
       return [
         action.payload, ...state
       ];
+    case CANCEL_ORDER:
+    return state;
     default:
       return state;
   }
