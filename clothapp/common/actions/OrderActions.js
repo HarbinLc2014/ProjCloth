@@ -11,6 +11,8 @@ export const addOrder = ({ order, user }) => {
  wilddog.sync().ref('/users/' + user.uid + '/orders')
       .child(order.uid).set({ date: order.date, name: order.name, code: order.clothcode, price: order.clothprice, type: order.clothtype, phone: order.phone, address: order.address, ps: order.ps, state: order.state, src: order.src, userEmail: user.email, uid: order.uid })
       .then(() => {
+        wilddog.sync().ref('/NewOrders')
+             .child(order.uid).set({ date: order.date, name: order.name, code: order.clothcode, price: order.clothprice, type: order.clothtype, phone: order.phone, address: order.address, ps: order.ps, state: order.state, src: order.src, userEmail: user.email, uid: order.uid, useruid: user.uid });
         dispatch({ type: ADD_ORDER });
       });
   };

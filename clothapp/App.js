@@ -9,12 +9,15 @@ import { StackNavigator, TabNavigator } from 'react-navigation';
 import WelcomeScreen from './common/WelcomeScreen';
 import LoginScreen from './common/LoginScreen';
 import HomeScreen from './common/HomeScreen';
+import NotificationScreen from './common/NotificationScreen';
 import MatchScreen from './common/MatchScreen';
+import Information from './common/Information';
 import ProfileScreen from './common/ProfileScreen';
 import ClothScreen from './common/ClothScreen';
 import OrderScreen from './common/OrderScreen';
 import SettingScreen from './common/SettingScreen';
 import HistoryScreen from './common/HistoryScreen';
+import Manual from './common/Manual';
 import Order from './common/Order';
 import SignUpForm from './common/components/SignUpForm';
 import SignInForm from './common/components/SignInForm';
@@ -52,7 +55,8 @@ wilddog.initializeApp(config);
         main: { screen: TabNavigator({
           home: {
              screen: StackNavigator({
-               hscreen: { screen: HomeScreen }
+               hscreen: { screen: HomeScreen },
+               notify: { screen: NotificationScreen }
              })
            },
           list: {
@@ -72,7 +76,9 @@ wilddog.initializeApp(config);
                history: { screen: HistoryScreen },
                order: { screen: Order },
                oscreen: { screen: OrderScreen },
-               setting: { screen: SettingScreen }
+               setting: { screen: SettingScreen },
+               information: { screen: Information },
+               manual: { screen: Manual }
              })
            },
         }) }

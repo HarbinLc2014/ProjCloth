@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Card, Button, Icon } from 'react-native-elements';
 import { Ionicons, Foundation, Entypo, MaterialIcons, Feather } from '@expo/vector-icons';
 import * as actions from './actions';
+import { fetchFavorite, delFavorite } from './actions/ClothAction';
 import Filter from './components/Order';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -22,8 +23,8 @@ class ClothScreen extends Component {
       headerStyle: {
         marginTop: Platform.OS === 'android' ? 24 : 0
       },
-      headerRight:
-        <MaterialIcons name="filter-list" size={25} style={{ marginRight: 10, color: '#007aff' }} onPress={() => { navigation.state.params.navigatePress(); }} />,
+//      headerRight:
+//        <MaterialIcons name="filter-list" size={25} style={{ marginRight: 10, color: '#007aff' }} onPress={() => { navigation.state.params.navigatePress(); }} />,
       headerLeft:
           <Text />,
     };
@@ -36,17 +37,28 @@ class ClothScreen extends Component {
     require('../assets/bg5.jpg'),
   require('../assets/bg4.jpg')
 ],
+status: 0,
   showModal: false
 }
   componentWillMount() {
-    this.setState({ likedClothes: this.props.likedClothes });
     this.props.navigation.setParams({
             navigatePress: this.showOrder
         });
     this.createDataSource(this.props);
   }
   componentWillReceiveProps(nextProps) {
+    if (nextProps.user!==null && !this.state.status) {
+      this.props.fetchFavorite(nextProps.user);
+      this.setState({ status: 1 });
+    }
+    if (nextProps.user && this.props.user && nextProps.user.email !== this.props.user.email ) {
+      this.props.fetchFavorite(nextProps.user);
+    }
     this.createDataSource(nextProps);
+  }
+  componentWillUnmount() {
+    console.log('UnAmount');
+    this.props.fetchFavorite(this.props.user);
   }
   onAccept = () => {
     this.setState({ showModal: false });
@@ -61,7 +73,7 @@ class ClothScreen extends Component {
     this.setState({ showModal: true });
   }
   renderRow(cloth) {
-    this.createDataSource(this.props);
+    if (cloth.code !==''){
     return (
       <View style={{ width: SCREEN_WIDTH*3/4, marginLeft:SCREEN_WIDTH/8, marginRight: SCREEN_WIDTH/8, marginTop: 30 }}>
       <Card title={cloth.type} containerStyle={{ backgroundColor: 'rgba(0,0,0,0.7)', height: SCREEN_HEIGHT*3/4 }} titleStyle={{ color: '#ffffff' }}>
@@ -79,12 +91,14 @@ class ClothScreen extends Component {
       <Feather name="shopping-cart" size={28} style={{ marginRight: 30, color: '#FFFFFF' }} onPress={() => { this.props.navigation.navigate('order', {
                    orderCloth: { type: cloth.type, src: cloth.src, code: cloth.code, price: cloth.price }
                    }); }} />
-      <MaterialIcons name="delete" size={30} style={{ marginLeft: 30, color: '#FFFFFF' }} onPress={() => { console.log('aaaaa'); }} />
+      <MaterialIcons name="delete" size={30} style={{ marginLeft: 30, color: '#FFFFFF' }} onPress={() => { this.props.delFavorite({ favorite: { id: cloth.id }, user: this.props.user }); }} />
       </View>
       </View>
       </Card>
       </View>
     );
+  }
+  return null;
   }
   render() {
     return (
@@ -123,7 +137,7 @@ const styles = {
 };
 
 const mapStateToProps = (state) => {
-  return { likedClothes: state.likedClothes, sourceClothes: state.source };
+  return { likedClothes: state.likedClothes, sourceClothes: state.source, user: state.auth.user };
 };
 
-export default connect(mapStateToProps, actions)(ClothScreen);
+export default connect(mapStateToProps, { fetchFavorite, delFavorite })(ClothScreen);

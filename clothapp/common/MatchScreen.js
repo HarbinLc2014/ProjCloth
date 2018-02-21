@@ -27,8 +27,8 @@ class MatchScreen extends Component {
         headerStyle: {
           marginTop: Platform.OS === 'android' ? 24 : 0
         },
-        headerLeft:
-         <Feather name="refresh-cw" size={25} style={{ marginLeft: 10, color: '#007aff' }} onPress={() => { console.log('aaaaa'); }} />,
+  //      headerLeft:
+  //       <Feather name="refresh-cw" size={25} style={{ marginLeft: 10, color: '#007aff' }} onPress={() => { console.log('aaaaa'); }} />,
         headerRight:
           <Feather name="filter" size={25} style={{ marginRight: 10, color: '#007aff' }} onPress={() => { navigation.state.params.navigatePress(); }} />,
       };
@@ -63,11 +63,6 @@ class MatchScreen extends Component {
 
     this.setState({ fontLoaded: true });
   }
-  showFilter = () => {
-    console.log('pressed!!!!');
-    this.setState({ showModal: true });
-  }
-
   onAccept = (filter) => {
     console.log(filter);
     this.setState({ filter1: filter.make });
@@ -98,6 +93,10 @@ class MatchScreen extends Component {
       this.setState({ filter2: '' });
     }
     this.setState({ showModal: false });
+  }
+  showFilter = () => {
+    console.log('pressed!!!!');
+    this.setState({ showModal: true });
   }
         /* eslint-disable global-require */
   renderCard = (cloth) => {
@@ -184,19 +183,16 @@ class MatchScreen extends Component {
            })}
       renderCard={this.renderCard}
       renderNoMoreCards={this.renderNoMoreCards}
-  //    cloth={this.renderCard.cloth}
       onSwipeRight={cloth => {
-        this.props.likeCloth(cloth);
+        const nowTime = new Date();
+           const time = nowTime.getTime();
+        this.props.likeCloth({ favorite: { uid: time, type: cloth.type, code: cloth.code, price: cloth.price, src: cloth.src, id: cloth.id }, user: this.props.user });
                 this.setState({ index: this.state.index + 1 });
-                console.log(this.state.index);
               }
             }
       onSwipeLeft={() =>
         this.setState({ index: this.state.index + 1 })
       }
-  //      var likedClothes = cloth;
-  //      DeviceEventEmitter.emit('taobaoBind', { likedClothes });
-
       keyProp="id"
       />
       </View>
@@ -205,7 +201,6 @@ class MatchScreen extends Component {
       visible={this.state.showModal}
       Accept={this.onAccept.bind(this)}
       />
-
       </View>
     );
   }
@@ -260,8 +255,7 @@ const styles = {
 };
 
 const mapStateToProps = state => {
-//    console.log(state.libraries);
-    return { clothes: state.clothes };
+    return { clothes: state.clothes, user: state.auth.user };
 };
 
 export default connect(mapStateToProps, { likeCloth })(MatchScreen);

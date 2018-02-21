@@ -69,7 +69,6 @@ class Comp2 extends Component {
                 style={{ width: SCREEN_WIDTH, height: (SCREEN_WIDTH * 2) / 3 }}
             >
                {this.renderAllImage()}
-              <Text>hello</Text>
             </ScrollView>
             <View style={styles.pageViewStyle}>
             {this.renderPageCircle()}

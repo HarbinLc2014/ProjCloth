@@ -19,6 +19,25 @@ export const passwordChanged = (text) => {
   };
 };
 
+export const resetPassword = (email) => {
+  return (dispatch) => {
+    wilddog.initializeApp(config);
+   wilddog.auth().sendPasswordResetEmail(email)
+   .then(() => dispatch({ type: PASSWORD_CHANGED }))
+   .catch((error) => {
+     loginUserFail(dispatch, String(error), 0)
+   });
+};
+};
+
+export const signOut = () => {
+  return (dispatch) => {
+    wilddog.initializeApp(config);
+    wilddog.auth().signOut();
+    dispatch({ type: 'asdasd' });
+};
+};
+
 export const loginUser = ({ email, password, navigate }) => {
 //  console.log('email:' + email);
 //  console.log('password:' + password);
@@ -66,7 +85,7 @@ const loginUserFail = (dispatch, error, signal) => {
   if(error === 'Error: The specified email address is incorrect.') {
     error = '邮箱格式不正确';
   }
-  if (error === 'Error: The email is not exist') {
+  if (error === 'Error: The email is not exist' || error === 'Error: The specified user does not exist.') {
     error= '用户不存在';
   }
   if (error === 'Error: The specified password is incorrect.') {
@@ -87,11 +106,10 @@ const loginUserFail = (dispatch, error, signal) => {
 dispatch({ type: LOGIN_FAILED, payload: error, signal: sig });
 };
 
+
 const loginUserSuccess = (dispatch, user, navigate) => {
-  console.log('success');
-  console.log(wilddog.auth().currentUser);
   dispatch({ type: LOGIN_SUCCESS, payload: user });
-  navigate('main');
+  navigate('home');
 };
 
 const loginUserSuccess2 = (dispatch, user, navigate) => {
@@ -101,12 +119,11 @@ const loginUserSuccess2 = (dispatch, user, navigate) => {
  };
  wilddog.initializeApp(config2);
  wilddog.sync().ref('/users/' + user.uid + '/orders')
-      .push({ userEmail: '' })
-      .then(() => {
-        dispatch({ type: ADD_ORDER });
-      });
-  console.log('success');
-  console.log(wilddog.auth().currentUser);
+      .push({ userEmail: '' });
+  wilddog.sync().ref('/users/' + user.uid + '/notification')
+      .child('123').set({ date: '', message: '', uid: '123' });
+  wilddog.sync().ref('/users/' + user.uid + '/favorite')
+      .child('xxx').set({ code: '' });
   dispatch({ type: LOGIN_SUCCESS, payload: user });
-  navigate('main');
+  navigate('home');
 };

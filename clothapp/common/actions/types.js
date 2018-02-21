@@ -7,3 +7,7 @@ export const LOGIN_SUCCESS = 'login_success';
 export const LOGIN_FAILED = 'login_failed';
 export const LOGIN_USER = 'login_user';
 export const FETCH_ORDER = 'fetch_order';
+export const FETCH_FAVORITE = 'fetch_favorite';
+export const FETCH_NOTIFICATION = 'fetch_notification';
+export const ADD_FAVORITE = 'add_favorite';
+export const DEL_FAVORITE = 'del_favorite'; 

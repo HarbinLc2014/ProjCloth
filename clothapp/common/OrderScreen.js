@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Platform, ListView, Dimensions, ScrollView, Image } from 'react-native';
+import { View, Text, Platform, ListView, Dimensions, ScrollView, Image, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import { MaterialCommunityIcons, Ionicons, Foundation, Entypo, MaterialIcons, Feather } from '@expo/vector-icons';
 import { Card, Button } from 'react-native-elements';
@@ -60,7 +60,19 @@ renderRow(order) {
     <Text style={{ fontSize: 13, fontWeight: 'bold', width: 100 }}>状态: {order.state}</Text>
     <View style={{ alignItems: 'flex-end', width: SCREEN_WIDTH-200, justifyContent: 'flex-start', flexDirection: 'row' }}>
     <MaterialCommunityIcons name="file-document" size={25} style={{ marginRight: 40, color: '#969696' }} onPress={() => this.setState({ showDetail: !this.state.showDetail, ord: { date: order.date, state: order.state, name: order.name, phone: order.phone, address: order.address, type: order.type, code: order.code, price: order.price, ps: order.ps } })} />
-    <MaterialIcons name="delete" size={30} style={{ marginRight: 5, color: '#969696' }} onPress={() => this.props.cancelOrder({ order: { name: order.name, date: order.date, clothcode: order.code, clothprice: order.price, clothtype: order.type, phone: order.phone, address: order.address, ps: order.ps, state: '审核中', src: order.src, uid: order.uid }, user: this.props.user })} />
+    <MaterialIcons name="delete" size={30} style={{ marginRight: 5, color: '#969696' }} onPress={() =>
+      Alert.alert(
+            '删除订单',
+            '确认删除该订单？',
+            [
+              {text: '取消' },
+              {text: '确定', onPress: () => this.props.cancelOrder({ order: { uid: order.uid }, user: this.props.user }) }
+            ]
+          )
+        }
+      />
+
+
     </View>
     </View>
     </View>

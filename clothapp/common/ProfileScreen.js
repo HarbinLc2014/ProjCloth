@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Text, View, Platform, ImageBackground, TouchableOpacity,Dimensions, Image } from 'react-native';
+import { Text, View, Platform, ImageBackground, TouchableOpacity,Dimensions, Image, Linking } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { Ionicons, Foundation, Entypo, FontAwesome } from '@expo/vector-icons';
+import { signOut } from './actions/AuthActions';
 import CardSection from './components/CardSection';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -20,7 +21,8 @@ class ProfileScreen extends Component {
           headerTitle: '设置',
           headerStyle: {
             marginTop: Platform.OS === 'android' ? 24 : 0
-          }
+          },
+          headerLeft: <Text />,
         };
   }
   render() {
@@ -47,18 +49,23 @@ class ProfileScreen extends Component {
       </CardSection>
       <CardSection style={{ backgroundColor: 'rgba(16,16,16,0.75)' }}>
       <TouchableOpacity style={{ width: SCREEN_WIDTH }} onPress={() => {// console.log(this.props.clothes);
-         this.props.navigation.navigate('setting'); }}>
-      <Text style={{ paddingTop: 10, paddingBottom: 10, paddingLeft: 15, fontSize: 18, color: '#FFF', fontWeight: '900' }}>个人设置</Text>
+         this.props.navigation.navigate('manual'); }}>
+      <Text style={{ paddingTop: 10, paddingBottom: 10, paddingLeft: 15, fontSize: 18, color: '#FFF', fontWeight: '900' }}>使用手册</Text>
       </TouchableOpacity>
       </CardSection>
       <CardSection style={{ backgroundColor: 'rgba(16,16,16,0.75)' }}>
-      <TouchableOpacity style={{ width: SCREEN_WIDTH }}>
+      <TouchableOpacity style={{ width: SCREEN_WIDTH }} onPress={() => Linking.openURL('http://www.cnchee.com/')}>
       <Text style={{ paddingTop: 10, paddingBottom: 10, paddingLeft: 15, fontSize: 18, color: '#FFF', fontWeight: '900' }}>更多信息</Text>
       </TouchableOpacity>
       </CardSection>
       <CardSection style={{ backgroundColor: 'rgba(16,16,16,0.75)' }}>
-      <TouchableOpacity style={{ width: SCREEN_WIDTH }}>
-      <Text style={{ paddingTop: 10, paddingBottom: 10, paddingLeft: 15, fontSize: 18, color: '#FFF', fontWeight: '900' }}>商家加盟</Text>
+      <TouchableOpacity style={{ width: SCREEN_WIDTH }} onPress={() => this.props.navigation.navigate('information')}>
+      <Text style={{ paddingTop: 10, paddingBottom: 10, paddingLeft: 15, fontSize: 18, color: '#FFF', fontWeight: '900' }}>联系我们</Text>
+      </TouchableOpacity>
+      </CardSection>
+      <CardSection style={{ backgroundColor: 'rgba(16,16,16,0.75)' }}>
+      <TouchableOpacity style={{ width: SCREEN_WIDTH }} onPress={() => { this.props.signOut(); this.props.navigation.navigate('login'); }}>
+      <Text style={{ paddingTop: 10, paddingBottom: 10, paddingLeft: 15, fontSize: 18, color: '#FFF', fontWeight: '900' }}>退出登录</Text>
       </TouchableOpacity>
       </CardSection>
       </View>
@@ -69,7 +76,7 @@ class ProfileScreen extends Component {
 }
 const mapStateToProps = state => {
 //    console.log(state.libraries);
-    return { clothes: state.viewedClothes };
+    return { clothes: state.viewedClothes, user: state.auth.user };
 };
 
-export default connect(mapStateToProps, null)(ProfileScreen);
+export default connect(mapStateToProps, { signOut })(ProfileScreen);

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 import { Text, View, Platform, AppRegistry,
   StyleSheet,
   ScrollView,
@@ -8,6 +9,7 @@ import { Text, View, Platform, AppRegistry,
   TouchableOpacity } from 'react-native';
 import { Ionicons, Foundation, Entypo } from '@expo/vector-icons';
 import { TimerMixin } from 'react-timer-mixin';
+import { connect } from 'react-redux';
 import Images from './Image';
 import { viewCloth } from '../actions/ClothAction';
 
@@ -30,15 +32,15 @@ class Comp3 extends Component {
   //AlertIOS.alert(" currentPage=  " +this.state.currentPage);
 }
   renderAllImage() {
-        var i = 0;
-        var allImage = [];
-        return Images.bigjson.map(big => {
-          return(
-            <TouchableOpacity key={big.id} onPress={() => { this.props.press({ msg: big.src, thumbnail: big.id }); }}>
-            <Image key={i} source={Images.big[big.id]} resizeMode='stretch' style={{ flex: 1, width: SCREEN_WIDTH/4, height: SCREEN_WIDTH/2.5, marginRight: 15, marginLeft: 15, borderWidth: 10, borderRadius: 10, borderColor: 'rgba(0,0,0,0)', marginTop: 7.5, marginBottom: 7.5 }} />
-            </TouchableOpacity>
-          );
-        });
+    return _.uniqBy(this.props.clothes.filter((t) => {
+             return t.show && (t.type.includes('背心') || t.type.includes('夹克') || t.type.includes('夹克'));
+         }), 'src').map(cloth => {
+           return(
+          <TouchableOpacity key={cloth.id} onPress={() => { this.props.viewCloth(cloth); this.props.press(cloth); }}>
+            <Image key={cloth.id} source={cloth.src} resizeMode='stretch' style={{ flex: 1, width: SCREEN_WIDTH/4, height: SCREEN_WIDTH/2.5, marginRight: 15, marginLeft: 15, borderWidth: 10, borderRadius: 10, borderColor: 'rgba(0,0,0,0)', marginTop: 7.5, marginBottom: 7.5 }} />
+          </TouchableOpacity>
+        );
+      });
       }
 
       renderPageCircle() {
@@ -65,7 +67,6 @@ class Comp3 extends Component {
                 style={{ width: SCREEN_WIDTH, height: (SCREEN_WIDTH / 2.5)+15, backgroundColor: 'rgba(0,0,0,0.2)' }}
             >
                {this.renderAllImage()}
-              <Text>hello</Text>
             </ScrollView>
           </View>
         );
@@ -89,4 +90,7 @@ class Comp3 extends Component {
   }
 
   });
-export default Comp3;
+  const mapStateToProps = (state) => {
+    return { clothes: state.clothes };
+  };
+  export default connect(mapStateToProps, { viewCloth })(Comp3);

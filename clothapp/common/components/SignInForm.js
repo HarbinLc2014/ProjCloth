@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, Platform, ImageBackground, Dimensions } from 'react-native';
 import { FormLabel, FormInput, Button, Card, FormValidationMessage } from 'react-native-elements';
 import { connect } from 'react-redux';
-import { loginUser, login } from '../actions/AuthActions';
+import { loginUser, login, resetPassword } from '../actions/AuthActions';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
@@ -21,14 +21,7 @@ class SignInForm extends Component {
   }
   state = { phone: '', password: '', email: '', message: '' };
   submit() {
-  //  if(this.state.email!=='' && this.state.password!=='') {
-    //  this.setState({ message: '' });
     this.props.loginUser({ email: this.state.email, password: this.state.password, navigate: this.props.navigation.navigate });
-//    }
-  //  else {
-    //  this.setState({ message: '用户名和密码不能为空!' });
-  //  this.props.auth.error='用户名和密码不能为空!';
-  //  }
   }
   componentWillMount() {
         this.props.auth.signinerror = '';
@@ -58,13 +51,12 @@ render() {
         />
       </View>
       <View style={{ width: 150, justifyContent: 'flex-end', alignItems: 'center' }}>
-      <Button title="重置密码" onPress={this.getRegisterCode} titleStyle={{ fontSize: 15 }} />
+      <Button title="重置密码" onPress={() => this.props.resetPassword(this.state.email)} titleStyle={{ fontSize: 15 }} />
       </View>
       </View>
       <View style={{ alignItems: 'center', width: SCREEN_WIDTH }}>
       <Button title="登录" style={{ marginBottom: 5, marginTop: 35, width: 180 }} onPress={this.submit.bind(this)} />
       <View style={{ width: SCREEN_WIDTH, alignItems: 'center', marginBottom: 50 }}>
-  {/*    <FormValidationMessage labelStyle={{ fontSize: 13 }}>{this.state.message}</FormValidationMessage> */}
       <FormValidationMessage labelStyle={{ fontSize: 13 }}>{this.props.auth.signinerror}</FormValidationMessage>
       </View>
       <Button title="注册新用户" textStyle={{ fontSize: 13 }} onPress={() => this.props.navigation.navigate('signup')} buttonStyle={{ width: 180, backgroundColor: 'rgba(0,0,0,0)' }} />
@@ -83,4 +75,4 @@ export const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { loginUser, login })(SignInForm);
+export default connect(mapStateToProps, { loginUser, login, resetPassword })(SignInForm);

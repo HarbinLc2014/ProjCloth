@@ -1,13 +1,11 @@
 import _ from 'lodash';
-import { LIKE_CLOTH } from '../actions/types';
+import { FETCH_FAVORITE } from '../actions/types';
 
 export default function (state = [], action) {
   switch (action.type) {
-    case LIKE_CLOTH:
-      console.log('liked');
-      return _.uniqBy([
-        action.payload, ...state
-      ], 'id');
+    case FETCH_FAVORITE:
+    console.log('fetching...');
+      return action.payload;
     default:
       return state;
   }

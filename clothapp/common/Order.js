@@ -99,7 +99,7 @@ class Order extends Component {
             '订单添加成功!',
             '您可以在订单历史中查看以前的订单，一旦我们确认商品是否有库存后,会第一时间通过短信和在订单历史中通知您',
             [
-              { text: 'OK', onPress: () => this.props.navigation.navigate('favor') },
+              { text: 'OK', onPress: () => this.props.navigation.goBack() },
             ]
           );
 }

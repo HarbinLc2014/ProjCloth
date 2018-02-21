@@ -66,7 +66,6 @@ class Comp4 extends Component {
                 style={{ width: SCREEN_WIDTH-20, height: SCREEN_WIDTH / 1.5, backgroundColor: '#ffffff' }}
             >
                {this.renderAllImage()}
-              <Text>hello</Text>
             </ScrollView>
           </View>
         );
@@ -89,7 +88,8 @@ class Comp4 extends Component {
     alignItems: 'center'
   }
 
-  });const mapStateToProps = (state) => {
+  });
+  const mapStateToProps = (state) => {
     return { clothes: state.clothes };
   };
 export default connect(mapStateToProps, actions)(Comp4);

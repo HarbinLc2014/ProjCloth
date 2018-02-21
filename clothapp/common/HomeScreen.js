@@ -15,6 +15,7 @@ import Comp2 from './components/Comp2';
 import Profile from './components/Profile';
 import Comp3 from './components/Comp3';
 import Comp4 from './components/Comp4';
+import { addNotification } from './actions/NotificationActions';
 import { likeCloth } from './actions/ClothAction';
 
 const ImageData = require('./ImageData.json');
@@ -39,7 +40,7 @@ class HomeScreen extends Component {
         marginTop: Platform.OS === 'android' ? 24 : 0
       },
       headerRight:
-        <Entypo name="notification" size={25} style={{ marginRight: 10, color: '#007aff' }} onPress={() => { console.log('aaaaa'); }} />,
+        <Entypo name="notification" size={25} style={{ marginRight: 10, color: '#007aff' }} onPress={() => navigate('notify')} />,
      headerLeft:
 <Image source={require('../assets/source2.png')} resizeMode='stretch'  style={{ width: 30, height: 33, marginTop: 2, marginBottom: 5, marginLeft: 10 }} />
 
@@ -52,7 +53,11 @@ class HomeScreen extends Component {
       type: '',
       eventCloth: { type: '', src: require('../assets/bg2.jpg') }
   };
-
+  componentWillMount() {
+    this.props.navigation.setParams({
+            navigatePress: this.showNotification
+        });
+  }
   async componentDidMount() {
       await Font.loadAsync({
       //    'gloria-halleujah': require('../assets/sample.otf'),
@@ -66,6 +71,9 @@ class HomeScreen extends Component {
   onAccept() {
       this.setState({ showModal: false });
   }
+  showNotification() {
+      this.props.navigation.navigate('notify');
+    }
   press(event) {
   //  console.log(event.msg);
   //  console.log(event.thumbnail);
@@ -98,7 +106,14 @@ class HomeScreen extends Component {
   //  console.log(this.state.fontLoaded);
     return (
     <ScrollView>
-
+    <Button title='add' onPress={()=> {
+      const nowTime = new Date();
+      var time = nowTime.getTime()/1000;
+      var timestamp = nowTime.getTime();
+      var date = new Date(time * 1000);//.转换成毫秒
+      var timer = date.getFullYear() + '-' + (date.getMonth() < 10 ? '0' + (date.getMonth()+1) : (date.getMonth()+1)) + "-" + (date.getDate() < 10 ? '0' + date.getDate() : date.getDate());
+      this.props.addNotification({ notification: { uid: timestamp, date: timer, message: 'kkkkk' }, user: this.props.user }); 
+    }}/>
     <View style={{ flexDirection: 'row', marginTop: 0 }}>
 
       <View style={{ width: SCREEN_WIDTH, height: (SCREEN_WIDTH * 2) / 3 }}>
@@ -171,9 +186,9 @@ class HomeScreen extends Component {
           <View>
         <Text style={[btTextStyles, { fontSize: 25, marginLeft: 20 }]}>其它商品</Text>
         </View>
-        <View style={{ flex: 1, alignItems: 'flex-end', justifyContent: 'flex-end' }}>
+      {/*  <View style={{ flex: 1, alignItems: 'flex-end', justifyContent: 'flex-end' }}>
          <Ionicons name="ios-more" size={25} color="#ffffff" style={{ marginRight: 20, marginTop: 3 }}/>
-         </View>
+         </View> */}
         </View>
           <ImageBackground source={require('../assets/bg2.jpg')} style={{ flex: 1, width: null, height: null, alignItems: 'center', backgroundColor: 'rgba(0,0,0,0)', marginTop: 7}}>
           <View style={{marginBottom: 7, marginTop: 7}}>
@@ -200,7 +215,9 @@ const styles = StyleSheet.create({
     btText_with_font: {
         fontFamily: 'lcfont1',
         fontSize: 30,
-        color: '#000',
+        color: '#ff8a2b',
+        textShadowOffset:{width:0.5, height:0.2},
+         textShadowColor:'blue',
     },
     btText2: {
         color: '#000',
@@ -242,7 +259,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
 //    console.log(state.libraries);
-    return { clothes: state.clothes };
+    return { clothes: state.clothes, user: state.auth.user };
 };
 
-export default connect(mapStateToProps, { likeCloth })(HomeScreen);
+export default connect(mapStateToProps, { likeCloth,  addNotification })(HomeScreen);
