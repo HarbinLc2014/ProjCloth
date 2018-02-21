@@ -32,7 +32,7 @@ export default class App extends Component {
 wilddog.initializeApp(config);
   }
   componentDidMount() {
-    registerForNotifications();
+  /*  registerForNotifications();
     Notifications.addListener((notification) => {
       const { data: { text }, origin } = notification;
 
@@ -43,7 +43,7 @@ wilddog.initializeApp(config);
           [{ text: 'Ok.' }]
         );
       }
-    });
+    });*/
   }
   render() {
     const MainNavigator = TabNavigator({
@@ -85,7 +85,7 @@ wilddog.initializeApp(config);
        }, {
          navigationOptions: {
       //     tabBar: { visible: false }
-    //      tabBarVisible: false
+          tabBarVisible: false
          },
          lazyLoad: true
        });

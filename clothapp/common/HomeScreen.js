@@ -42,7 +42,7 @@ class HomeScreen extends Component {
       headerRight:
         <Entypo name="notification" size={25} style={{ marginRight: 10, color: '#007aff' }} onPress={() => navigate('notify')} />,
      headerLeft:
-<Image source={require('../assets/source2.png')} resizeMode='stretch'  style={{ width: 30, height: 33, marginTop: 2, marginBottom: 5, marginLeft: 10 }} />
+<Image source={require('../assets/source2.png')} resizeMode='stretch' style={{ width: 30, height: 33, marginTop: 2, marginBottom: 5, marginLeft: 10 }} />
 
     };
   }
@@ -106,14 +106,14 @@ class HomeScreen extends Component {
   //  console.log(this.state.fontLoaded);
     return (
     <ScrollView>
-    <Button title='add' onPress={()=> {
+  {/*  <Button title='add' onPress={()=> {
       const nowTime = new Date();
       var time = nowTime.getTime()/1000;
       var timestamp = nowTime.getTime();
       var date = new Date(time * 1000);//.转换成毫秒
       var timer = date.getFullYear() + '-' + (date.getMonth() < 10 ? '0' + (date.getMonth()+1) : (date.getMonth()+1)) + "-" + (date.getDate() < 10 ? '0' + date.getDate() : date.getDate());
-      this.props.addNotification({ notification: { uid: timestamp, date: timer, message: 'kkkkk' }, user: this.props.user }); 
-    }}/>
+      this.props.addNotification({ notification: { uid: timestamp, date: timer, message: 'kkkkk' }, user: this.props.user });
+    }}/>*/}
     <View style={{ flexDirection: 'row', marginTop: 0 }}>
 
       <View style={{ width: SCREEN_WIDTH, height: (SCREEN_WIDTH * 2) / 3 }}>

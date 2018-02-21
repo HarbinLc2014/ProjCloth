@@ -48,7 +48,9 @@ class Comp2 extends Component {
             var indicatorArr = [];
             var imgsArr = ImageData.data;
             var style;
-            for(var i = 0; i < Images.title.length; i++){
+            for(var i = 0; i < _.uniqBy(this.props.clothes.filter((t) => {
+                     return !t.show;
+                 }), 'src').length; i++){
               //判断当前页选择样式
               style = (i==this.state.currentPage) ? { color: 'orange', textAlign: 'center' } : { color: '#ffffff', textAlign: 'center' };
               indicatorArr.push(

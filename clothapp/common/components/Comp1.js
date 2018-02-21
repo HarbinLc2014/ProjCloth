@@ -24,7 +24,7 @@ class Comp1 extends Component {
          }), 'src').map(cloth => {
            return(
              <TouchableOpacity key={cloth.id} onPress={() => { this.props.viewCloth(cloth); this.props.pressComp1(cloth); }}>
-             <Image key={cloth.id} source={cloth.src} resizeMode='stretch' style={{ flex: 1, width: SCREEN_WIDTH/2-8, height: 290 }} />
+             <Image key={cloth.id} source={cloth.src} resizeMode='contain' style={{ flex: 1, width: SCREEN_WIDTH/2-8, height: 290, backgroundColor: 'rgba(0,0,0,0.6)', justifyContent: 'center', alignItems: 'center' }} />
              </TouchableOpacity>
            );
          });

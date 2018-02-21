@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Platform, ImageBackground, TouchableOpacity,Dimensions, Image, Linking } from 'react-native';
+import { Text, View, Platform, ImageBackground, TouchableOpacity,Dimensions, Image, Linking, ScrollView } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { Ionicons, Foundation, Entypo, FontAwesome } from '@expo/vector-icons';
@@ -29,6 +29,7 @@ class ProfileScreen extends Component {
     return (
       <View style={{ flex: 1 }}>
       <ImageBackground source={require('../assets/spring/welcome/welcome3.jpg')} style={{ flex: 1, width: null, height: null, backgroundColor: 'rgba(0,0,0,0)'}}>
+      <ScrollView>
       <View style={{ marginTop: 0 }}>
       <View style={{ width: SCREEN_WIDTH, justifyContent: 'center', alignItems: 'center', height: SCREEN_WIDTH*0.55, backgroundColor: 'rgba(0,0,0,0.5)', flexDirection: 'column' }}>
       <Image source={require('../assets/source2.png')} resizeMode='stretch'  style={{ width: SCREEN_WIDTH*0.35, height: SCREEN_WIDTH*0.38, marginTop: 15, marginBottom: 10 }} />
@@ -69,6 +70,7 @@ class ProfileScreen extends Component {
       </TouchableOpacity>
       </CardSection>
       </View>
+      </ScrollView>
       </ImageBackground>
       </View>
     );

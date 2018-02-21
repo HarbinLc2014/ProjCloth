@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { Text, AsyncStorage } from 'react-native';
 import _ from 'lodash';
+import { Font } from 'expo';
 import Slide from './components/Slide';
 
 const SLIDE_DATA = [
-  { text: 'Welcome to ClothApp', color: '#007aff' },
-  { text: 'Order your clothes by tapping at the screen', color: '#009688' },
-  { text: 'Start Now!', color: '#03a9f4' }
+  { text: '欢迎来到靓衣汇!', color: '#007aff' },
+  { text: '潮流服装 一键下单', color: '#009688' },
+  { text: '各种服装，尽在靓衣汇！', color: '#03a9f4' }
 ];
 
 class WelcomeScreen extends Component {
-  componentWillMount() {
-  }
+
   onSlideComplete = () => {
     this.props.navigation.navigate('login');
   }

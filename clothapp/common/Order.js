@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, ScrollView, Text, Platform, StyleSheet, Dimensions, KeyboardAvoidingView, Alert, Image } from 'react-native';
 import { Card, FormLabel, FormInput, Button, FormValidationMessage } from 'react-native-elements';
 import { Font } from 'expo';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { connect } from 'react-redux';
 import { addOrder } from './actions/OrderActions';
 import CardSection from './components/CardSection2';
@@ -13,6 +14,11 @@ class Order extends Component {
     const { navigation } = props;
     const { navigate } = navigation;
     return {
+      title: '我的订单',
+      tabBarIcon: ({ tintColor }) => {
+      return <MaterialCommunityIcons name="file-document" size={30} color={tintColor} />;
+    },
+
       headerTitle: '我的订单',
       headerStyle: {
         marginTop: Platform.OS === 'android' ? 24 : 0
@@ -83,8 +89,11 @@ class Order extends Component {
         </CardSection>
           <View style={{ paddingTop: 10, paddingBottom: 0 }}>
           <Button title='确认下单' color='#000000' fontSize={13} fontWeight='bold' backgroundColor='#d1d1d1' style={{ borderRadius: 5, borderWidth: 2, width: SCREEN_WIDTH-150, borderColor: '#000000' }}
-          onPress={() =>
-{           if(this.state.phone!== '' && this.state.name!== '' && this.state.address!==''){
+          onPress={() => {
+            if (this.state.phone.length!==11 || this.state.phone.substring(0,1)!=='1'){
+                this.setState({ message: '手机格式错误' });
+            }
+        else if(this.state.phone!== '' && this.state.name!== '' && this.state.address!==''){
            const nowTime = new Date();
            var time = nowTime.getTime()/1000;
            var timestamp = nowTime.getTime();

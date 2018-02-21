@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Platform, Dimensions, ImageBackground, ScrollView } from 'react-native';
 import { Font } from 'expo';
+import { Ionicons, Foundation, Entypo, FontAwesome } from '@expo/vector-icons';
 import { Card } from 'react-native-elements';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -11,6 +12,10 @@ const SCREEN_HEIGHT = Dimensions.get('window').height;
      const { navigation } = props;
      const { navigate } = navigation;
      return {
+       title: '我的设置',
+       tabBarIcon: ({ tintColor }) => {
+       return <FontAwesome name="cog" size={30} color={tintColor} />;
+     },
        headerTitle: '联系我们',
        headerStyle: {
          marginTop: Platform.OS === 'android' ? 24 : 0
@@ -48,11 +53,11 @@ const SCREEN_HEIGHT = Dimensions.get('window').height;
     <ScrollView contentContainerStyle={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
     <ImageBackground source={require('../assets/spring/source/p30.jpg')} style={{ flex: 1 }}>
     <Card title='靓衣汇温馨提示' titleStyle={{ fontSize: 20, color: '#ffffff', fontWeight: 'bold', textShadowOffset:{width:0.1, height:0.1}, textShadowColor:'black' }} containerStyle={{ marginLeft: 30, marginRight: 30, backgroundColor: 'rgba(0,0,0,0.7)', width: SCREEN_WIDTH-60, alignItems: 'center' }}>
-    <View style={{ width: 3.2*SCREEN_WIDTH/4 }}>
+    <ScrollView contentContainerStyle={{ width: 3.2*SCREEN_WIDTH/4 }}>
     <Text style={btTextStyles}>
     如果下单以后长时间未被审核, 请联系客服寻求帮助。
     </Text>
-    <View style={{ flexDirection: 'row', alignItems: 'space-around' }}>
+    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
     <Text style={btTextStyles}>QQ: 1826442304</Text>
      <Text style={btTextStyles}>Wechat: NsxxxN</Text>
       </View>
@@ -68,7 +73,7 @@ const SCREEN_HEIGHT = Dimensions.get('window').height;
     <Text style={btTextStyles}>
       由于货运问题,有些特殊尺码和颜色的服装可能需要一段时间才能从仓库调出，或者会断货。如遇这种情况，我们会在第一时间与您联系，确认是否更换尺码颜色或者取消订单，给您带来的不便希望能够谅解。
     </Text>
-    </View>
+    </ScrollView>
     </Card>
     </ImageBackground>
     </ScrollView>

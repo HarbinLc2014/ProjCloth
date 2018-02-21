@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Platform, ListView, Dimensions, ScrollView, Image, Alert } from 'react-native';
 import { connect } from 'react-redux';
-import { MaterialCommunityIcons, Ionicons, Foundation, Entypo, MaterialIcons, Feather } from '@expo/vector-icons';
+import { MaterialCommunityIcons, Ionicons, Foundation, Entypo, MaterialIcons, Feather, FontAwesome } from '@expo/vector-icons';
 import { Card, Button } from 'react-native-elements';
 import OrderDetail from './components/OrderDetail';
 import { fetchOrder, cancelOrder } from './actions/OrderActions';
@@ -15,6 +15,10 @@ static navigationOptions = props => {
   const { navigation } = props;
   const { navigate } = navigation;
   return {
+    title: '我的设置',
+    tabBarIcon: ({ tintColor }) => {
+    return <FontAwesome name="cog" size={30} color={tintColor} />;
+  },
     headerTitle: '订单历史',
     headerStyle: {
       marginTop: Platform.OS === 'android' ? 24 : 0
@@ -52,21 +56,34 @@ renderRow(order) {
     <View style={{ backgroundColor: '#eeeee0', paddingTop: 5, paddingBottom: 5, paddingLeft: 10, flexDirection: 'row' }}>
     <Image source={order.src} style={{ width: 100, height: 100, marginRight: 5, borderRadius: 5, borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)' }} resizeMode='contain' />
     <View style={{ flexDirection: 'column', paddingLeft: 10, justifyContent: 'space-around', alignItems: 'flex-start' }}>
-    <Text style={{ fontSize: 15, fontWeight: 'bold' }}>{order.type}    {order.code}</Text>
+    <Text style={{ fontSize: 13, fontWeight: 'bold' }}>{order.type} {order.code}</Text>
     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
     <Text style={{ fontSize: 13, fontWeight: 'bold', marginRight: 20 }}>价格 ¥{order.price}</Text>
     </View>
     <View style={{ flexDirection: 'row' }}>
     <Text style={{ fontSize: 13, fontWeight: 'bold', width: 100 }}>状态: {order.state}</Text>
     <View style={{ alignItems: 'flex-end', width: SCREEN_WIDTH-200, justifyContent: 'flex-start', flexDirection: 'row' }}>
-    <MaterialCommunityIcons name="file-document" size={25} style={{ marginRight: 40, color: '#969696' }} onPress={() => this.setState({ showDetail: !this.state.showDetail, ord: { date: order.date, state: order.state, name: order.name, phone: order.phone, address: order.address, type: order.type, code: order.code, price: order.price, ps: order.ps } })} />
-    <MaterialIcons name="delete" size={30} style={{ marginRight: 5, color: '#969696' }} onPress={() =>
+    <MaterialCommunityIcons name="file-document" size={25} style={{ marginRight: 25, color: '#969696' }} onPress={() => this.setState({ showDetail: !this.state.showDetail, ord: { date: order.date, state: order.state, name: order.name, phone: order.phone, address: order.address, type: order.type, code: order.code, price: order.price, ps: order.ps } })} />
+    <MaterialIcons name="delete" size={30} style={{ marginRight: 15, color: '#969696' }} onPress={() =>
       Alert.alert(
             '删除订单',
             '确认删除该订单？',
             [
               {text: '取消' },
-              {text: '确定', onPress: () => this.props.cancelOrder({ order: { uid: order.uid }, user: this.props.user }) }
+              {text: '确定', onPress: () => {
+                if (order.state === '审核中' || order.state === '交易关闭')
+                {
+                  this.props.cancelOrder({ order: { uid: order.uid }, user: this.props.user });
+                }
+                else {
+                  Alert.alert(
+                        '操作无效',
+                        '您只能在审核期间或者交易关闭后才能删除该订单',
+                        [{ text: '确定' }]
+                      );
+                }
+               }
+             }
             ]
           )
         }

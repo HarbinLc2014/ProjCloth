@@ -75,8 +75,8 @@ status: 0,
   renderRow(cloth) {
     if (cloth.code !==''){
     return (
-      <View style={{ width: SCREEN_WIDTH*3/4, marginLeft:SCREEN_WIDTH/8, marginRight: SCREEN_WIDTH/8, marginTop: 30 }}>
-      <Card title={cloth.type} containerStyle={{ backgroundColor: 'rgba(0,0,0,0.7)', height: SCREEN_HEIGHT*3/4 }} titleStyle={{ color: '#ffffff' }}>
+      <View style={{ width: SCREEN_WIDTH*3/4, marginLeft:SCREEN_WIDTH/8, marginRight: SCREEN_WIDTH/8, marginTop: 0 }}>
+      <Card title={cloth.type} containerStyle={{ backgroundColor: 'rgba(0,0,0,0.7)', height: null }} titleStyle={{ color: '#ffffff' }}>
       <View>
       <ImageBackground source={this.state.src[cloth.id % (this.state.src.length)]} style={{ flex: 1, width: null, height: 300, borderRadius: 5 }} resizeMode='stretch'>
       <View style={{ height: 300, justifyContent: 'center', alignItems: 'center' }}>
@@ -84,14 +84,16 @@ status: 0,
       </View>
       </ImageBackground>
       </View>
+      <View style={{ flexDirection: 'row' }}>
       <View style={styles.detailWrapper}>
       <Text style={styles.italics} >款号: {cloth.code}</Text>
       <Text style={styles.italics} >价格: ¥{cloth.price}</Text>
-      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20 }}>
-      <Feather name="shopping-cart" size={28} style={{ marginRight: 30, color: '#FFFFFF' }} onPress={() => { this.props.navigation.navigate('order', {
+      </View>
+      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 310 }}>
+      <Feather name="shopping-cart" size={20} style={{ marginLeft: 10, marginRight: 10, color: '#FFFFFF' }} onPress={() => { this.props.navigation.navigate('order', {
                    orderCloth: { type: cloth.type, src: cloth.src, code: cloth.code, price: cloth.price }
                    }); }} />
-      <MaterialIcons name="delete" size={30} style={{ marginLeft: 30, color: '#FFFFFF' }} onPress={() => { this.props.delFavorite({ favorite: { id: cloth.id }, user: this.props.user }); }} />
+      <MaterialIcons name="delete" size={22} style={{ marginLeft: 10, color: '#FFFFFF' }} onPress={() => { this.props.delFavorite({ favorite: { id: cloth.id }, user: this.props.user }); }} />
       </View>
       </View>
       </Card>
@@ -131,7 +133,7 @@ const styles = {
   italics: {
     fontStyle: 'italic',
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 12,
     color: '#FFFFFF'
   }
 };

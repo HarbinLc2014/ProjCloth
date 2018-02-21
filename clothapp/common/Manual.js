@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, Platform, Dimensions, ImageBackground, ScrollView } from 'react-native';
 import { Font } from 'expo';
 import { Card } from 'react-native-elements';
+import { Ionicons, Foundation, Entypo, FontAwesome } from '@expo/vector-icons';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
@@ -11,6 +12,10 @@ class Manual extends Component {
     const { navigation } = props;
     const { navigate } = navigation;
     return {
+      title: '我的设置',
+      tabBarIcon: ({ tintColor }) => {
+      return <FontAwesome name="cog" size={30} color={tintColor} />;
+    },
       headerTitle: '使用手册',
       headerStyle: {
         marginTop: Platform.OS === 'android' ? 24 : 0

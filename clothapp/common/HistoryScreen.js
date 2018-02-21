@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, ScrollView, View, Platform, ImageBackground, Dimensions, Image, ListView } from 'react-native';
 import { connect } from 'react-redux';
 import { Card, Button, Icon } from 'react-native-elements';
-import { Ionicons, Foundation, Entypo, MaterialIcons, Feather } from '@expo/vector-icons';
+import { Ionicons, Foundation, Entypo, MaterialIcons, Feather, FontAwesome } from '@expo/vector-icons';
 import * as actions from './actions';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -13,16 +13,16 @@ class HistoryScreen extends Component {
     const { navigation } = props;
     const { navigate } = navigation;
     return {
-      title: '我的收藏',
-      tabBarIcon: ({tintColor}) => {
-          return <Icon name="favorite-border" size={30} color={tintColor} />;
-        },
+      title: '我的设置',
+      tabBarIcon: ({ tintColor }) => {
+      return <FontAwesome name="cog" size={30} color={tintColor} />;
+    },
       headerTitle: '最近浏览',
       headerStyle: {
         marginTop: Platform.OS === 'android' ? 24 : 0
       },
-      headerRight:
-        <MaterialIcons name="filter-list" size={25} style={{ marginRight: 10, color: '#007aff' }} onPress={() => { console.log('aaaaa'); }} />,
+    //  headerRight:
+    //    <MaterialIcons name="filter-list" size={25} style={{ marginRight: 10, color: '#007aff' }} onPress={() => { console.log('aaaaa'); }} />,
 
     };
   }
@@ -57,14 +57,14 @@ class HistoryScreen extends Component {
 
 
   renderRow(cloth) {
-    var style1 = cloth.show ? { height: 250, width: 150, marginTop: 0, marginLeft: 2, marginBottom: 20 }: { height: 200, width: 350, marginTop: 0,  marginBottom: 20 };
+    var style1 = cloth.show ? { height: 250, width: 150, marginTop: 0, marginLeft: 2, marginBottom: 20 }: { height: 200, width: (SCREEN_WIDTH*3/4), marginTop: 0,  marginBottom: 20 };
     var wid = cloth.show ? SCREEN_WIDTH*3/4 : SCREEN_WIDTH;
     var marg = cloth.show? SCREEN_WIDTH/8 : 0;
-    var imgwidth = cloth.show? null: SCREEN_WIDTH;
-    var style2 = cloth.show? { backgroundColor: 'rgba(0,0,0,0.7)', height: SCREEN_HEIGHT*3/4 }:{ backgroundColor: 'rgba(0,0,0,0.7)', height: SCREEN_HEIGHT*3/4 };
+    var imgwidth = cloth.show? null: 3*SCREEN_WIDTH/4;
+    var style2 = cloth.show? { backgroundColor: 'rgba(0,0,0,0.7)', height: null }:{ backgroundColor: 'rgba(0,0,0,0.7)', height: SCREEN_HEIGHT*3/4 };
     this.createDataSource(this.props);
     return (
-      <View style={{ width: wid, marginLeft: marg, marginRight: marg, marginTop: 30 }}>
+      <View style={{ width: wid, marginLeft: marg, marginRight: marg, marginTop: 0 }}>
       <Card title={cloth.type} containerStyle={style2} titleStyle={{ color: '#ffffff' }}>
       <View>
       <ImageBackground source={cloth.show ? this.state.src[cloth.id % (this.state.src.length)] : this.state.test[cloth.id % (this.state.test.length)]} style={{ flex: 1, width: null, height: 300, borderRadius: 5 }} resizeMode='stretch'>
@@ -73,14 +73,15 @@ class HistoryScreen extends Component {
       </View>
       </ImageBackground>
       </View>
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
       <View style={styles.detailWrapper}>
       <Text style={styles.italics} >款号: {cloth.code}</Text>
       <Text style={styles.italics} >价格: {cloth.price} RMB </Text>
-      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20 }}>
-      <Feather name="shopping-cart" size={28} style={{ marginRight: 30, color: '#FFFFFF' }} onPress={() => { this.props.navigation.navigate('order',{
+      </View>
+      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 315 }}>
+      <Feather name="shopping-cart" size={20} style={{ marginRight: 10, marginLeft: 30, color: '#FFFFFF' }} onPress={() => { this.props.navigation.navigate('order',{
                    orderCloth: { type: cloth.type, src: cloth.src, code: cloth.code, price: cloth.price }
                    }); }} />
-      <MaterialIcons name="delete" size={30} style={{ marginLeft: 30, color: '#FFFFFF' }} onPress={() => { console.log('aaaaa'); }} />
       </View>
       </View>
       </Card>
@@ -115,7 +116,7 @@ const styles = {
   italics: {
     fontStyle: 'italic',
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 12,
     color: '#FFFFFF'
   }
 };

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, ScrollView, View, Dimensions, ImageBackground } from 'react-native';
 import { Button } from 'react-native-elements';
+import { Font } from 'expo';
 import { TimerMixin } from 'react-timer-mixin';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -11,15 +12,35 @@ const s2 = require('../../assets/spring/welcome/welcome2.jpg');
 const s3 = require('../../assets/spring/welcome/welcome4.jpg');
 
 class Slide extends Component {
-  state={ source: [s1, s2, s3] };
+
+  state={ source: [s1, s2, s3], fontLoaded: false };
+  componentWillMount() {
+  }
+  async componentDidMount() {
+      await Font.loadAsync({
+          lcfont0: require('../../assets/GloriaHallelujah.ttf'),
+          lcfont1: require('../../assets/sample.otf')
+      });
+
+      this.setState({ fontLoaded: true });
+  }
   //设置固定值
   renderLastSlide(index) {
+    let btTextStyles = [];
+    let btTextStyles2 = [];
+    btTextStyles[0] = {};
+    btTextStyles2[0] = {};
+    if (this.state.fontLoaded){
+        btTextStyles[1] = { fontFamily: 'lcfont1' };
+        btTextStyles2[1] = { fontFamily: 'lcfont0' };
+    }
     if (index === this.props.data.length - 1) {
       return (
-        <View style={{ marginTop: 15 }}>
+        <View style={{ marginTop: 50 }}>
         <Button
-        title="Get Start!"
+        title="进入"
         raised
+        titleStyle={btTextStyles}
         buttonStyle={styles.buttonStyle}
         onPress={this.props.onComplete}
         />
@@ -28,11 +49,19 @@ class Slide extends Component {
     }
   }
   renderSlide() {
+    let btTextStyles = [];
+    let btTextStyles2 = [];
+    btTextStyles[0] = {};
+    btTextStyles2[0] = {};
+    if (this.state.fontLoaded){
+        btTextStyles[1] = { fontFamily: 'lcfont1' };
+        btTextStyles2[1] = { fontFamily: 'lcfont0' };
+    }
     return this.props.data.map((slide, index) => {
       return (
       <View key={slide.text} style={[styles.slide, { backgroundColor: slide.color }]}>
       <ImageBackground source={this.state.source[index]} style={{ flex: 1, width: SCREEN_WIDTH, height: SCREEN_HEIGHT, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0)'}}>
-      <Text style={styles.slideText}>{slide.text}</Text>
+      <Text style={[styles.slideText, { color: slide.color }, btTextStyles]}>{slide.text}</Text>
       {this.renderLastSlide(index)}
       </ImageBackground>
       </View>
@@ -67,11 +96,14 @@ const styles = {
   },
   slideText: {
     fontSize: 35,
-    color: 'white',
     textAlign: 'center'
   },
   buttonStyle: {
-    backgroundColor: '#0288d1'
+    backgroundColor: 'rgba(123,222,111,0.7)',
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: 'rgba(0,0,0,0.2)',
+    width: 200
   }
 };
 
