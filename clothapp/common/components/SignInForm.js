@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Platform, ImageBackground, Dimensions } from 'react-native';
+import { View, Text, Platform, ImageBackground, Dimensions, Keyboard } from 'react-native';
 import { FormLabel, FormInput, Button, Card, FormValidationMessage } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { loginUser, login, resetPassword } from '../actions/AuthActions';
@@ -21,10 +21,17 @@ class SignInForm extends Component {
   }
   state = { phone: '', password: '', email: '', message: '' };
   submit() {
+    Keyboard.dismiss();
+    this.setState({ email: '', password: '' });
     this.props.loginUser({ email: this.state.email, password: this.state.password, navigate: this.props.navigation.navigate });
   }
   componentWillMount() {
+    this.setState({ loading: this.props.auth.loading });
+    console.log(this.props.loading);
         this.props.auth.signinerror = '';
+  }
+  renderButton() {
+return <Button title="登录" style={{ marginBottom: 5, marginTop: 35, width: 180 }} onPress={this.submit.bind(this)} />;
   }
 render() {
   return (
@@ -47,6 +54,7 @@ render() {
         <FormInput
         inputStyle={{ borderColor: '#ffffff', color: '#ffffff' }}
           value={this.state.password}
+          secureTextEntry
           onChangeText={password => this.setState({ password })}
         />
       </View>
@@ -55,7 +63,7 @@ render() {
       </View>
       </View>
       <View style={{ alignItems: 'center', width: SCREEN_WIDTH }}>
-      <Button title="登录" style={{ marginBottom: 5, marginTop: 35, width: 180 }} onPress={this.submit.bind(this)} />
+      {this.renderButton()}
       <View style={{ width: SCREEN_WIDTH, alignItems: 'center', marginBottom: 50 }}>
       <FormValidationMessage labelStyle={{ fontSize: 13 }}>{this.props.auth.signinerror}</FormValidationMessage>
       </View>
@@ -71,7 +79,7 @@ render() {
 
 export const mapStateToProps = state => {
   return {
-     auth: state.auth
+     auth: state.auth, loading: state.auth.loading
   };
 };
 

@@ -12,8 +12,7 @@ export default (state = INITIAL_STATE, action) => {
     case PASSWORD_CHANGED:
       return { ...state, password: action.payload };
     case LOGIN_SUCCESS:
-    console.log('asdads');
-      return { ...state, ...INITIAL_STATE, user: action.payload };
+      return { ...state, ...INITIAL_STATE, user: action.payload, loading: false };
     case LOGIN_USER:
       return { ...state, loading: true };
     case LOGIN_FAILED:

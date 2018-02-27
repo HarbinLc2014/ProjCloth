@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Platform, ImageBackground, TouchableOpacity,Dimensions, Image, Linking, ScrollView } from 'react-native';
+import { Text, View, Platform, ImageBackground, TouchableOpacity, Dimensions, Image, Linking, ScrollView } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { Ionicons, Foundation, Entypo, FontAwesome } from '@expo/vector-icons';

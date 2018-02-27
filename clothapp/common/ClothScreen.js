@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, ScrollView, View, Platform, ImageBackground, Dimensions, Image, ListView } from 'react-native';
 import { connect } from 'react-redux';
 import { Card, Button, Icon } from 'react-native-elements';
+import DeviceInfo from 'react-native-device-info';
 import { Ionicons, Foundation, Entypo, MaterialIcons, Feather } from '@expo/vector-icons';
 import * as actions from './actions';
 import { fetchFavorite, delFavorite } from './actions/ClothAction';
@@ -19,7 +20,7 @@ class ClothScreen extends Component {
       tabBarIcon: ({tintColor}) => {
           return <Icon name="favorite-border" size={30} color={tintColor} />;
         },
-      headerTitle: 'Matching',
+      headerTitle: '我的收藏',
       headerStyle: {
         marginTop: Platform.OS === 'android' ? 24 : 0
       },
@@ -41,6 +42,8 @@ status: 0,
   showModal: false
 }
   componentWillMount() {
+  //  var a = DeviceInfo.getDeviceName();
+  //  console.log(a);
     this.props.navigation.setParams({
             navigatePress: this.showOrder
         });

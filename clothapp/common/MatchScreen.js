@@ -63,8 +63,10 @@ class MatchScreen extends Component {
 
     this.setState({ fontLoaded: true });
   }
+
   onAccept = (filter) => {
     console.log(filter);
+    this.setState({ filter2: '' });
     this.setState({ filter1: filter.make });
     this.setState({ filter3: 'asdasdads' });
     if (filter.make === '裤子') {
@@ -200,6 +202,7 @@ class MatchScreen extends Component {
       <Filter
       visible={this.state.showModal}
       Accept={this.onAccept.bind(this)}
+      AcceptWithNoAction={() => this.setState({ showModal: false })}
       />
       </View>
     );
@@ -245,11 +248,13 @@ const styles = {
     fontFamily: 'lcfont1',
     textAlign: 'center',
     fontSize: 30,
+    color: '#ffffff',
     fontWeight: 'bold'
   },
   textStyle2: {
     textAlign: 'center',
     fontSize: 15,
+    color: '#ffffff',
     fontWeight: 'bold'
   }
 };

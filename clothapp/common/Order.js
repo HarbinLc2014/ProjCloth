@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Text, Platform, StyleSheet, Dimensions, KeyboardAvoidingView, Alert, Image } from 'react-native';
+import { View, ScrollView, Text, Platform, StyleSheet, Dimensions, KeyboardAvoidingView, Alert, Image, Keyboard } from 'react-native';
 import { Card, FormLabel, FormInput, Button, FormValidationMessage } from 'react-native-elements';
 import { Font } from 'expo';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -90,6 +90,7 @@ class Order extends Component {
           <View style={{ paddingTop: 10, paddingBottom: 0 }}>
           <Button title='确认下单' color='#000000' fontSize={13} fontWeight='bold' backgroundColor='#d1d1d1' style={{ borderRadius: 5, borderWidth: 2, width: SCREEN_WIDTH-150, borderColor: '#000000' }}
           onPress={() => {
+            Keyboard.dismiss();
             if (this.state.phone.length!==11 || this.state.phone.substring(0,1)!=='1'){
                 this.setState({ message: '手机格式错误' });
             }

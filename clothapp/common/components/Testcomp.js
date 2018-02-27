@@ -46,9 +46,12 @@ const CAR_MAKES_AND_MODELS = {
 };
 class Filter extends Component {
   state = {
+      rcarMake: '上衣',
      carMake: '上衣',
       modelIndex: 0,
+      rmodelIndex: 0,
       modelName: '默认',
+      rmodelName: '默认',
       filterValue: '裤子' };
 
   render() {
@@ -63,7 +66,7 @@ class Filter extends Component {
           onRequestClose={() => {
           }}
       >
-          <TouchableWithoutFeedback onPress={this.props.Accept}>
+          <TouchableWithoutFeedback onPress={this.props.AcceptWithNoAction}>
               <View style={styles.containerStyle}>
                   <TouchableWithoutFeedback>
                     <Card title="过滤条件" containerStyle={{ backgroundColor: 'rgba(0,0,0,0.4)' }} titleStyle={{ fontSize: 23, fontWeight: 'bold', color: '#FFFFFF' }} >
@@ -73,9 +76,9 @@ class Filter extends Component {
                     </View>
                     <View style={{ flexDirection: 'row' }}>
                     <PickerIOS
-                    itemStyle={{ fontSize: 20, color: '#ffffff', textAlign: 'center', fontWeight: 'bold', width: 150, height: 100 }}
+                    itemStyle={{ fontSize: 20, color: '#ffffff', textAlign: 'center', fontWeight: 'bold', width: 120, height: 100 }}
           selectedValue={this.state.carMake}
-          onValueChange={(carMake) => this.setState({ carMake, modelIndex: 0 })}
+          onValueChange={(carMake) => this.setState({ carMake, modelIndex: 0, modelName: '默认' })}
                     >
           {Object.keys(CAR_MAKES_AND_MODELS).map((carMake) => (
             <PickerItemIOS
@@ -102,8 +105,9 @@ class Filter extends Component {
         </View>
         <View style={{ backgroundColor: 'rgba(0,0,0,0)', flexDirection: 'column', marginBottom: 20, justifyContent: 'center', marginTop: 20 }}>
         <Button title='确认' color='#000000' fontSize={18} fontWeight='bold' backgroundColor='#d1d1d1' onPress={() => {
-          console.log(this.state.carMake + ' ' + this.state.modelName);
-          this.props.Accept({ make: this.state.carMake, name: this.state.modelName});
+      //    console.log(this.state.carMake + ' ' + this.state.modelName);
+      //this.setState({ rmake: this.state.carMake, rmodelName: this.state.modelName });
+          this.props.Accept({ make: this.state.carMake, name: this.state.modelName });
         }} />
         </View>
                       </CardSection>

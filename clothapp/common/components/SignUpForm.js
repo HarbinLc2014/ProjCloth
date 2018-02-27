@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Text, Platform, ImageBackground, Dimensions } from 'react-native';
+import { View, Text, Platform, ImageBackground, Dimensions, Keyboard } from 'react-native';
 import { FormLabel, FormInput, Button, FormValidationMessage } from 'react-native-elements';
 import { signupUser } from '../actions/AuthActions';
 
@@ -32,6 +32,8 @@ class SignUpForm extends Component {
   getRegisterCode = () => {
   }
   submit() {
+    Keyboard.dismiss();
+    this.setState({ email: '', password: '' });
     this.props.signupUser({ email: this.state.email, password: this.state.password, navigate: this.props.navigation.navigate });
   }
 render() {
@@ -53,6 +55,7 @@ render() {
         <FormInput
         containerStyle={{ width: 250, borderColor: '#ffffff' }}
         inputStyle={{ borderColor: '#ffffff', color: '#ffffff' }}
+        secureTextEntry
           value={this.state.password}
           onChangeText={password => this.setState({ password })}
         />
