@@ -23,7 +23,7 @@ class MatchScreen extends Component {
         tabBarIcon: ({ tintColor }) => {
             return <Entypo name="documents" size={30} color={tintColor} />;
           },
-        headerTitle: 'Matching',
+        headerTitle: '推荐',
         headerStyle: {
           marginTop: Platform.OS === 'android' ? 24 : 0
         },
@@ -45,7 +45,7 @@ class MatchScreen extends Component {
   showModal: false,
   normalStyle: true,
   index: 0,
-  filter1: '上衣',
+  filter1: '普通上衣',
   filter2: '',
   filter3: 'aasdasd'
     };
@@ -65,7 +65,7 @@ class MatchScreen extends Component {
   }
 
   onAccept = (filter) => {
-    console.log(filter);
+//    console.log(filter);
     this.setState({ filter2: '' });
     this.setState({ filter1: filter.make });
     this.setState({ filter3: 'asdasdads' });
@@ -76,7 +76,7 @@ class MatchScreen extends Component {
       this.setState({ filter1: '裙' });
     }
     if (filter.make === '风衣外衣') {
-      console.log('asdasdasd');
+    //  console.log('asdasdasd');
       this.setState({ filter1: '外套' });
       this.setState({ filter3: '风衣' });
     }
@@ -97,7 +97,7 @@ class MatchScreen extends Component {
     this.setState({ showModal: false });
   }
   showFilter = () => {
-    console.log('pressed!!!!');
+//    console.log('pressed!!!!');
     this.setState({ showModal: true });
   }
         /* eslint-disable global-require */
@@ -140,7 +140,7 @@ class MatchScreen extends Component {
     }
   renderNoMoreCards = () => {
       return (
-        <Card title='No More Matches!'>
+        <Card title='暂无更多推荐了'>
         </Card>
       );
   }

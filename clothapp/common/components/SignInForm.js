@@ -27,7 +27,7 @@ class SignInForm extends Component {
   }
   componentWillMount() {
     this.setState({ loading: this.props.auth.loading });
-    console.log(this.props.loading);
+//    console.log(this.props.loading);
         this.props.auth.signinerror = '';
   }
   renderButton() {

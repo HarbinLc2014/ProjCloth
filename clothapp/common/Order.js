@@ -100,10 +100,10 @@ class Order extends Component {
            var timestamp = nowTime.getTime();
            var date = new Date(time * 1000);//.转换成毫秒
            var timer = date.getFullYear() + '-' + (date.getMonth() < 10 ? '0' + (date.getMonth()+1) : (date.getMonth()+1)) + "-" + (date.getDate() < 10 ? '0' + date.getDate() : date.getDate());
-           console.log(timer);
-           console.log(date);
-           console.log(time);
-           console.log(this.state);
+        //   console.log(timer);
+      //     console.log(date);
+        //   console.log(time);
+        //   console.log(this.state);
           this.props.addOrder({ order: { name: this.state.name, date: timer, clothcode: this.props.navigation.state.params.orderCloth.code, clothprice: this.props.navigation.state.params.orderCloth.price, clothtype: this.props.navigation.state.params.orderCloth.type, phone: this.state.phone, address: this.state.address, ps: this.state.ps, state: '审核中', src: this.props.navigation.state.params.orderCloth.src, uid: String(timestamp) }, user: this.props.user });
             Alert.alert(
             '订单添加成功!',

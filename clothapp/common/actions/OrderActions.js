@@ -42,7 +42,7 @@ export const fetchOrder = (user) => {
   return (dispatch) => {
       wilddog.sync().ref('/users/' + user.uid + '/orders')
     .on('value', snapshot => {
-      console.log('snapshot:' + snapshot.val());
+  //    console.log('snapshot:' + snapshot.val());
       dispatch({ type: FETCH_ORDER, payload: snapshot.val() });
     });
   };

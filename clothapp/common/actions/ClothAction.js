@@ -31,7 +31,7 @@ export const delFavorite = ({ favorite, user }) => {
 };
 };
 export const viewCloth = (cloth) => {
-  console.log('viewed');
+  //console.log('viewed');
   return {
     payload: cloth,
     type: VIEW_CLOTH

@@ -4,7 +4,7 @@ import { ADD_ORDER, CANCEL_ORDER } from '../actions/types';
 export default function (state = [], action) {
   switch (action.type) {
     case ADD_ORDER:
-      console.log('ADDED');
+  //    console.log('ADDED');
       return [
         action.payload, ...state
       ];

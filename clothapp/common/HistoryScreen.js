@@ -61,7 +61,7 @@ class HistoryScreen extends Component {
     var wid = cloth.show ? SCREEN_WIDTH*3/4 : SCREEN_WIDTH;
     var marg = cloth.show? SCREEN_WIDTH/8 : 0;
     var imgwidth = cloth.show? null: 3*SCREEN_WIDTH/4;
-    var style2 = cloth.show? { backgroundColor: 'rgba(0,0,0,0.7)', height: null }:{ backgroundColor: 'rgba(0,0,0,0.7)', height: SCREEN_HEIGHT*3/4 };
+    var style2 = cloth.show? { backgroundColor: 'rgba(0,0,0,0.7)', height: null }:{ backgroundColor: 'rgba(0,0,0,0.7)', height: null };
     this.createDataSource(this.props);
     return (
       <View style={{ width: wid, marginLeft: marg, marginRight: marg, marginTop: 0 }}>

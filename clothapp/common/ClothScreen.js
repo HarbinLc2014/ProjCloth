@@ -60,7 +60,7 @@ status: 0,
     this.createDataSource(nextProps);
   }
   componentWillUnmount() {
-    console.log('UnAmount');
+  //  console.log('UnAmount');
     this.props.fetchFavorite(this.props.user);
   }
   onAccept = () => {

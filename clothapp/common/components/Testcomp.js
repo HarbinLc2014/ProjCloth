@@ -7,17 +7,17 @@ import { Card, Button } from 'react-native-elements';
 import CardSection from './CardSection2';
 
 const CAR_MAKES_AND_MODELS = {
-  上衣: {
-    name: '上衣',
+  普通上衣: {
+    name: '普通上衣',
     models: ['默认'],
   },
   裤子: {
     name: '裤子',
-    models: ['默认', '牛仔裤'],
+    models: ['普通裤子', '牛仔裤', '短裤'],
   },
   裙子: {
     name: '裙子',
-    models: ['默认', '牛仔裙', '连衣裙', '单裙'],
+    models: ['牛仔裙', '连衣裙', '单裙', '背心裙'],
   },
   两件套: {
     name: '两件套',
@@ -29,7 +29,7 @@ const CAR_MAKES_AND_MODELS = {
   },
   风衣外衣: {
     name: '外套 & 风衣',
-    models: ['默认', '外套', '风衣'],
+    models: ['外套', '风衣'],
   },
   背心: {
     name: '背心',
@@ -37,7 +37,7 @@ const CAR_MAKES_AND_MODELS = {
   },
   雪纺针织: {
     name: '雪纺 & 针织',
-    models: ['默认', '针织', '雪纺'],
+    models: ['针织', '雪纺'],
   },
   其他: {
     name: '其他',
@@ -46,13 +46,9 @@ const CAR_MAKES_AND_MODELS = {
 };
 class Filter extends Component {
   state = {
-      rcarMake: '上衣',
-     carMake: '上衣',
+     carMake: '普通上衣',
       modelIndex: 0,
-      rmodelIndex: 0,
-      modelName: '默认',
-      rmodelName: '默认',
-      filterValue: '裤子' };
+      modelName: '默认' };
 
   render() {
     var PickerItemIOS = PickerIOS.Item;

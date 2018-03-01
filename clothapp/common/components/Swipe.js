@@ -63,8 +63,8 @@ class Swipe extends Component {
 
   onSwipeComplete(direction) {
     const { onSwipeLeft, onSwipeRight, data } = this.props;
-    console.log(data[this.state.index]);
-    console.log(direction);
+//    console.log(data[this.state.index]);
+//    console.log(direction);
     const item = data[this.state.index];
 
     direction === 'right' ? onSwipeRight(item) : onSwipeLeft(item);

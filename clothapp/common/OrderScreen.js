@@ -29,7 +29,7 @@ state = { showDetail: false, ord: { name: '', phone: '', address: '' } };
 componentWillMount() {
   this.setState({ orders: this.props.fetchOrder(this.props.user) });
   this.createDataSource(this.props);
-  console.log('orders:  '+this.props.orders);
+//  console.log('orders:  '+this.props.orders);
 }
 componentWillReceiveProps(nextProps) {
   this.createDataSource(nextProps);

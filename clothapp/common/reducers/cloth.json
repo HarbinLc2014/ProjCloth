@@ -123,7 +123,7 @@
   {
     "id": 13,
     "code": "80J-71031",
-    "type": "裤子",
+    "type": "普通裤子",
     "price": 339,
     "page": "p10",
     "src": require('../../assets/spring/source/p10.jpg'),
@@ -132,7 +132,7 @@
   {
     "id": 14,
     "code": "80AD-86008",
-    "type": "上衣",
+    "type": "普通上衣",
     "price": 259,
     "page": "p11",
     "src": require('../../assets/spring/source/p11.jpg'),
@@ -186,7 +186,7 @@
   {
     "id": 22,
     "code": "80BH-45110",
-    "type": "上衣（右）",
+    "type": "普通上衣（右）",
     "price": 299,
     "page": "p16",
     "src": require('../../assets/spring/source/p17.jpg'),
@@ -195,7 +195,7 @@
   {
     "id": 23,
     "code": "80ZF-25109",
-    "type": "上衣",
+    "type": "普通上衣",
     "price": 299,
     "page": "p18（左）",
     "src": require('../../assets/spring/source/p18.jpg'),
@@ -213,7 +213,7 @@
   {
     "id": 25,
     "code": "80BH-45106",
-    "type": "上衣",
+    "type": "普通上衣",
     "price": 279,
     "page": "p18（右）",
     "src": require('../../assets/spring/source/p18.jpg'),
@@ -321,7 +321,7 @@
   {
     "id": 37,
     "code": "80FV-42667",
-    "type": "上衣（左）",
+    "type": "普通上衣（左）",
     "price": 299,
     "page": "p24",
     "src": require('../../assets/spring/source/p24.jpg'),
@@ -366,7 +366,7 @@
   {
     "id": 42,
     "code": "80FL-27569",
-    "type": "裤子（右）",
+    "type": "普通裤子（右）",
     "price": 399,
     "page": "p25",
     "src": require('../../assets/spring/source/p25.jpg'),
@@ -384,7 +384,7 @@
   {
     "id": 44,
     "code": "80L-62107",
-    "type": "上衣",
+    "type": "普通上衣",
     "price": 399,
     "page": "p27",
     "src": require('../../assets/spring/source/p27.jpg'),
@@ -483,7 +483,7 @@
   {
     "id": 55,
     "code": "80J-70001",
-    "type": "裤子",
+    "type": "普通裤子",
     "price": 329,
     "page": "p32",
     "src": require('../../assets/spring/source/p32.jpg'),
@@ -564,7 +564,7 @@
   {
     "id": 64,
     "code": "80J-71033",
-    "type": "裤子",
+    "type": "普通裤子",
     "price": 299,
     "page": "p37",
     "src": require('../../assets/spring/source/p37.jpg'),
@@ -744,7 +744,7 @@
   {
     "id": 84,
     "code": "80FL-27581",
-    "type": "裤子",
+    "type": "普通裤子",
     "price": 319,
     "page": "p53",
     "src": require('../../assets/spring/source/p53.jpg'),
@@ -798,7 +798,7 @@
   {
     "id": 90,
     "code": "80VF-36007",
-    "type": "上衣（左）",
+    "type": "普通上衣（左）",
     "price": 267,
     "page": "p57",
     "src": require('../../assets/spring/source/p57.jpg'),
@@ -861,7 +861,7 @@
   {
     "id": 97,
     "code": "80ST-90628",
-    "type": "上衣（右）",
+    "type": "普通上衣（右）",
     "price": 289,
     "page": "p60",
     "src": require('../../assets/spring/source/p60.jpg'),
@@ -870,7 +870,7 @@
   {
     "id": 98,
     "code": "80J-71001",
-    "type": "裤子（右）",
+    "type": "普通裤子（右）",
     "price": 339,
     "page": "p60",
     "src": require('../../assets/spring/source/p60.jpg'),
@@ -924,7 +924,7 @@
   {
     "id": 104,
     "code": "80FL-27569",
-    "type": "裤子",
+    "type": "普通裤子",
     "price": 329,
     "page": "p64",
     "src": require('../../assets/spring/source/p64.jpg'),
@@ -942,7 +942,7 @@
   {
     "id": 106,
     "code": "80FL-27659",
-    "type": "裤子",
+    "type": "普通裤子",
     "price": 339,
     "page": "p65",
     "src": require('../../assets/spring/source/p65.jpg'),
@@ -1140,7 +1140,7 @@
   {
     "id": 130,
     "code": "80FB-36909",
-    "type": "裤子（左）",
+    "type": "普通裤子（左）",
     "price": 299,
     "page": "p79",
     "src": require('../../assets/spring/source/p79.jpg'),
@@ -1221,7 +1221,7 @@
   {
     "id": 139,
     "code": "80KQ-29822",
-    "type": "上衣",
+    "type": "普通上衣",
     "price": 329,
     "page": "p85",
     "src": require('../../assets/spring/source/p85.jpg'),
@@ -1302,7 +1302,7 @@
   {
     "id": 148,
     "code": "80J-71009",
-    "type": "裤子",
+    "type": "普通裤子",
     "price": 339,
     "page": "p90",
     "src": require('../../assets/spring/source/p90.jpg'),
@@ -1329,7 +1329,7 @@
   {
     "id": 151,
     "code": "80FL-27575",
-    "type": "裤子",
+    "type": "普通裤子",
     "price": 339,
     "page": "p91",
     "src": require('../../assets/spring/source/p91.jpg'),
@@ -1410,7 +1410,7 @@
   {
     "id": 160,
     "code": "80J-71025",
-    "type": "裤子",
+    "type": "普通裤子",
     "price": 339,
     "page": "p94",
     "src": require('../../assets/spring/source/p94.jpg'),
@@ -1437,7 +1437,7 @@
   {
     "id": 163,
     "code": "80J-71012",
-    "type": "裤子",
+    "type": "普通裤子",
     "price": 339,
     "page": "p95",
     "src": require('../../assets/spring/source/p95.jpg'),
@@ -1446,7 +1446,7 @@
   {
     "id": 164,
     "code": "80HM-51305",
-    "type": "上衣（左）",
+    "type": "普通上衣（左）",
     "price": 289,
     "page": "p96",
     "src": require('../../assets/spring/source/p96.jpg'),
@@ -1455,7 +1455,7 @@
   {
     "id": 165,
     "code": "80J-71016",
-    "type": "裤子（左）",
+    "type": "普通裤子（左）",
     "price": 339,
     "page": "p96",
     "src": require('../../assets/spring/source/p96.jpg'),
@@ -1482,7 +1482,7 @@
   {
     "id": 168,
     "code": "80J-71003",
-    "type": "裤子（右）",
+    "type": "普通裤子（右）",
     "price": 339,
     "page": "p96",
     "src": require('../../assets/spring/source/p96.jpg'),
@@ -1509,7 +1509,7 @@
   {
     "id": 171,
     "code": "80J-71025",
-    "type": "裤子",
+    "type": "普通裤子",
     "price": 339,
     "page": "p97",
     "src": require('../../assets/spring/source/p97.jpg'),
@@ -1518,7 +1518,7 @@
   {
     "id": 172,
     "code": "80PF-54003",
-    "type": "上衣",
+    "type": "普通上衣",
     "price": 289,
     "page": "p99",
     "src": require('../../assets/spring/source/p99.jpg'),
@@ -1527,7 +1527,7 @@
   {
     "id": 173,
     "code": "80FL-27659",
-    "type": "裤子",
+    "type": "普通裤子",
     "price": 339,
     "page": "p99",
     "src": require('../../assets/spring/source/p99.jpg'),
@@ -1581,7 +1581,7 @@
   {
     "id": 179,
     "code": "80FL-27577",
-    "type": "裤子",
+    "type": "普通裤子",
     "price": 339,
     "page": "p103",
     "src": require('../../assets/spring/source/p103.jpg'),
@@ -1590,7 +1590,7 @@
   {
     "id": 180,
     "code": "80PT-26502",
-    "type": "上衣",
+    "type": "普通上衣",
     "price": 269,
     "page": "p104",
     "src": require('../../assets/spring/source/p104.jpg'),
@@ -1635,7 +1635,7 @@
   {
     "id": 185,
     "code": "80AD-86007",
-    "type": "上衣",
+    "type": "普通上衣",
     "price": 259,
     "page": "p107",
     "src": require('../../assets/spring/source/p107.jpg'),
@@ -1653,7 +1653,7 @@
   {
     "id": 187,
     "code": "80WY-68012",
-    "type": "上衣",
+    "type": "普通上衣",
     "price": 279,
     "page": "p109",
     "src": require('../../assets/spring/source/p109.jpg'),
@@ -1662,7 +1662,7 @@
   {
     "id": 188,
     "code": "80J-71001",
-    "type": "裤子",
+    "type": "普通裤子",
     "price": 339,
     "page": "p109",
     "src": require('../../assets/spring/source/p109.jpg'),
@@ -1671,7 +1671,7 @@
   {
     "id": 189,
     "code": "80OT-46203",
-    "type": "上衣",
+    "type": "普通上衣",
     "price": 269,
     "page": "p110",
     "src": require('../../assets/spring/source/p110.jpg'),
@@ -1680,7 +1680,7 @@
   {
     "id": 190,
     "code": "80FL-27581",
-    "type": "裤子",
+    "type": "普通裤子",
     "price": 339,
     "page": "p110",
     "src": require('../../assets/spring/source/p110.jpg'),
@@ -1689,7 +1689,7 @@
   {
     "id": 191,
     "code": "80KV-16910",
-    "type": "上衣",
+    "type": "普通上衣",
     "price": 289,
     "page": "p111",
     "src": require('../../assets/spring/source/p111.jpg'),
@@ -1698,7 +1698,7 @@
   {
     "id": 192,
     "code": "80FL-27581",
-    "type": "裤子",
+    "type": "普通裤子",
     "price": 319,
     "page": "p111",
     "src": require('../../assets/spring/source/p111.jpg'),
@@ -1707,7 +1707,7 @@
   {
     "id": 193,
     "code": "80AD-86003",
-    "type": "上衣",
+    "type": "普通上衣",
     "price": 259,
     "page": "p112",
     "src": require('../../assets/spring/source/p112.jpg'),
@@ -1725,7 +1725,7 @@
   {
     "id": 195,
     "code": "80AD-86009",
-    "type": "上衣",
+    "type": "普通上衣",
     "price": 269,
     "page": "p113",
     "src": require('../../assets/spring/source/p113.jpg'),
@@ -1743,7 +1743,7 @@
   {
     "id": 197,
     "code": "80PT-26505",
-    "type": "上衣",
+    "type": "普通上衣",
     "price": 279,
     "page": "p114",
     "src": require('../../assets/spring/source/p114.jpg'),
@@ -1761,7 +1761,7 @@
   {
     "id": 199,
     "code": "80VV-23602",
-    "type": "上衣",
+    "type": "普通上衣",
     "price": 269,
     "page": "p115",
     "src": require('../../assets/spring/source/p115.jpg'),
@@ -1770,7 +1770,7 @@
   {
     "id": 200,
     "code": "80FL-27581",
-    "type": "裤子",
+    "type": "普通裤子",
     "price": 309,
     "page": "p115",
     "src": require('../../assets/spring/source/p115.jpg'),
@@ -1797,7 +1797,7 @@
   {
     "id": 203,
     "code": "80FB-36909",
-    "type": "裤子",
+    "type": "普通裤子",
     "price": 369,
     "page": "p116",
     "src": require('../../assets/spring/source/p116.jpg'),
@@ -1851,7 +1851,7 @@
   {
     "id": 209,
     "code": "80FZ-32706",
-    "type": "上衣",
+    "type": "普通上衣",
     "price": 269,
     "page": "p120",
     "src": require('../../assets/spring/source/p120.jpg'),
@@ -1869,7 +1869,7 @@
   {
     "id": 211,
     "code": "80TA-20801",
-    "type": "上衣",
+    "type": "普通上衣",
     "price": 259,
     "page": "p121",
     "src": require('../../assets/spring/source/p121.jpg'),
@@ -1878,7 +1878,7 @@
   {
     "id": 212,
     "code": "80J-71033",
-    "type": "裤子",
+    "type": "普通裤子",
     "price": 319,
     "page": "p121",
     "src": require('../../assets/spring/source/p121.jpg'),
@@ -1896,7 +1896,7 @@
   {
     "id": 214,
     "code": "80OE-43523",
-    "type": "上衣",
+    "type": "普通上衣",
     "price": 279,
     "page": "p124",
     "src": require('../../assets/spring/source/p124.jpg'),
@@ -1923,7 +1923,7 @@
   {
     "id": 217,
     "code": "80WY-68001",
-    "type": "上衣",
+    "type": "普通上衣",
     "price": 269,
     "page": "p126",
     "src": require('../../assets/spring/source/p126.jpg'),
