@@ -17,6 +17,8 @@ import ClothScreen from './common/ClothScreen';
 import OrderScreen from './common/OrderScreen';
 import SettingScreen from './common/SettingScreen';
 import HistoryScreen from './common/HistoryScreen';
+import ManualScreen from './common/ManualScreen';
+import InformationScreen from './common/InformationScreen';
 import Manual from './common/Manual';
 import Order from './common/Order';
 import SignUpForm from './common/components/SignUpForm';
@@ -77,8 +79,8 @@ wilddog.initializeApp(config);
                order: { screen: Order },
                oscreen: { screen: OrderScreen },
                setting: { screen: SettingScreen },
-               information: { screen: Information },
-               manual: { screen: Manual }
+               information: { screen: InformationScreen },
+               manual: { screen: ManualScreen }
              })
            },
         }) }

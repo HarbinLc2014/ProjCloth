@@ -17,6 +17,9 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.rockylc.clothapp"
+    },
+    "android": {
+      "package": "com.rockylc.clothapp"
     }
   }
 }

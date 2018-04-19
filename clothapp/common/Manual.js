@@ -68,24 +68,24 @@ const styles = {
       btText: {
         fontSize: 13,
         color: '#FA4A07',
-        textShadowOffset:{width:2, height:1.5},
-         textShadowColor:'black',
+        textShadowOffset: { width: 2, height: 1.5 },
+         textShadowColor: 'black',
          margin: 10,
       },
       btText_with_font: {
           fontFamily: 'lcfont1',
           fontSize: 16,
           color: '#ff82ab',
-          textShadowOffset:{width:0.1, height:0.1},
-           textShadowColor:'#ff82ab',
+          textShadowOffset: { width: 0.1, height: 0.1 },
+           textShadowColor: '#ff82ab',
            margin: 12,
-           width: SCREEN_WIDTH-24
+           width: SCREEN_WIDTH - 24
       },
       btText2: {
         fontSize: 13,
         color: '#FA4A07',
-        textShadowOffset:{width:2, height:1.5},
-         textShadowColor:'black',
+        textShadowOffset: { width: 2, height: 1.5 },
+         textShadowColor: 'black',
          margin: 10,
           textAlign: 'center'
       },
@@ -93,16 +93,16 @@ const styles = {
           fontFamily: 'lcfont2',
           fontSize: 13,
           color: '#FA4A07',
-          textShadowOffset:{width:2, height:1.5},
-           textShadowColor:'black',
+          textShadowOffset: { width: 2, height: 1.5 },
+           textShadowColor: 'black',
            margin: 10,
             textAlign: 'center'
       },
       btText3: {
         fontSize: 13,
         color: '#FA4A07',
-        textShadowOffset:{width:2, height:1.5},
-         textShadowColor:'black',
+        textShadowOffset: { width:2, height: 1.5 },
+         textShadowColor: 'black',
          margin: 10,
           textAlign: 'center'
       },
@@ -112,15 +112,15 @@ const styles = {
           fontWeight: 'bold',
           color: '#007aff',
           textShadowOffset: { width: 2, height: 1.5 },
-          textShadowColor:'black',
+          textShadowColor: 'black',
           margin: 10,
           textAlign: 'center'
       },
       btText4: {
         fontSize: 13,
         color: '#FA4A07',
-        textShadowOffset:{width:2, height:1.5},
-         textShadowColor:'black',
+        textShadowOffset: { width: 2, height: 1.5 },
+         textShadowColor: 'black',
          margin: 10,
           textAlign: 'center'
       },
@@ -129,8 +129,8 @@ const styles = {
           fontSize: 13,
           fontWeight: 'bold',
           color: '#007aff',
-          textShadowOffset:{width:2, height:1.5},
-           textShadowColor:'black',
+          textShadowOffset: { width: 2, height: 1.5 },
+           textShadowColor: 'black',
            margin: 10,
            textAlign: 'center'
       },
